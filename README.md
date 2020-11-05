@@ -1,4 +1,4 @@
-# Website for ENG1 Team 17 'Gnocchi Games'
+# Website for ENG1 Team n°17 'Gnocchi Games'
 
 DragonBoatRace is a game made for an engineering project.
 
