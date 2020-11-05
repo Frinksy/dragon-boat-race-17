@@ -1,5 +1,7 @@
 package com.mygdx.game;
 
+import com.mygdx.game.Entity;
+import java.util.List;
 /**
  * Boat
  */
@@ -54,4 +56,19 @@ public class Boat extends Entity{
         return false;
     }
     
+    public  Boolean isCollided(List<Entity> entities){
+        //TODO
+        return false;
+
+    }
+
+    public void applyCollision(Entity other) {
+        //TODO
+    }
+
+    public void remove() {
+        //TODO
+    }
+
+
 }
