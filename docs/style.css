@@ -5,3 +5,14 @@ body {
 h1 {
     text-align: center;
 }
+
+nav {
+    border-style: solid;
+    width: fit-content;
+    text-align: center;
+}
+
+nav a {
+    display: block;
+    margin: auto;
+}
