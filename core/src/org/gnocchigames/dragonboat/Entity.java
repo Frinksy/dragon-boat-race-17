@@ -16,8 +16,7 @@ public abstract class Entity {
     public float height;
     public float width;
     public Sprite sprite;
-    public float velocity_x;
-    public float velocity_y;
+    public float velocity;
 
 
     public abstract Boolean isCollided(List<Entity> entities);
@@ -27,4 +26,6 @@ public abstract class Entity {
     public abstract void remove();
 
     public abstract void draw(SpriteBatch batch) throws IsNotDrawingException;
+
+    public abstract void update();
 }
