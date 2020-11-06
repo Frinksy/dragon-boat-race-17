@@ -2,6 +2,10 @@ package org.gnocchigames.dragonboat;
 
 import java.util.List;
 
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+
+import org.gnocchigames.dragonboat.exceptions.IsNotDrawingException;
+
 /**
  * Obstacle
  */
@@ -25,4 +29,16 @@ public class Obstacle extends Entity {
         //TODO
     }
     
+    @Override
+    public void draw(SpriteBatch batch) throws IsNotDrawingException {
+        /**
+         * 
+         */
+        if (! batch.isDrawing()) {
+            throw new IsNotDrawingException("SpriteBatch is not currently between begin and end!");
+        }else {
+            batch.draw(this.sprite, this.pos_x, this.pos_y);
+        }
+
+    }
 }
