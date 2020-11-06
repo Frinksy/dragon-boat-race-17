@@ -1,4 +1,4 @@
-package com.mygdx.game;
+package org.gnocchigames.dragonboat;
 
 /**
  * Duck

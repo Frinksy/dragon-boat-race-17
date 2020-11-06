@@ -1,6 +1,6 @@
-package com.mygdx.game;
+package org.gnocchigames.dragonboat;
 
-import com.mygdx.game.Entity;
+import org.gnocchigames.dragonboat.Entity;
 import java.util.List;
 /**
  * Boat
