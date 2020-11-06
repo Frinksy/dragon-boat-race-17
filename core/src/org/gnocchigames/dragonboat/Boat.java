@@ -15,7 +15,7 @@ public class Boat extends Entity{
 
     public int speed_stat;
     public int acceleration_stat;
-    public int maneauverability_stat;
+    public int manoeuverability_stat;
     public int robustness_stat;
     public float tiredness_factor;
     public int direction;
@@ -23,17 +23,34 @@ public class Boat extends Entity{
     public float current_penalty;
 
     private Boolean in_lane;
-    private float current_speed;
 
     public Boat() {
         Texture boat_texture = new Texture("boat.png"); // TODO: Do not hardcode file name
         this.sprite = new Sprite(boat_texture);
         this.pos_x = 0;
         this.pos_y = 0;
-        this.direction = 0;
+        this.direction = 90;
         this.current_health = 100;
         this.current_penalty = 0;
-        this.current_speed = 0;
+        this.velocity = 1;
+    }
+
+    public void update() {
+        /**
+         * Update the boat's properties and stats
+         */
+
+        double rad_angle = this.direction * (Math.PI / 180);
+
+        double delta_x = Math.cos(rad_angle) * velocity;
+        double delta_y = Math.sin(rad_angle) * velocity;
+
+        this.pos_x += delta_x;
+        this.pos_y += delta_y;
+
+        this.sprite.setPosition(this.pos_x, this.pos_y);
+        
+
     }
 
     public void accelerate() {
