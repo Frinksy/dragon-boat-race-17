@@ -20,7 +20,7 @@ public class DragonBoatGame extends ApplicationAdapter {
 	@Override
 	public void create () {
 		batch = new SpriteBatch();
-		img = new Texture("badlogic.jpg");
+
 		game_entities = new ArrayList<Entity>();
 		game_entities.add(new Boat());
 	}
@@ -29,8 +29,8 @@ public class DragonBoatGame extends ApplicationAdapter {
 	public void render () {
 		Gdx.gl.glClearColor(0, 0, 1, 1);
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
+		
 		batch.begin();
-		batch.draw(img, 15, 0);
 
 		for (Entity entity : game_entities) {
 			try {
