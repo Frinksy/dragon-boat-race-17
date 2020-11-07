@@ -28,7 +28,7 @@ public class DragonBoatGame extends ApplicationAdapter {
 		camera.setToOrtho(false, 1920, 1080);
 
 		game_entities = new ArrayList<Entity>();
-		game_entities.add(new Boat());
+		game_entities.add(new PlayerBoat());
 	}
 
 
