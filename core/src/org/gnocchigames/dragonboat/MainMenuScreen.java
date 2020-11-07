@@ -7,6 +7,12 @@ public class MainMenuScreen extends ScreenAdapter{
      * 
      */
 
+    private DragonBoatGame game;
+
+    public MainMenuScreen(DragonBoatGame game) {
+        this.game = game;
+    }
+
 
     @Override
     public void show() {

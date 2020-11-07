@@ -15,8 +15,11 @@ public class DragonBoatGame extends Game {
 	@Override
 	public void create () {
 		
+		// Set the screen we want
 		this.setScreen(new RaceLegScreen(this));
-
+		
+		// Uncomment the following line (comment the above line) to show the menu instead
+		this.setScreen(new MainMenuScreen(this));
 	}
 
 
