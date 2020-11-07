@@ -2,6 +2,7 @@ package org.gnocchigames.dragonboat;
 
 import java.util.List;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
@@ -27,9 +28,10 @@ public class Boat extends Entity{
     public Boat() {
         Texture boat_texture = new Texture("boat.png"); // TODO: Do not hardcode file name
         this.sprite = new Sprite(boat_texture);
+        this.sprite.setOrigin(this.sprite.getWidth()/2, this.sprite.getHeight()/2);
         this.pos_x = 0;
         this.pos_y = 0;
-        this.direction = 90;
+        this.direction = 0;
         this.current_health = 100;
         this.current_penalty = 0;
         this.velocity = 1;
@@ -42,8 +44,8 @@ public class Boat extends Entity{
 
         double rad_angle = this.direction * (Math.PI / 180);
 
-        double delta_x = Math.cos(rad_angle) * velocity;
-        double delta_y = Math.sin(rad_angle) * velocity;
+        double delta_y = Math.cos(rad_angle) * velocity;
+        double delta_x = -Math.sin(rad_angle) * velocity;
 
         this.pos_x += delta_x;
         this.pos_y += delta_y;
@@ -54,27 +56,33 @@ public class Boat extends Entity{
     }
 
     public void accelerate() {
-        //TODO
+        //TODO: actually implement this
+        this.changeSpeed(1);
     }
 
     public void deccelerate() {
-        //TODO
+        //TODO: actually implement this
+        this.changeSpeed(-1);
     }
 
     private void changeSpeed(int value) {
-        //TODO
+        //TODO: actually implement this
+        this.velocity += value * Gdx.graphics.getDeltaTime();
     }
 
     public void turnLeft() {
-        //TODO
+        changeDirection(1);
     }
 
     public void turnRight() {
-        //TODO
+        changeDirection(-1);
     }
 
-    private void changeDirection() {
-        //TODO
+    private void changeDirection(int diff) {
+        this.direction = Math.floorMod(this.direction + diff, 360);
+        
+        System.out.println("Current direction is: " + this.direction);
+        System.out.println("Current sprite rotation is: " + this.sprite.getRotation());
     }
 
     private Boolean isZeroHP() {
@@ -117,7 +125,9 @@ public class Boat extends Entity{
         if (! batch.isDrawing()) {
             throw new IsNotDrawingException("SpriteBatch is not currently between begin and end!");
         }else {
-            batch.draw(this.sprite, this.pos_x, this.pos_y);
+            this.sprite.setRotation(this.direction);
+            this.sprite.draw(batch);
+
         }
 
     }
