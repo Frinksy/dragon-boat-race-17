@@ -11,6 +11,9 @@ import org.gnocchigames.dragonboat.exceptions.IsNotDrawingException;
 
 /**
  * Boat
+ * Class which implements a boat
+ * It is not designed to be used directly,
+ * instead please use PlayerBoat or AIBoat
  */
 public class Boat extends Entity{
 
@@ -25,6 +28,10 @@ public class Boat extends Entity{
 
     private Boolean in_lane;
 
+    // TODO: modify constructor 
+    //       to use different stats presets
+    //       (potentially use an Enum)
+
     public Boat() {
         Texture boat_texture = new Texture("boat.png"); // TODO: Do not hardcode file name
         this.sprite = new Sprite(boat_texture);
@@ -36,11 +43,12 @@ public class Boat extends Entity{
         this.current_penalty = 0;
         this.velocity = 1;
     }
-
+    
+    /**
+     * Update the boat's properties and stats
+     * Should be called every frame
+     */
     public void update() {
-        /**
-         * Update the boat's properties and stats
-         */
 
         double rad_angle = this.direction * (Math.PI / 180);
 
@@ -52,37 +60,57 @@ public class Boat extends Entity{
 
         this.sprite.setPosition(this.pos_x, this.pos_y);
         
-
     }
 
+
+    /**
+     * Make the boat go faster
+     * Changes speed based off of the boat's current stats
+     */
     public void accelerate() {
         //TODO: actually implement this
         this.changeSpeed(1);
     }
 
-    public void deccelerate() {
+    /**
+     * Slow the boat down
+     */
+    public void decelerate() {
         //TODO: actually implement this
         this.changeSpeed(-1);
     }
 
+    /**
+     * Private convenience function to apply the change in speed
+     * in speed from accellerate() and decelerate()
+     * @param value the acceleration value to be applied (units.s^-2)
+     */
     private void changeSpeed(int value) {
         //TODO: actually implement this
         this.velocity += value * Gdx.graphics.getDeltaTime();
     }
 
+    /**
+     * Turn the boat left
+     */
     public void turnLeft() {
         changeDirection(1);
     }
 
+    /**
+     * Turn the boat right
+     */
     public void turnRight() {
         changeDirection(-1);
     }
 
+    /**
+     * Private convenience function to apply the turning of the boat
+     * Called by turnLeft() and turnRight();
+     * @param diff the angle difference in degrees
+     */
     private void changeDirection(int diff) {
         this.direction = Math.floorMod(this.direction + diff, 360);
-        
-        System.out.println("Current direction is: " + this.direction);
-        System.out.println("Current sprite rotation is: " + this.sprite.getRotation());
     }
 
     private Boolean isZeroHP() {
@@ -117,11 +145,13 @@ public class Boat extends Entity{
     }
 
 
+    /**
+     * Add the sprite to the drawing queue (SpriteBatch)
+     * Should be called every frame
+     * @param batch the SpriteBatch to draw to
+     */
     @Override
     public void draw(SpriteBatch batch) throws IsNotDrawingException {
-        /**
-         * 
-         */
         if (! batch.isDrawing()) {
             throw new IsNotDrawingException("SpriteBatch is not currently between begin and end!");
         }else {

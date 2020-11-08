@@ -8,6 +8,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import org.gnocchigames.dragonboat.exceptions.IsNotDrawingException;
 /**
  * Entity
+ * Base class for all entities in the game
  */
 public abstract class Entity {
 

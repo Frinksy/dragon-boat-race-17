@@ -2,10 +2,10 @@ package org.gnocchigames.dragonboat;
 
 import com.badlogic.gdx.ScreenAdapter;
 
+/** Main menu screen
+ * MainMenuScreen is instantiated by DragonBoatGame
+ */
 public class MainMenuScreen extends ScreenAdapter{
-    /** Main menu screen
-     * 
-     */
 
     private DragonBoatGame game;
 

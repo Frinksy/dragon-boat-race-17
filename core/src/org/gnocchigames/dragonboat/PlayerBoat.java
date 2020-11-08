@@ -9,7 +9,13 @@ public class PlayerBoat extends Boat{
         super();
     }
 
+    /**
+     * Get keyboard input and translate them into
+     * function calls for player movement.
+     * Is called in update() method
+     */
     public void handleKeys() {
+
         if (Gdx.input.isKeyPressed(Input.Keys.LEFT)) {
             this.turnLeft();
         }
@@ -20,14 +26,19 @@ public class PlayerBoat extends Boat{
             this.accelerate();
         }
         if (Gdx.input.isKeyPressed(Input.Keys.DOWN)) {
-            this.deccelerate();
+            this.decelerate();
         }
 
 
     }
 
 
+    /**
+     * Update the state of the boat.
+     * Should be called every frame.
+     */
     public void update() {
+        
         super.update();
 
         handleKeys();

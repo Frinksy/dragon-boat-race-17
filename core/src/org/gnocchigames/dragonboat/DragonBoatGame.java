@@ -1,17 +1,18 @@
 package org.gnocchigames.dragonboat;
 
-import java.util.ArrayList;
-import java.util.List; 
-
-
 import com.badlogic.gdx.Game;
-import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
 
 
+/**
+ * Main Game class,
+ * handles different game screens (MainMenuScreen, RaceLegScreen, etc.)
+ */
 public class DragonBoatGame extends Game {
 
-
+	/**
+	 * Called at the start to initialise the game
+	 */
 	@Override
 	public void create () {
 		
@@ -23,12 +24,18 @@ public class DragonBoatGame extends Game {
 	}
 
 
+	/**
+	 * Called every frame to render the scene
+	 */
 	@Override
 	public void render () {
 		super.render();
 
 	}
 	
+	/**
+	 * Called at the end, to free up memory
+	*/
 	@Override
 	public void dispose () {
 	}

@@ -11,6 +11,11 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
 import org.gnocchigames.dragonboat.exceptions.IsNotDrawingException;
 
+/**
+ * Base class for a leg of the dragon boat race
+ * Keeps track of entities, updates them
+ * Draws scene every frame
+ */
 public class RaceLegScreen extends ScreenAdapter {
     
     private DragonBoatGame game;
@@ -23,6 +28,10 @@ public class RaceLegScreen extends ScreenAdapter {
         this.game = game;
     }
 
+    /**
+     * Called when DragonBoatGame switches to this screen
+     * Instantiates required objects
+     */
     @Override
     public void show() {
         batch = new SpriteBatch();
@@ -34,7 +43,10 @@ public class RaceLegScreen extends ScreenAdapter {
         entities.add(new PlayerBoat());
     }
 
-
+    /**
+     * Draws screen
+     * Should be called every frame
+     */
     public void draw() {
         Gdx.gl.glClearColor(0, 0, 50, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
@@ -57,6 +69,9 @@ public class RaceLegScreen extends ScreenAdapter {
 
     }
 
+    /**
+     * Update all entities in the scene
+     */
     public void update() {
 
         for (Entity entity : entities) {
@@ -65,12 +80,18 @@ public class RaceLegScreen extends ScreenAdapter {
 
     }
 
+    /**
+     * render() is called every frame to render the screen
+     */
     @Override
     public void render (float delta_time) {
         draw();
         update();
     }
 
+    /**
+     * Called when the screen is disposed of
+     */
     @Override
     public void dispose () {
         batch.dispose();
