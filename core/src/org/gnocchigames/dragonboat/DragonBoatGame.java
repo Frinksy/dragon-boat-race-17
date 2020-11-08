@@ -19,7 +19,7 @@ public class DragonBoatGame extends Game {
 		this.setScreen(new RaceLegScreen(this));
 		
 		// Uncomment the following line (comment the above line) to show the menu instead
-		this.setScreen(new MainMenuScreen(this));
+		//this.setScreen(new MainMenuScreen(this));
 	}
 
 
