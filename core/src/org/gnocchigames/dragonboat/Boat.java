@@ -5,9 +5,7 @@ import java.util.List;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
-import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
-import org.gnocchigames.dragonboat.exceptions.IsNotDrawingException;
 
 /**
  * Boat
@@ -16,6 +14,10 @@ import org.gnocchigames.dragonboat.exceptions.IsNotDrawingException;
  * instead please use PlayerBoat or AIBoat
  */
 public class Boat extends Entity{
+
+    public static enum Boat_Type {
+        FAST, HARD, ACCEL, MANOEUVREABLE
+    }
 
     public int speed_stat;
     public int acceleration_stat;
@@ -28,37 +30,97 @@ public class Boat extends Entity{
 
     private Boolean in_lane;
 
-    // TODO: modify constructor 
-    //       to use different stats presets
-    //       (potentially use an Enum)
+    private static final float MAX_BACKWARDS_SPEED = -20;
+    private static final float MIN_TIRED_SPEED = 20;
+    private static final float MIN_TIREDNESS_FACTOR = 0.1f;
 
-    public Boat() {
+    private static final float VELOCITY_CONSTANT = 2;
+
+
+    public Boat(Boat_Type type) {
+
+        
+        
         Texture boat_texture = new Texture("boat.png"); // TODO: Do not hardcode file name
         this.sprite = new Sprite(boat_texture);
         this.sprite.setOrigin(this.sprite.getWidth()/2, this.sprite.getHeight()/2);
+        this.sprite.scale(-0.25f);
+
         this.pos_x = 0;
         this.pos_y = 0;
         this.direction = 0;
         this.current_health = 100;
         this.current_penalty = 0;
         this.velocity = 1;
+
+        setStats(type);
+
+
+        this.in_lane = true; // We assume the boat starts in lane
+        this.tiredness_factor = 1f;
+
+    }
+    /**
+     * Set the stats for the boat
+     * @param type the preset for the boat stats
+     */
+    private void setStats(Boat_Type type) {
+        switch (type) {
+            case FAST:
+                this.acceleration_stat = 70;
+                this.speed_stat = 100;
+                this.manoeuverability_stat = 50;
+                this.robustness_stat = 40;
+                break;
+            case HARD:
+                this.acceleration_stat = 60;
+                this.speed_stat = 80;
+                this.manoeuverability_stat = 40;
+                this.robustness_stat = 100;
+                break;
+            case ACCEL:
+                this.acceleration_stat = 100;
+                this.speed_stat = 80;
+                this.manoeuverability_stat = 70;
+                this.robustness_stat = 40;
+                break;
+            case MANOEUVREABLE:
+                this.acceleration_stat = 80;
+                this.speed_stat = 75;
+                this.manoeuverability_stat = 100;
+                this.robustness_stat = 20;
+                break;
+            default:
+                this.acceleration_stat = 50;
+                this.speed_stat = 50;
+                this.manoeuverability_stat = 50;
+                this.robustness_stat = 50;
+                break;
+        }
     }
     
     /**
      * Update the boat's properties and stats
      * Should be called every frame
      */
-    public void update() {
+    public void update(float delta_time) {
 
         double rad_angle = this.direction * (Math.PI / 180);
 
-        double delta_y = Math.cos(rad_angle) * velocity;
-        double delta_x = -Math.sin(rad_angle) * velocity;
+        double delta_y = Math.cos(rad_angle) * velocity * delta_time * VELOCITY_CONSTANT;
+        double delta_x = -Math.sin(rad_angle) * velocity * delta_time * VELOCITY_CONSTANT;
 
         this.pos_x += delta_x;
         this.pos_y += delta_y;
 
         this.sprite.setPosition(this.pos_x, this.pos_y);
+
+        // DEBUG
+        System.out.printf("Current velocity: %f\r", this.velocity);
+        //System.out.printf("Current tiredness: %f\r", this.tiredness_factor);
+
+        // apply water resistance
+        velocity *= 0.995;
         
     }
 
@@ -68,16 +130,18 @@ public class Boat extends Entity{
      * Changes speed based off of the boat's current stats
      */
     public void accelerate() {
-        //TODO: actually implement this
-        this.changeSpeed(1);
+
+        float accel = Math.max(this.acceleration_stat * MIN_TIREDNESS_FACTOR ,this.acceleration_stat * this.tiredness_factor);
+        changeSpeed(accel);
+        getTired();
+    
     }
 
     /**
      * Slow the boat down
      */
     public void decelerate() {
-        //TODO: actually implement this
-        this.changeSpeed(-1);
+        changeSpeed(-100);
     }
 
     /**
@@ -85,9 +149,23 @@ public class Boat extends Entity{
      * in speed from accellerate() and decelerate()
      * @param value the acceleration value to be applied (units.s^-2)
      */
-    private void changeSpeed(int value) {
-        //TODO: actually implement this
+    private void changeSpeed(float value) {
+
         this.velocity += value * Gdx.graphics.getDeltaTime();
+
+        float current_max_speed = Math.max(this.speed_stat * this.tiredness_factor, MIN_TIREDNESS_FACTOR * MIN_TIRED_SPEED);
+
+        if (this.velocity > current_max_speed) {
+            
+
+            this.velocity = this.speed_stat * this.tiredness_factor;
+        }
+
+        if (this.velocity < Boat.MAX_BACKWARDS_SPEED) {
+            this.velocity = Boat.MAX_BACKWARDS_SPEED;
+        }
+
+
     }
 
     /**
@@ -110,16 +188,17 @@ public class Boat extends Entity{
      * @param diff the angle difference in degrees
      */
     private void changeDirection(int diff) {
-        this.direction = Math.floorMod(this.direction + diff, 360);
+        int angleDiff = this.direction + diff * this.manoeuverability_stat / 50; 
+        this.direction = Math.floorMod(angleDiff, 360);
+        this.sprite.setRotation(this.direction);
     }
 
     private Boolean isZeroHP() {
-        //TODO
-        return false;
+        return current_health > 0;
     }
 
     private void getTired() {
-        //TODO
+        tiredness_factor = tiredness_factor - (0.005f * tiredness_factor * Gdx.graphics.getDeltaTime());
     }
 
     private Boolean checkInLane() {
@@ -144,22 +223,5 @@ public class Boat extends Entity{
         //TODO
     }
 
-
-    /**
-     * Add the sprite to the drawing queue (SpriteBatch)
-     * Should be called every frame
-     * @param batch the SpriteBatch to draw to
-     */
-    @Override
-    public void draw(SpriteBatch batch) throws IsNotDrawingException {
-        if (! batch.isDrawing()) {
-            throw new IsNotDrawingException("SpriteBatch is not currently between begin and end!");
-        }else {
-            this.sprite.setRotation(this.direction);
-            this.sprite.draw(batch);
-
-        }
-
-    }
 
 }

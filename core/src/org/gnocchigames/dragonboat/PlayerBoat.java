@@ -5,8 +5,8 @@ import com.badlogic.gdx.Input;
 
 public class PlayerBoat extends Boat{
     
-    public PlayerBoat() {
-        super();
+    public PlayerBoat(Boat.Boat_Type type) {
+        super(type);
     }
 
     /**
@@ -37,9 +37,9 @@ public class PlayerBoat extends Boat{
      * Update the state of the boat.
      * Should be called every frame.
      */
-    public void update() {
+    public void update(float delta_time) {
         
-        super.update();
+        super.update(delta_time);
 
         handleKeys();
     }

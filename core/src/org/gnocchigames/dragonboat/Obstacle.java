@@ -29,23 +29,9 @@ public class Obstacle extends Entity {
         //TODO
     }
     
-    /**
-     * Add the obstacle to the drawing queue
-     * @param batch the SpriteBatch to draw to
-     * @throws IsNotDrawingException if not called between batch.begin() and batch.end()
-     */
+    
     @Override
-    public void draw(SpriteBatch batch) throws IsNotDrawingException {
-        if (! batch.isDrawing()) {
-            throw new IsNotDrawingException("SpriteBatch is not currently between begin and end!");
-        }else {
-            batch.draw(this.sprite, this.pos_x, this.pos_y);
-        }
-
-    }
-
-    @Override
-    public void update() {
+    public void update(float delta_time) {
         //TODO
     }
 }

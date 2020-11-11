@@ -42,8 +42,8 @@ public class DragonBoatGame extends Game {
 		//main_menu_screen = new MainMenuScreen(this);
 		//setScreen(main_menu_screen);
 
-		//Set the screen to the actual game
-		//this.setScreen(new RaceLegScreen(this));
+		// Set the screen to the actual game
+		// this.setScreen(new RaceLegScreen(this));
 
 
 		game_settings = new GameSettings();

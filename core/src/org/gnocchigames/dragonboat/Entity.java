@@ -26,7 +26,18 @@ public abstract class Entity {
 
     public abstract void remove();
 
-    public abstract void draw(SpriteBatch batch) throws IsNotDrawingException;
+    /**
+     * Add the sprite to the drawing queue (SpriteBatch)
+     * Should be called every frame
+     * @param batch the SpriteBatch to draw to
+     */
+    public void draw(SpriteBatch batch) throws IsNotDrawingException {
+        if (! batch.isDrawing()) {
+            throw new IsNotDrawingException("SpriteBatch is not currently between begin and end!");
+        }else {
+            this.sprite.draw(batch);
+        }
+    };
 
-    public abstract void update();
+    public abstract void update(float delta_time);
 }
