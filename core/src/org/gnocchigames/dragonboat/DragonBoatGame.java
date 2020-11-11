@@ -17,6 +17,7 @@ public class DragonBoatGame extends Game {
 	private RaceLegScreen race_leg_screen;
 	private PodiumScreen podium_Screen;
 	private GameSettings game_settings;
+	private GameOverScreen game_over_screen; 
 	
 	// declares variables holding integers to be used in case statement
 	public final static int MENU = 0;
@@ -25,6 +26,10 @@ public class DragonBoatGame extends Game {
 	public final static int SETTINGS = 3;
 	public final static int RACE_LEG = 4;
 	public final static int PODIUM = 5;
+	public final static int GAMEOVER = 6;
+	public final static int LOADING =7;
+
+	
 
 	/**
 	 * Called at the start to initialise the game
@@ -36,14 +41,14 @@ public class DragonBoatGame extends Game {
 		 * same as commented code beneath
 		 */
 
-		loading_screen = new LoadingScreen(this);
-		this.setScreen(loading_screen);
+		//loading_screen = new LoadingScreen(this);
+		//this.setScreen(loading_screen);
 		
 		//main_menu_screen = new MainMenuScreen(this);
 		//setScreen(main_menu_screen);
 
 		// Set the screen to the actual game
-		// this.setScreen(new RaceLegScreen(this));
+		this.setScreen(new RaceLegScreen(this));
 
 
 		game_settings = new GameSettings();
@@ -80,6 +85,14 @@ public class DragonBoatGame extends Game {
 				if(podium_Screen == null) podium_Screen = new PodiumScreen(this);
 					this.setScreen(podium_Screen);
 					break; 
+			case GAMEOVER:
+				if(game_over_screen == null) game_over_screen = new GameOverScreen(this);
+					this.setScreen(game_over_screen);
+					break;
+			case LOADING:
+				if(main_menu_screen == null) main_menu_screen = new MainMenuScreen(this);
+					this.setScreen(main_menu_screen);
+					break;
 		}
 	}
 	
