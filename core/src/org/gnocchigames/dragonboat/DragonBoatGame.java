@@ -37,7 +37,7 @@ public class DragonBoatGame extends Game {
 		 */
 
 		loading_screen = new LoadingScreen(this);
-		setScreen(loading_screen);
+		this.setScreen(loading_screen);
 		
 		//main_menu_screen = new MainMenuScreen(this);
 		//setScreen(main_menu_screen);
