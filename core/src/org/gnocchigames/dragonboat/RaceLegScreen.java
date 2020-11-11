@@ -13,6 +13,10 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import org.gnocchigames.dragonboat.Boat.Boat_Type;
 import org.gnocchigames.dragonboat.exceptions.IsNotDrawingException;
 
+import org.gnocchigames.dragonboat.RaceStructure;
+
+
+
 /**
  * RaceLegScreen
  * Base class for a leg of the dragon boat race
@@ -28,9 +32,14 @@ public class RaceLegScreen extends ScreenAdapter {
 
     private Texture background_texture;
 
+    private PlayerBoat player_boat;
+    private RaceStructure race_structure;
+
     public RaceLegScreen (DragonBoatGame game) {
         super();
         this.game = game;
+        System.out.println("raceover = "+race_structure.raceover(player_boat));
+        
     }
 
     /**
@@ -122,5 +131,5 @@ public class RaceLegScreen extends ScreenAdapter {
             }
         }
     }
-
+    
 }
