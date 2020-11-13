@@ -18,6 +18,8 @@ import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 
 public class BoatSelectScreen extends ScreenAdapter{
 
+    private Boat.Boat_Type type;
+
     private DragonBoatGame parent;
     private Stage stage;
 
@@ -50,9 +52,19 @@ public class BoatSelectScreen extends ScreenAdapter{
     @Override
     public void show(){
 
+
         Table table_big = new Table();
         table_big.setFillParent(true);
         stage.addActor(table_big);
+
+
+        Table table_fast = new Table();
+        table_fast = BoatSelectInfo.drawTable(Boat.Boat_Type.FAST);
+
+        Table table_acceleration = new Table();
+        table_acceleration = BoatSelectInfo.drawTable(Boat.Boat_Type.ACCEL);
+
+
 
         Boat boat_fast = new Boat(Boat.Boat_Type.FAST);
         Boat boat_hard = new Boat(Boat.Boat_Type.HARD);
@@ -83,15 +95,17 @@ public class BoatSelectScreen extends ScreenAdapter{
         h_speed_num = new ProgressBar(0f, 100f, 1f, false, skin);
         h_speed_num.setValue(boat_hard.speed_stat);     
         
-        table_big.add(title).colspan(4);
-        table_big.row().pad(15, 0, 0, 10);
-        table_big.add(f_title).colspan(2);
-        table_big.add(h_title).colspan(2);
-        table_big.row().pad(5, 0, 0, 10);
-        table_big.add(f_speed_label);
-        table_big.add(f_speed_num);
-        table_big.add(h_speed_label);
-        table_big.add(h_speed_num);
+        table_big.add(title).colspan(2);
+        table_big.row().pad(15, 50, 0, 50);
+        table_big.add(f_title);
+        table_big.add(h_title);
+        table_big.row().pad(5, 50, 0, 50);
+        table_big.add(table_fast);
+        table_big.add(table_acceleration);
+        //table_big.add(f_speed_label);
+        //table_big.add(f_speed_num);
+        //table_big.add(h_speed_label);
+        //table_big.add(h_speed_num);
         table_big.row().pad(10, 0, 0, 10);
         //table_big.add(f_acceleration_label);
         table_big.add(return_button).colspan(4);

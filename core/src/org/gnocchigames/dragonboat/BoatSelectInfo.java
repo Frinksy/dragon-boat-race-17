@@ -1,4 +1,4 @@
-/**package org.gnocchigames.dragonboat;
+package org.gnocchigames.dragonboat;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.ScreenAdapter;
@@ -16,22 +16,56 @@ import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 /** Main menu screen
  * MainMenuScreen is instantiated by DragonBoatGame
  */
-/**
+
 public class BoatSelectInfo{
 
-    public static enum Boat_Type {
-        FAST, HARD, ACCEL, MANOEUVREABLE
-    }
+    private static Label title;
+    private static Label speed_label;
+    private static ProgressBar speed_num;
+    private static Label acceleration_label;
+    private static ProgressBar acceleration_num;
+    private static Label manouverability_label;
+    private static ProgressBar manouverability_num;
+    private static Label robustness_label;
+    private static ProgressBar robustness_num;
 
-    private Label title;
-    private Label speed_label;
-    private Label speed_num;
-    private Label acceleration_label;
-    private Label acceleration_num;
-    private Label manouverability_stat;
-    private Label manouverability_num;
-    private Label robustness_stat;
-    private Label robustness_num;
+
+    public static Table drawTable(Boat.Boat_Type type){
+
+        Boat boat = new Boat(Boat.Boat_Type.FAST);
+
+        Table table = new Table();
+        table.setFillParent(false);        
+
+        Skin skin = new Skin(Gdx.files.internal("clean-crispy/clean-crispy-ui.json"));
+
+        speed_label = new Label ("Speed", skin);
+        acceleration_label = new Label ("Acceleration", skin);
+        manouverability_label = new Label ("Maneuverability", skin);
+        robustness_label = new Label ("Robustness", skin);
+        speed_num = new ProgressBar(0f, 100f, 1f, false, skin);
+        speed_num.setValue(boat.speed_stat);
+        acceleration_num = new ProgressBar(0f, 100f, 1f, false, skin);
+        acceleration_num.setValue(boat.acceleration_stat); 
+        manouverability_num = new ProgressBar(0f, 100f, 1f, false, skin);
+        manouverability_num.setValue(boat.manoeuverability_stat);
+        robustness_num = new ProgressBar(0f, 100f, 1f, false, skin);
+        robustness_num.setValue(boat.robustness_stat);
+
+        table.add(speed_label);
+        table.add(speed_num);
+        table.row().pad(10, 0, 0, 5);
+        table.add(acceleration_label);
+        table.add(acceleration_num);
+        table.row().pad(10, 0, 0, 5);
+        table.add(manouverability_label);
+        table.add(manouverability_num);
+        table.row().pad(10, 0, 0, 5);
+        table.add(robustness_label);
+        table.add(robustness_num);
+
+        return table;
+    }
 
     //private Boat fast = new Boat(Boat.Boat_Type.FAST);
     //private Boat accel = new Boat(Boat.Boat_Type.ACCEL);
@@ -39,70 +73,4 @@ public class BoatSelectInfo{
     //private Boat hard = new Boat(Boat.Boat_Type.HARD);
 
     // replace with a checkbox
-    private Label check;
-
-    
-
-    
-
-    public Integer BoatSelectInfo(Boat_Type type){
-        
-        Boat boat = setBoatType(type);
-
-        Table table = new Table();
-        table.setFillParent(true);
-        
-        Skin skin = new Skin(Gdx.files.internal("clean-crispy/clean-crispy-ui.json"));
-
-        title = new Label ("Fast", skin);
-        speed_label = new Label ("Speed", skin);
-        speed_num = new Label (Integer.toString(boat.speed_stat), skin);
-        acceleration_label = new Label ("Acceleration", skin);        
-        acceleration_num = new Label(Integer.toString(boat.acceleration_stat), skin);
-
-        table.add(title).colspan(2);
-        table.row().pad(10, 0, 0, 0);
-        table.add(speed_label);
-        table.add(speed_num);
-        table.row().pad(10, 0, 0 ,0);
-        table.add(acceleration_label);
-        table.add(acceleration_num);
-        table.row().pad(10, 0, 0, 0);
-        table.add(check).colspan(2);
-
-        return speed_num;
-        
-
-
-    }
-
-    private Boat setBoatType(Boat_Type type){
-        switch(type){
-            case FAST:
-                this.Boat = new Boat(Boat.Boat_Type.FAST);
-                return boat;
-                break;
-            case HARD:
-                Boat boat = new Boat(Boat.Boat_Type.HARD);
-                return boat;
-                break;
-            case ACCEL:
-                Boat boat = new Boat(Boat.Boat_Type.ACCEL);
-                return boat;
-                break;
-            case MANOEUVREABLE:
-                Boat boat = new Boat(Boat.Boat_Type.MANOEUVREABLE);
-                return boat;
-                break;
-            default:
-                Boat boat = new Boat(Boat.Boat_Type.MANOEUVREABLE);
-                return boat;
-                break;
-        } 
-        
-    }
-
-
-
 }
-*/
