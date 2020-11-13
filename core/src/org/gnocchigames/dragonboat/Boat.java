@@ -92,7 +92,7 @@ public class Boat extends Entity{
      * Set the stats for the boat
      * @param type the preset for the boat stats
      */
-    private void setStats(Boat_Type type) {
+    final private void setStats(Boat_Type type) {
         switch (type) {
             case FAST:
                 this.acceleration_stat = 70;

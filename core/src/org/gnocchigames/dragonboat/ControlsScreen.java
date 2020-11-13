@@ -39,6 +39,6 @@ public class ControlsScreen extends ScreenAdapter{
 
     @Override
     public void dispose(){
-        stage.dispose();
+
     }
 }

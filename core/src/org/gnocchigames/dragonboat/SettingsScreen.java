@@ -123,7 +123,7 @@ public class SettingsScreen extends ScreenAdapter{
         /**gets called every frame
          * resets screen then draws new frame to it
          */
-        Gdx.gl.glClearColor(0f, 0f, 0f, 1);
+        Gdx.gl.glClearColor(1f, 1f, 1f, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
         stage.act(Math.min(Gdx.graphics.getDeltaTime(), 1/30f));
@@ -144,6 +144,6 @@ public class SettingsScreen extends ScreenAdapter{
     @Override
     public void dispose(){
         // called when closed to save memory
-        stage.dispose();
+
     }
 }
