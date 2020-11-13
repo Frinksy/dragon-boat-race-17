@@ -5,6 +5,7 @@ import java.util.List;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
+import com.badlogic.gdx.math.Polygon;
 
 
 /**
@@ -59,7 +60,34 @@ public class Boat extends Entity{
         this.in_lane = true; // We assume the boat starts in lane
         this.tiredness_factor = 1f;
 
+        this.hitbox = getBoundingPolygon();
+
+
     }
+
+    @Override
+    public Polygon getBoundingPolygon() {
+
+         float [] vertices = {
+            0, 0,
+            0, 100,
+            20, 120,
+            30, 120,
+            50, 100,
+            50, 0
+
+        };
+
+        Polygon output = new Polygon(vertices);
+        output.scale(-0.25f);
+        output.setOrigin(24, 60);
+        output.setPosition(pos_x, pos_y);
+        output.setRotation(direction);
+        
+        return output;
+    }
+
+
     /**
      * Set the stats for the boat
      * @param type the preset for the boat stats
@@ -114,9 +142,11 @@ public class Boat extends Entity{
         this.pos_y += delta_y;
 
         this.sprite.setPosition(this.pos_x, this.pos_y);
+        this.hitbox.setPosition(this.pos_x, this.pos_y);
+        this.hitbox.setRotation(this.direction);
 
         // DEBUG
-        System.out.printf("Current velocity: %f\r", this.velocity);
+        //System.out.printf("Current velocity: %f\r", this.velocity);
         //System.out.printf("Current tiredness: %f\r", this.tiredness_factor);
 
         // apply water resistance

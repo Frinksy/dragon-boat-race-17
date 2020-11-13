@@ -6,9 +6,10 @@ import java.util.ArrayList;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.ScreenAdapter;
 import com.badlogic.gdx.graphics.GL20;
-import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
+import com.badlogic.gdx.graphics.glutils.ShapeRenderer.ShapeType;
 
 import org.gnocchigames.dragonboat.Boat.Boat_Type;
 import org.gnocchigames.dragonboat.exceptions.IsNotDrawingException;
@@ -27,7 +28,7 @@ public class RaceLegScreen extends ScreenAdapter {
     
     private DragonBoatGame game;
     private List<Entity> entities;
-    private OrthographicCamera camera;
+    private GameCamera camera;
     private SpriteBatch batch;
 
     private Texture background_texture;
@@ -35,10 +36,12 @@ public class RaceLegScreen extends ScreenAdapter {
     private PlayerBoat player_boat;
     private RaceStructure race_structure;
 
+    ShapeRenderer debug_box_renderer;
+
     public RaceLegScreen (DragonBoatGame game) {
         super();
         this.game = game;
-        System.out.println("raceover = "+race_structure.raceover(player_boat));
+        //System.out.println("raceover = "+race_structure.raceover(player_boat));
         
     }
 
@@ -49,12 +52,14 @@ public class RaceLegScreen extends ScreenAdapter {
     @Override
     public void show() {
         batch = new SpriteBatch();
+        debug_box_renderer = new ShapeRenderer();
 
-        camera = new OrthographicCamera();
+        camera = new GameCamera();
         camera.setToOrtho(false, 1920, 1080);
 
         entities = new ArrayList<Entity>();
-        entities.add(new PlayerBoat(Boat_Type.FAST));
+        player_boat = new PlayerBoat(Boat_Type.FAST);
+        entities.add(player_boat);
 
         background_texture = new Texture("water_tile.png");
 
@@ -89,7 +94,13 @@ public class RaceLegScreen extends ScreenAdapter {
 
         batch.end();
 
+        debug_box_renderer.setProjectionMatrix(camera.combined);
+        debug_box_renderer.begin(ShapeType.Line);
+        debug_box_renderer.setColor(1, 1, 0, 1);
+        debug_box_renderer.polygon(player_boat.getBoundingPolygon().getTransformedVertices());
+        debug_box_renderer.end();
     }
+
 
     /**
      * Update all entities in the scene
@@ -101,6 +112,8 @@ public class RaceLegScreen extends ScreenAdapter {
             entity.update(delta_time);
         }
 
+        // follow the boat with the camera
+        camera.followBoat(player_boat);
     }
 
     /**
