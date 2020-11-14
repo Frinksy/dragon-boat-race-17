@@ -83,7 +83,7 @@ public class Boat extends Entity{
         output.setOrigin(24, 60);
         output.setPosition(pos_x, pos_y);
         output.setRotation(direction);
-        
+
         return output;
     }
 
@@ -131,7 +131,8 @@ public class Boat extends Entity{
      * Update the boat's properties and stats
      * Should be called every frame
      */
-    public void update(float delta_time) {
+    @Override
+    public void update(float delta_time, List<Entity> entities) {
 
         double rad_angle = this.direction * (Math.PI / 180);
 
@@ -149,6 +150,14 @@ public class Boat extends Entity{
         //System.out.printf("Current velocity: %f\r", this.velocity);
         //System.out.printf("Current tiredness: %f\r", this.tiredness_factor);
 
+        
+        
+        if (isCollided(entities)) {
+            System.out.println("Boat collided " + this);
+            applyCollision(null);
+        } else {
+            System.out.println("Boat not collided " + this);
+        }
         // apply water resistance
         velocity *= 0.995;
         
@@ -236,16 +245,22 @@ public class Boat extends Entity{
         return false;
     }
     
-    @Override
-    public  Boolean isCollided(List<Entity> entities){
-        //TODO
-        return false;
-
-    }
 
     @Override
     public void applyCollision(Entity other) {
-        //TODO
+        
+        double rad_angle = (180 + this.direction) * Math.PI / 180;
+
+        double delta_y = Math.cos(rad_angle) * velocity * Gdx.graphics.getDeltaTime() * VELOCITY_CONSTANT;
+        double delta_x = -Math.sin(rad_angle) * velocity * Gdx.graphics.getDeltaTime() * VELOCITY_CONSTANT;
+
+        pos_x += delta_x;
+        pos_y += delta_y;
+
+        this.sprite.setPosition(pos_x, pos_y);
+        this.hitbox.setPosition(pos_x, pos_y);
+        
+        
     }
 
     @Override

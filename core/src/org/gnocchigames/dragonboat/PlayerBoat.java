@@ -1,5 +1,7 @@
 package org.gnocchigames.dragonboat;
 
+import java.util.List;
+
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 
@@ -37,9 +39,9 @@ public class PlayerBoat extends Boat{
      * Update the state of the boat.
      * Should be called every frame.
      */
-    public void update(float delta_time) {
+    public void update(float delta_time, List<Entity> entities) {
         
-        super.update(delta_time);
+        super.update(delta_time, entities);
 
         handleKeys();
     }

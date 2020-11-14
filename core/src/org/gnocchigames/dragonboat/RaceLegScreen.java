@@ -59,7 +59,11 @@ public class RaceLegScreen extends ScreenAdapter {
 
         entities = new ArrayList<Entity>();
         player_boat = new PlayerBoat(Boat_Type.FAST);
+        player_boat.pos_x = 400;
         entities.add(player_boat);
+
+        // DEBUG
+        entities.add(new Boat(Boat_Type.ACCEL));
 
         background_texture = new Texture("water_tile.png");
 
@@ -94,6 +98,8 @@ public class RaceLegScreen extends ScreenAdapter {
 
         batch.end();
 
+        // TODO: Remove debug hitbox rendering
+        // DEBUG
         debug_box_renderer.setProjectionMatrix(camera.combined);
         debug_box_renderer.begin(ShapeType.Line);
         debug_box_renderer.setColor(1, 1, 0, 1);
@@ -109,7 +115,7 @@ public class RaceLegScreen extends ScreenAdapter {
     public void update(float delta_time) {
 
         for (Entity entity : entities) {
-            entity.update(delta_time);
+            entity.update(delta_time, entities);
         }
 
         // follow the boat with the camera
@@ -145,4 +151,9 @@ public class RaceLegScreen extends ScreenAdapter {
         }
     }
     
+
+    public List<Entity> getEntities () {
+        return entities;
+    }
+
 }

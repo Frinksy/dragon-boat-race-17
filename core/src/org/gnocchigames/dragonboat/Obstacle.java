@@ -31,7 +31,7 @@ public class Obstacle extends Entity {
     
     
     @Override
-    public void update(float delta_time) {
+    public void update(float delta_time, List<Entity> entities) {
         //TODO
     }
 }

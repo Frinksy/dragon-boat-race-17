@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.math.Intersector;
 import com.badlogic.gdx.math.Polygon;
 import com.badlogic.gdx.math.Rectangle;
 
@@ -23,13 +24,22 @@ public abstract class Entity {
     public Polygon hitbox;
 
 
-    public abstract Boolean isCollided(List<Entity> entities);
+    public  Boolean isCollided(List<Entity> entities) {
+        for (Entity entity : entities) {
+            if (Intersector.intersectPolygons(entity.hitbox, hitbox, null)) {
+                if (!entity.equals(this)) {
+                    return true;
+                }
+            }
+        }
+        return false;
+    };
 
     public abstract void applyCollision(Entity other);
 
     public abstract void remove();
     
-    public abstract void update(float delta_time);
+    public abstract void update(float delta_time, List<Entity> entities);
 
     /**
      * Add the sprite to the drawing queue (SpriteBatch)
