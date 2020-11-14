@@ -25,7 +25,7 @@ public class Boat extends Entity{
     public int manoeuverability_stat;
     public int robustness_stat;
     public float tiredness_factor;
-    public int direction;
+    public float direction;
     public int current_health;
     public float current_penalty;
 
@@ -227,8 +227,13 @@ public class Boat extends Entity{
      * @param diff the angle difference in degrees
      */
     private void changeDirection(int diff) {
-        int angleDiff = this.direction + diff * this.manoeuverability_stat / 50; 
-        this.direction = Math.floorMod(angleDiff, 360);
+        float angleDiff = this.direction + (diff * this.manoeuverability_stat / 50f); 
+        if (angleDiff >= 360) {
+            angleDiff -= 360;
+        }else if (angleDiff < 0) {
+            angleDiff += 360;
+        }
+        this.direction = angleDiff;
         this.sprite.setRotation(this.direction);
     }
 
