@@ -5,10 +5,13 @@ import com.badlogic.gdx.ScreenAdapter;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.Actor;
+import com.badlogic.gdx.scenes.scene2d.Event;
+import com.badlogic.gdx.scenes.scene2d.EventListener;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
+import com.badlogic.gdx.scenes.scene2d.ui.CheckBox;
 import com.badlogic.gdx.scenes.scene2d.ui.ProgressBar;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
@@ -30,9 +33,11 @@ public class BoatSelectInfo{
     private static ProgressBar robustness_num;
 
 
+
+
     public static Table drawTable(Boat.Boat_Type type){
 
-        Boat boat = new Boat(Boat.Boat_Type.FAST);
+        Boat boat = new Boat(type);
 
         Table table = new Table();
         table.setFillParent(false);        
@@ -43,6 +48,7 @@ public class BoatSelectInfo{
         acceleration_label = new Label ("Acceleration", skin);
         manouverability_label = new Label ("Maneuverability", skin);
         robustness_label = new Label ("Robustness", skin);
+
         speed_num = new ProgressBar(0f, 100f, 1f, false, skin);
         speed_num.setValue(boat.speed_stat);
         acceleration_num = new ProgressBar(0f, 100f, 1f, false, skin);
@@ -52,17 +58,29 @@ public class BoatSelectInfo{
         robustness_num = new ProgressBar(0f, 100f, 1f, false, skin);
         robustness_num.setValue(boat.robustness_stat);
 
+        final CheckBox choose = new CheckBox(null, skin);
+        choose.setChecked(true);
+        choose.addListener( new EventListener() {
+   	    @Override
+	    public boolean handle(Event event) {
+       	    boolean enabled = choose.isChecked();
+       	    return false;
+	        }
+        });
+
         table.add(speed_label);
         table.add(speed_num);
-        table.row().pad(10, 0, 0, 5);
+        table.row().pad(10, 5, 0, 5);
         table.add(acceleration_label);
         table.add(acceleration_num);
-        table.row().pad(10, 0, 0, 5);
+        table.row().pad(10, 5, 0, 5);
         table.add(manouverability_label);
         table.add(manouverability_num);
-        table.row().pad(10, 0, 0, 5);
+        table.row().pad(10, 5, 0, 5);
         table.add(robustness_label);
         table.add(robustness_num);
+        table.row().pad(10, 5, 0, 5);
+        table.add(choose).colspan(2);
 
         return table;
     }

@@ -11,6 +11,7 @@ import com.badlogic.gdx.scenes.scene2d.EventListener;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
+import com.badlogic.gdx.scenes.scene2d.ui.CheckBox;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.ui.ProgressBar;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
@@ -24,23 +25,12 @@ public class BoatSelectScreen extends ScreenAdapter{
     private Stage stage;
 
     private Label title;
-    private Label f_speed_label;
-    private Label h_speed_label;
-    private Label acceleration_label;
-    private Label manouverability_label;
-    private Label robustness_label;
+    private Label s_title;
+    private Label a_title;
+    private Label m_title;
+    private Label r_title;
+    private Label d_title;
 
-    private Label f_title;
-    private ProgressBar f_speed_num;
-    private Label f_acceleration_num;
-    private Label f_manouverability_num;
-    private Label f_robustness_num;
-
-    private Label h_title;
-    private ProgressBar h_speed_num;
-    private Label h_acceleration_num;
-    private Label h_manouverability_num;
-    private Label h_robustness_num;
 
     public BoatSelectScreen(DragonBoatGame game) {
         parent = game;
@@ -57,20 +47,60 @@ public class BoatSelectScreen extends ScreenAdapter{
         table_big.setFillParent(true);
         stage.addActor(table_big);
 
-
+        //Table table_default = new Table();
+        //table_default = BoatSelectInfo.drawTable(Boat.Boat_Type.DEFAULT);
         Table table_fast = new Table();
         table_fast = BoatSelectInfo.drawTable(Boat.Boat_Type.FAST);
-
         Table table_acceleration = new Table();
         table_acceleration = BoatSelectInfo.drawTable(Boat.Boat_Type.ACCEL);
-
-
-
-        Boat boat_fast = new Boat(Boat.Boat_Type.FAST);
-        Boat boat_hard = new Boat(Boat.Boat_Type.HARD);
-
+        Table table_maneuverable = new Table();
+        table_maneuverable = BoatSelectInfo.drawTable(Boat.Boat_Type.MANOEUVREABLE);
+        Table table_robust = new Table();
+        table_robust = BoatSelectInfo.drawTable(Boat.Boat_Type.HARD);
 
         Skin skin = new Skin(Gdx.files.internal("clean-crispy/clean-crispy-ui.json"));
+
+        final CheckBox choose_fast = new CheckBox(null, skin);
+        final CheckBox choose_acceleration = new CheckBox(null, skin);
+        final CheckBox choose_maneuverable = new CheckBox(null, skin);
+        final CheckBox choose_robust = new CheckBox(null, skin);
+
+        choose_fast.setChecked(false);
+        choose_acceleration.setChecked(false);
+        choose_maneuverable.setChecked(false);
+        choose_robust.setChecked(false);
+
+        choose_fast.addListener( new EventListener() {
+   	    @Override
+	    public boolean handle(Event event) {
+            boolean enabled = choose_fast.isChecked();   
+       	    return false;
+	        }
+        });
+
+        choose_acceleration.addListener( new EventListener() {
+        @Override
+         public boolean handle(Event event) {
+                boolean enabled = choose_acceleration.isChecked();
+                return false;
+             }
+         });
+
+         choose_maneuverable.addListener( new EventListener() {
+        @Override
+         public boolean handle(Event event) {
+                boolean enabled = choose_maneuverable.isChecked();
+                return false;
+             }
+         });
+
+         choose_robust.addListener( new EventListener() {
+        @Override
+         public boolean handle(Event event) {
+                boolean enabled = choose_robust.isChecked();
+                return false;
+             }
+         });
 
         final TextButton return_button = new TextButton("Back", skin);
         return_button.addListener(new ChangeListener() {
@@ -81,34 +111,30 @@ public class BoatSelectScreen extends ScreenAdapter{
         });
 
         title = new Label("Boat Select", skin);
-        f_speed_label = new Label("Speed", skin);
-        h_speed_label = new Label("Speed", skin);
-        acceleration_label = new Label("Acceleration", skin);
-        manouverability_label = new Label("Manouverability", skin);
-        robustness_label = new Label("Robustness", skin);
-
-        f_title = new Label("Fast", skin);
-        f_speed_num = new ProgressBar(0f, 100f, 1f, false, skin);
-        f_speed_num.setValue(boat_fast.speed_stat);
-
-        h_title = new Label("Hard", skin);
-        h_speed_num = new ProgressBar(0f, 100f, 1f, false, skin);
-        h_speed_num.setValue(boat_hard.speed_stat);     
-        
+        s_title = new Label("Speedy", skin);
+        a_title = new Label("Accelerationy", skin);
+        m_title = new Label("Maneuverabley", skin);
+        r_title = new Label("Robusty", skin);   
+        d_title = new Label("Defaulty", skin);
         table_big.add(title).colspan(2);
-        table_big.row().pad(15, 50, 0, 50);
-        table_big.add(f_title);
-        table_big.add(h_title);
-        table_big.row().pad(5, 50, 0, 50);
+        table_big.row().pad(20, 50, 0, 50);
+        //table_big.add(d_title);
+        //table_big.row().pad(10, 0, 0, 0);
+        //table_big.add(table_default);
+        table_big.row().pad(10, 50, 0, 50);
+        table_big.add(s_title);
+        table_big.add(a_title);
+        table_big.row().pad(10, 50, 0, 50);
         table_big.add(table_fast);
         table_big.add(table_acceleration);
-        //table_big.add(f_speed_label);
-        //table_big.add(f_speed_num);
-        //table_big.add(h_speed_label);
-        //table_big.add(h_speed_num);
-        table_big.row().pad(10, 0, 0, 10);
-        //table_big.add(f_acceleration_label);
-        table_big.add(return_button).colspan(4);
+        table_big.row().pad(20, 50, 0, 50);
+        table_big.add(m_title);
+        table_big.add(r_title);
+        table_big.row().pad(10, 50, 0, 50);
+        table_big.add(table_maneuverable);
+        table_big.add(table_robust);
+        table_big.row().pad(20, 50, 0, 50);
+        table_big.add(return_button).colspan(2);
 
 
 
