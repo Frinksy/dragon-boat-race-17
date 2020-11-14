@@ -33,8 +33,10 @@ public class RaceLegScreen extends ScreenAdapter {
 
     private Texture background_texture;
 
-    private PlayerBoat player_boat;
+    public PlayerBoat player_boat;
     private RaceStructure race_structure;
+
+    private Boat.Boat_Type type;
 
     ShapeRenderer debug_box_renderer;
 
@@ -58,7 +60,10 @@ public class RaceLegScreen extends ScreenAdapter {
         camera.setToOrtho(false, 1920, 1080);
 
         entities = new ArrayList<Entity>();
-        player_boat = new PlayerBoat(Boat_Type.FAST);
+
+        // gets chosen boat type from boat choose screen
+        type = BoatSelectScreen.getBoat();
+        player_boat = new PlayerBoat(type);
         player_boat.pos_x = 400;
         entities.add(player_boat);
 

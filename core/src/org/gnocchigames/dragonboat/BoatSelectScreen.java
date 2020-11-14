@@ -12,6 +12,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.CheckBox;
+import com.badlogic.gdx.scenes.scene2d.ui.SelectBox;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.ui.ProgressBar;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
@@ -19,7 +20,8 @@ import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 
 public class BoatSelectScreen extends ScreenAdapter{
 
-    private Boat.Boat_Type type;
+    private static Boat.Boat_Type type;
+    private String choice;
 
     private DragonBoatGame parent;
     private Stage stage;
@@ -30,25 +32,34 @@ public class BoatSelectScreen extends ScreenAdapter{
     private Label m_title;
     private Label r_title;
     private Label d_title;
+    private Label choose_label;
+    private Label pad_l;
+    private Label pad_r;
 
+    /**
+     * Boat select screen class,
+     * displays all the infomation about differnet boat types
+     * allows the user to choose using a drop down menu
+     * and start the game 
+     */
 
     public BoatSelectScreen(DragonBoatGame game) {
         parent = game;
         stage = new Stage(new ScreenViewport());
         Gdx.input.setInputProcessor(stage);
-        
     }
 
     @Override
     public void show(){
 
-
+        // declares tables
         Table table_big = new Table();
         table_big.setFillParent(true);
         stage.addActor(table_big);
 
-        //Table table_default = new Table();
-        //table_default = BoatSelectInfo.drawTable(Boat.Boat_Type.DEFAULT);
+        // gets tables containing the boat stats from BoatSelectInfo class
+        Table table_default = new Table();
+        table_default = BoatSelectInfo.drawTable(Boat.Boat_Type.DEFAULT);
         Table table_fast = new Table();
         table_fast = BoatSelectInfo.drawTable(Boat.Boat_Type.FAST);
         Table table_acceleration = new Table();
@@ -60,48 +71,29 @@ public class BoatSelectScreen extends ScreenAdapter{
 
         Skin skin = new Skin(Gdx.files.internal("clean-crispy/clean-crispy-ui.json"));
 
-        final CheckBox choose_fast = new CheckBox(null, skin);
-        final CheckBox choose_acceleration = new CheckBox(null, skin);
-        final CheckBox choose_maneuverable = new CheckBox(null, skin);
-        final CheckBox choose_robust = new CheckBox(null, skin);
-
-        choose_fast.setChecked(false);
-        choose_acceleration.setChecked(false);
-        choose_maneuverable.setChecked(false);
-        choose_robust.setChecked(false);
-
-        choose_fast.addListener( new EventListener() {
-   	    @Override
-	    public boolean handle(Event event) {
-            boolean enabled = choose_fast.isChecked();   
-       	    return false;
-	        }
+        // declares a drop down table and the listener that assigns the players boat type when fired
+        final SelectBox<String> choose = new SelectBox<String>(skin);
+        choose.setItems("Defaulty", "Speedy", "Accelerationy", "Maneuverabley", "Robusty");
+        choose.addListener(new ChangeListener() {
+            @Override
+            public void changed(ChangeEvent event, Actor actor) {
+                choice = choose.getSelected();
+                System.out.println(choice);
+                if (choice == "Speedy"){
+                    type = (Boat.Boat_Type.FAST);
+                }else if (choice == "Accelerationy"){
+                    type = (Boat.Boat_Type.ACCEL);
+                }else if (choice == "Maneuverabley"){
+                    type = (Boat.Boat_Type.MANOEUVREABLE);
+                }else if (choice == "Robusty"){
+                    type = (Boat.Boat_Type.HARD);
+                }else{
+                    type = Boat.Boat_Type.DEFAULT;
+                }
+            }
         });
 
-        choose_acceleration.addListener( new EventListener() {
-        @Override
-         public boolean handle(Event event) {
-                boolean enabled = choose_acceleration.isChecked();
-                return false;
-             }
-         });
-
-         choose_maneuverable.addListener( new EventListener() {
-        @Override
-         public boolean handle(Event event) {
-                boolean enabled = choose_maneuverable.isChecked();
-                return false;
-             }
-         });
-
-         choose_robust.addListener( new EventListener() {
-        @Override
-         public boolean handle(Event event) {
-                boolean enabled = choose_robust.isChecked();
-                return false;
-             }
-         });
-
+        // declares buttons and the screens they should move to 
         final TextButton return_button = new TextButton("Back", skin);
         return_button.addListener(new ChangeListener() {
             @Override
@@ -110,57 +102,61 @@ public class BoatSelectScreen extends ScreenAdapter{
             }
         });
 
+        final TextButton start = new TextButton("Start", skin);
+        start.addListener(new ChangeListener() {
+            @Override
+            public void changed(ChangeEvent event, Actor actor) {
+                parent.changeScreen(DragonBoatGame.RACE_LEG);
+
+            }
+        });
+
+        // declares labels
         title = new Label("Boat Select", skin);
         s_title = new Label("Speedy", skin);
         a_title = new Label("Accelerationy", skin);
         m_title = new Label("Maneuverabley", skin);
         r_title = new Label("Robusty", skin);   
         d_title = new Label("Defaulty", skin);
-        table_big.add(title).colspan(2);
-        table_big.row().pad(20, 50, 0, 50);
-        //table_big.add(d_title);
-        //table_big.row().pad(10, 0, 0, 0);
-        //table_big.add(table_default);
-        table_big.row().pad(10, 50, 0, 50);
-        table_big.add(s_title);
-        table_big.add(a_title);
-        table_big.row().pad(10, 50, 0, 50);
-        table_big.add(table_fast);
-        table_big.add(table_acceleration);
-        table_big.row().pad(20, 50, 0, 50);
-        table_big.add(m_title);
-        table_big.add(r_title);
-        table_big.row().pad(10, 50, 0, 50);
-        table_big.add(table_maneuverable);
-        table_big.add(table_robust);
-        table_big.row().pad(20, 50, 0, 50);
-        table_big.add(return_button).colspan(2);
+        choose_label = new Label("Choose a Boat:", skin);
+        pad_l = new Label("", skin);
+        pad_r = new Label("", skin);
 
-
-
+        // adds all actors to the table in position
+        table_big.add(title).colspan(4);
+        table_big.row().pad(20, 50, 0, 50);
+        table_big.add(d_title).colspan(4);
+        table_big.row().pad(10, 50, 0, 50);
+        table_big.add(table_default).colspan(4);
+        table_big.row().pad(20, 50, 0, 50);
+        table_big.add(s_title).colspan(2);
+        table_big.add(a_title).colspan(2);
+        table_big.row().pad(10, 50, 0, 50);
+        table_big.add(table_fast).colspan(2);
+        table_big.add(table_acceleration).colspan(2);
+        table_big.row().pad(20, 50, 0, 50);
+        table_big.add(m_title).colspan(2);
+        table_big.add(r_title).colspan(2);
+        table_big.row().pad(10, 50, 0, 50);
+        table_big.add(table_maneuverable).colspan(2);
+        table_big.add(table_robust).colspan(2);
+        table_big.row().pad(20, 5, 0, 5);
+        table_big.add(pad_l);
+        table_big.add(choose_label);
+        table_big.add(choose);
+        table_big.add(pad_r);
+        table_big.row().pad(10, 5, 0, 5);
+        table_big.add(pad_l);
+        table_big.add(start);
+        table_big.add(return_button);
     }
 
-    /**
-    public Table table_small(String name, String number){
+    // allows other classes to call get what boat a user has chosen
+    public static Boat.Boat_Type getBoat(){
+        return type;
+    }
 
-        Skin skin = new Skin(Gdx.files.internal("clean-crispy/clean-crispy-ui.json"));
-
-        boat_name = new Label(name, skin);
-        boat_num = new Label(number, skin);
-
-        Table table_small = new Table();
-        table_small.setFillParent(false);
-        stage.addActor(table_small);
-
-        table_small.add(boat_name).colspan(2);
-        table_small.row().pad(10, 0, 0, 0);
-        table_small.add("Boat Number");
-        table_small.add(boat_num);
-
-        return table_small;
-
-    }*/
-
+    // refreshes the screen each frame
     @Override
     public void render(float delta_time){
 
@@ -171,9 +167,9 @@ public class BoatSelectScreen extends ScreenAdapter{
         stage.draw();
     }
 
+    // recenters the actors each frame depending on the size of the application
     @Override
     public void resize(int width, int height){
-
         stage.getViewport().update(width, height, true);
     }
 

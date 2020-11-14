@@ -32,11 +32,12 @@ public class BoatSelectInfo{
     private static Label robustness_label;
     private static ProgressBar robustness_num;
 
-
-
-
+    /**
+     * Draw the boat select table to the screen
+     */
     public static Table drawTable(Boat.Boat_Type type){
 
+        // declare all tables, labels and progress bars to be displayed
         Boat boat = new Boat(type);
 
         Table table = new Table();
@@ -58,16 +59,7 @@ public class BoatSelectInfo{
         robustness_num = new ProgressBar(0f, 100f, 1f, false, skin);
         robustness_num.setValue(boat.robustness_stat);
 
-        final CheckBox choose = new CheckBox(null, skin);
-        choose.setChecked(true);
-        choose.addListener( new EventListener() {
-   	    @Override
-	    public boolean handle(Event event) {
-       	    boolean enabled = choose.isChecked();
-       	    return false;
-	        }
-        });
-
+        // Draw the table containing all the labels and conresponding stats
         table.add(speed_label);
         table.add(speed_num);
         table.row().pad(10, 5, 0, 5);
@@ -79,16 +71,7 @@ public class BoatSelectInfo{
         table.row().pad(10, 5, 0, 5);
         table.add(robustness_label);
         table.add(robustness_num);
-        table.row().pad(10, 5, 0, 5);
-        table.add(choose).colspan(2);
 
         return table;
     }
-
-    //private Boat fast = new Boat(Boat.Boat_Type.FAST);
-    //private Boat accel = new Boat(Boat.Boat_Type.ACCEL);
-    //private Boat manoeuverability = new Boat(Boat.Boat_Type.MANOEUVREABLE);
-    //private Boat hard = new Boat(Boat.Boat_Type.HARD);
-
-    // replace with a checkbox
 }

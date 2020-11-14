@@ -17,7 +17,7 @@ import com.badlogic.gdx.math.Polygon;
 public class Boat extends Entity{
 
     public static enum Boat_Type {
-        FAST, HARD, ACCEL, MANOEUVREABLE
+        FAST, HARD, ACCEL, MANOEUVREABLE, DEFAULT
     }
 
     public int speed_stat;
