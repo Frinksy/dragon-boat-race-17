@@ -23,17 +23,20 @@ public class MainMenuScreen extends ScreenAdapter{
     
 
     public MainMenuScreen(DragonBoatGame game) {
-        //constructor creates a new stage 
+        
         parent = game;
     }
 
 
     @Override
     public void show() {
+
+        // Gets called when the screen pops up
+        //constructor creates a new stage 
         stage = new Stage(new ScreenViewport());
         Gdx.input.setInputProcessor(stage); 
 
-        // Gets called when the screen pops up
+        
         Table table = new Table();
         table.setFillParent(true);
         //table.setDebug(true); shows padding and borders
@@ -53,6 +56,8 @@ public class MainMenuScreen extends ScreenAdapter{
         final TextButton boat_select = new TextButton("Boat Select", skin);
         final TextButton settings = new TextButton("Settings", skin);
         final TextButton exit = new TextButton("Exit", skin);
+        // test button
+        final TextButton podium = new TextButton("Podium", skin);
 
         // adds listners to the buttons for when they are clicked and screens to change to
         controls.addListener(new ChangeListener(){
@@ -83,6 +88,15 @@ public class MainMenuScreen extends ScreenAdapter{
             }
         });
 
+        // button to test podium screen
+        podium.addListener(new ChangeListener() {
+            @Override
+            public void changed(ChangeEvent event, Actor actor) {
+                parent.changeScreen(DragonBoatGame.PODIUM);
+            }
+        });
+        
+
         // creates a table and populates it with our labels/buttons
         table.add(title);
         table.row().pad(10, 0, 0, 0);
@@ -93,6 +107,8 @@ public class MainMenuScreen extends ScreenAdapter{
         table.add(settings).fillX().uniformX();
         table.row().pad(10, 0, 0, 0);
         table.add(exit).fillX().uniformX();
+        table.row().pad(10, 0, 0, 0);
+        table.add(podium).fillX().uniformX();
 
         
     }

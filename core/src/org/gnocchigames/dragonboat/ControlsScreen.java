@@ -79,7 +79,7 @@ public class ControlsScreen extends ScreenAdapter{
         table.add(left_label);
         table.add(left_key);
         table.row().pad(20, 5, 0, 5);
-        table.add(return_button).colspan(2);
+        table.add(return_button).colspan(2).fillX();
 
     }
 

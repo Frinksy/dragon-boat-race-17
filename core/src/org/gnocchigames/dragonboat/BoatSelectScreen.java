@@ -145,12 +145,12 @@ public class BoatSelectScreen extends ScreenAdapter{
         table_big.row().pad(20, 5, 0, 5);
         table_big.add(pad_l);
         table_big.add(choose_label);
-        table_big.add(choose);
+        table_big.add(choose).fillX();
         table_big.add(pad_r);
         table_big.row().pad(10, 5, 0, 5);
         table_big.add(pad_l);
-        table_big.add(start);
-        table_big.add(return_button);
+        table_big.add(start).fillX();
+        table_big.add(return_button).fillX();
     }
 
     // allows other classes to call get what boat a user has chosen

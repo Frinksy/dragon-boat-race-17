@@ -115,7 +115,7 @@ public class SettingsScreen extends ScreenAdapter{
         table.add(sound_enabled_label);
         table.add(enabled_checkbox);
         table.row().pad(10, 0, 0, 10);
-        table.add(return_button).colspan(2);
+        table.add(return_button).colspan(2).uniformX();
     }
 
     @Override

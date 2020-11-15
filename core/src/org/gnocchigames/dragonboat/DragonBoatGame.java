@@ -72,7 +72,6 @@ public class DragonBoatGame extends Game {
 				if(race_leg_screen == null) race_leg_screen = new RaceLegScreen(this);
 					this.setScreen(race_leg_screen);
 					break;
-				// implement game legs running
 			case PODIUM:
 				if(podium_Screen == null) podium_Screen = new PodiumScreen(this);
 					this.setScreen(podium_Screen);
