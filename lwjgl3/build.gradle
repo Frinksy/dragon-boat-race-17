@@ -2,7 +2,7 @@ sourceCompatibility = 1.7
 sourceSets.main.java.srcDirs = [ "src/" ]
 sourceSets.main.resources.srcDirs = ["../core/assets"]
 
-project.ext.mainClassName = "org.gnocchigames.dragonboat.desktop.DesktopLauncher"
+project.ext.mainClassName = "org.gnocchigames.dragonboat.lwjgl3.Lwjgl3Launcher"
 project.ext.assetsDir = new File("../core/assets")
 
 task run(dependsOn: classes, type: JavaExec) {
@@ -36,4 +36,29 @@ task dist(type: Jar) {
 
 dist.dependsOn classes
 
-eclipse.project.name = appName + "-jwjgl3"
+eclipse.project.name = appName + "-lwjgl3"
+
+
+import org.gradle.internal.os.OperatingSystem
+
+run {
+	workingDir = rootProject.file('core/assets').path
+	setIgnoreExitValue(true)
+	
+	if (OperatingSystem.current() == OperatingSystem.MAC_OS) {
+		// Required to run LWJGL3 Java apps on MacOS
+		jvmArgs += "-XstartOnFirstThread"
+	}
+}
+jar {
+	archiveBaseName = appName
+	dependsOn configurations.runtimeClasspath
+	from { configurations.runtimeClasspath.collect { it.isDirectory() ? it : zipTree(it) } } 
+	manifest {
+		attributes 'Main-Class': project.mainClassName
+	}
+	doLast {
+		file(archivePath).setExecutable(true, false)
+	}
+}
+
