@@ -30,14 +30,16 @@ public class ControlsScreen extends ScreenAdapter{
     private Label right_label;
 
     public ControlsScreen(DragonBoatGame game) {
-        parent = game;
-        stage = new Stage(new ScreenViewport());
-        Gdx.input.setInputProcessor(stage);
-        
+
+        parent = game;       
     }
 
     @Override
     public void show(){
+
+        stage = new Stage(new ScreenViewport());
+        Gdx.input.setInputProcessor(stage);
+        
         Table table = new Table();
         table.setFillParent(true);
         stage.addActor(table);

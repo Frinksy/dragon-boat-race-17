@@ -44,13 +44,15 @@ public class BoatSelectScreen extends ScreenAdapter{
      */
 
     public BoatSelectScreen(DragonBoatGame game) {
+        
         parent = game;
-        stage = new Stage(new ScreenViewport());
-        Gdx.input.setInputProcessor(stage);
     }
 
     @Override
     public void show(){
+
+        stage = new Stage(new ScreenViewport());
+        Gdx.input.setInputProcessor(stage);
 
         // declares tables
         Table table_big = new Table();

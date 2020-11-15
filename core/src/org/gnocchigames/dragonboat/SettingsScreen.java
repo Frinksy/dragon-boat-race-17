@@ -32,14 +32,14 @@ public class SettingsScreen extends ScreenAdapter{
     public SettingsScreen(DragonBoatGame game) {
 
         //constructor creates a new stage 
-        parent = game;
-        stage = new Stage(new ScreenViewport());
-        Gdx.input.setInputProcessor(stage);
-        
+        parent = game;       
     }
 
     @Override
-    public void show(){       
+    public void show(){   
+        
+        stage = new Stage(new ScreenViewport());
+        Gdx.input.setInputProcessor(stage);
         
         // Gets called when screen pops up
         Table table = new Table();

@@ -25,13 +25,13 @@ public class MainMenuScreen extends ScreenAdapter{
     public MainMenuScreen(DragonBoatGame game) {
         //constructor creates a new stage 
         parent = game;
-        stage = new Stage(new ScreenViewport());
-        Gdx.input.setInputProcessor(stage); 
     }
 
 
     @Override
     public void show() {
+        stage = new Stage(new ScreenViewport());
+        Gdx.input.setInputProcessor(stage); 
 
         // Gets called when the screen pops up
         Table table = new Table();

@@ -11,15 +11,14 @@ public class PodiumScreen extends ScreenAdapter{
     private Stage stage;
 
     public PodiumScreen(DragonBoatGame game) {
-        parent = game;
-        stage = new Stage(new ScreenViewport());
-        Gdx.input.setInputProcessor(stage);
-        
+
+        parent = game;        
     }
 
     @Override
     public void show(){
-
+        stage = new Stage(new ScreenViewport());
+        Gdx.input.setInputProcessor(stage);
     }
 
     @Override
