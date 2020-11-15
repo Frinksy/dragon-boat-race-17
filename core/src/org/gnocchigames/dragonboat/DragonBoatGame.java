@@ -9,7 +9,6 @@ import com.badlogic.gdx.Game;
 public class DragonBoatGame extends Game {
 
 	//declares all screens
-	private LoadingScreen loading_screen;
 	private MainMenuScreen main_menu_screen;
 	private ControlsScreen controls_screen;
 	private BoatSelectScreen boat_select_screen;
@@ -35,12 +34,9 @@ public class DragonBoatGame extends Game {
 		 * goes straight to main menu for now
 		 * same as commented code beneath
 		 */
-
-		loading_screen = new LoadingScreen(this);
-		this.setScreen(loading_screen);
 		
-		//main_menu_screen = new MainMenuScreen(this);
-		//setScreen(main_menu_screen);
+		main_menu_screen = new MainMenuScreen(this);
+		setScreen(main_menu_screen);
 
 		// Set the screen to the actual game
 		//this.setScreen(new RaceLegScreen(this));
@@ -58,6 +54,7 @@ public class DragonBoatGame extends Game {
 			case MENU:
 				if(main_menu_screen == null) main_menu_screen = new MainMenuScreen(this);
 					this.setScreen(main_menu_screen);
+
 					break;
 			case CONTROLS:
 				if(controls_screen == null) controls_screen = new ControlsScreen(this);
