@@ -57,8 +57,8 @@ public class ControlsScreen extends ScreenAdapter{
         title = new Label("Controls", skin);
         acc_label = new Label("Accelerate:", skin);
         dec_label = new Label("Decelerate:", skin);
-        left_label = new Label("Left:", skin);
-        right_label = new Label("Right:", skin);
+        left_label = new Label("Turn Left:", skin);
+        right_label = new Label("Turn Right:", skin);
 
         acc_key = new Label("Up Arrow", skin);
         dec_key = new Label("Down Arrow", skin);
@@ -66,16 +66,16 @@ public class ControlsScreen extends ScreenAdapter{
         right_key = new Label("Right Arrow", skin);    
 
         table.add(title).colspan(2);
-        table.row().pad(20, 5, 0, 5);
+        table.row().pad(20, 10, 0, 10);
         table.add(acc_label);
         table.add(acc_key);
-        table.row().pad(10, 5, 0, 5);
+        table.row().pad(10, 10, 0, 10);
         table.add(dec_label);
         table.add(dec_key);
-        table.row().pad(10, 5, 0, 5);
+        table.row().pad(10, 10, 0, 10);
         table.add(right_label);
         table.add(right_key);
-        table.row().pad(10, 5, 0, 5);
+        table.row().pad(10, 10, 0, 10);
         table.add(left_label);
         table.add(left_key);
         table.row().pad(20, 5, 0, 5);

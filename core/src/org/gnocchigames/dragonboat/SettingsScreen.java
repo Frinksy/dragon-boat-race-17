@@ -61,7 +61,7 @@ public class SettingsScreen extends ScreenAdapter{
          * and a listener to find out when changed
          */
         final Slider volume_slider = new Slider(0f, 1f, 0.1f, false, skin);
-        volume_slider.setValue(0.5f);
+        volume_slider.setValue(parent.getSettings().getSoundVolume());
         volume_slider.addListener(new EventListener(){
   		@Override
 		public boolean handle(Event event) {
@@ -75,8 +75,8 @@ public class SettingsScreen extends ScreenAdapter{
          * and a listener to find out when changed
          */
         final CheckBox enabled_checkbox = new CheckBox(null, skin);
-        enabled_checkbox.setChecked(true);
-        enabled_checkbox.addListener( new EventListener() {
+        enabled_checkbox.setChecked(parent.getSettings().getSoundEnabled());
+        enabled_checkbox.addListener(new EventListener() {
    	    @Override
 	    public boolean handle(Event event) {
        	    boolean enabled = enabled_checkbox.isChecked();

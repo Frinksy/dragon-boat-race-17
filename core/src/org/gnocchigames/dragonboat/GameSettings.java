@@ -15,7 +15,7 @@ public class GameSettings{
     private static final String sound_enabled = "sound.enabled";
     private static final String settings_name = "DBGSettings";
 
-    protected Preferences getSettings(){
+    public Preferences getSettings(){
         // sets it so screens cannot directly run or change this class only this class can run it
         return Gdx.app.getPreferences(settings_name);
     }
