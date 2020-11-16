@@ -61,3 +61,14 @@ project(":core") {
         
     }
 }
+
+project(":lwjgl3") {
+
+    apply plugin: "java-library"
+
+    dependencies {
+        implementation project(':core')
+        implementation "com.badlogicgames.gdx:gdx-backend-lwjgl3:$gdxVersion"
+        implementation "com.badlogicgames.gdx:gdx-platform:$gdxVersion:natives-desktop"
+}
+}
