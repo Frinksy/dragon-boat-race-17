@@ -4,6 +4,7 @@ package org.gnocchigames.dragonboat;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.ScreenAdapter;
 import com.badlogic.gdx.graphics.GL20;
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.Event;
@@ -114,13 +115,20 @@ public class BoatSelectScreen extends ScreenAdapter{
         });
 
         // declares labels
-        title = new Label("Boat Select", skin);
+        title = new Label("BOAT SELECT", skin);
+        title.setFontScale(1.25f);
         s_title = new Label("Speedy", skin);
+        s_title.setFontScale(1.15f);
         a_title = new Label("Accelerationy", skin);
+        a_title.setFontScale(1.15f);
         m_title = new Label("Maneuverabley", skin);
-        r_title = new Label("Robusty", skin);   
+        m_title.setFontScale(1.15f);
+        r_title = new Label("Robusty", skin);
+        r_title.setFontScale(1.15f);   
         d_title = new Label("Defaulty", skin);
+        d_title.setFontScale(1.15f);
         choose_label = new Label("Choose a Boat:", skin);
+        choose_label.setFontScale(1.15f);
         pad_l = new Label("", skin);
         pad_r = new Label("", skin);
 

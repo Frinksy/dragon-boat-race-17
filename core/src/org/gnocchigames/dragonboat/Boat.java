@@ -3,6 +3,7 @@ package org.gnocchigames.dragonboat;
 import java.util.List;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.math.Polygon;
@@ -28,6 +29,7 @@ public class Boat extends Entity{
     public float direction;
     public int current_health;
     public float current_penalty;
+    public Color colour;
 
     private Boolean in_lane;
 
@@ -99,30 +101,40 @@ public class Boat extends Entity{
                 this.speed_stat = 100;
                 this.manoeuverability_stat = 50;
                 this.robustness_stat = 40;
+                colour = new Color(Color.RED);
+                this.colour = (colour);
                 break;
             case HARD:
                 this.acceleration_stat = 60;
                 this.speed_stat = 80;
                 this.manoeuverability_stat = 40;
                 this.robustness_stat = 100;
+                colour = new Color(Color.GREEN);
+                this.colour = (colour);
                 break;
             case ACCEL:
                 this.acceleration_stat = 100;
                 this.speed_stat = 80;
                 this.manoeuverability_stat = 70;
                 this.robustness_stat = 40;
+                colour = new Color(Color.BLUE);
+                this.colour = (colour);
                 break;
             case MANOEUVREABLE:
                 this.acceleration_stat = 80;
                 this.speed_stat = 75;
                 this.manoeuverability_stat = 100;
                 this.robustness_stat = 20;
+                colour = new Color(Color.YELLOW);
+                this.colour = (colour);
                 break;
             default:
                 this.acceleration_stat = 50;
                 this.speed_stat = 50;
                 this.manoeuverability_stat = 50;
                 this.robustness_stat = 50;
+                colour = new Color(Color.WHITE);
+                this.colour = (colour);
                 break;
         }
     }

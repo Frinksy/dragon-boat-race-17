@@ -54,7 +54,8 @@ public class ControlsScreen extends ScreenAdapter{
             }
         });
 
-        title = new Label("Controls", skin);
+        title = new Label("CONTROLS", skin);
+        title.setFontScale(1.25f);
         acc_label = new Label("Accelerate:", skin);
         dec_label = new Label("Decelerate:", skin);
         left_label = new Label("Turn Left:", skin);

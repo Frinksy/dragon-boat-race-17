@@ -51,7 +51,8 @@ public class MainMenuScreen extends ScreenAdapter{
         Skin skin = new Skin(Gdx.files.internal("clean-crispy/clean-crispy-ui.json"));
 
         // creates labels and buttons actors to be used in the stage
-        title = new Label("Dragon Boat Game", skin);
+        title = new Label("DRAGON BOAT GAME", skin);
+        title.setFontScale(1.25f);
         final TextButton controls = new TextButton("Controls", skin);
         final TextButton boat_select = new TextButton("Boat Select", skin);
         final TextButton settings = new TextButton("Settings", skin);
