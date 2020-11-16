@@ -16,6 +16,9 @@ import com.badlogic.gdx.scenes.scene2d.ui.SelectBox;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.ui.ProgressBar;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
+
+import org.gnocchigames.dragonboat.Boat.Boat_Type;
+
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 
 public class BoatSelectScreen extends ScreenAdapter{
@@ -50,6 +53,8 @@ public class BoatSelectScreen extends ScreenAdapter{
 
     @Override
     public void show(){
+
+        type = Boat_Type.DEFAULT;
 
         stage = new Stage(new ScreenViewport());
         Gdx.input.setInputProcessor(stage);
