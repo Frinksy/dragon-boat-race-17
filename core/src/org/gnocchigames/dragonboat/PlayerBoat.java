@@ -8,7 +8,7 @@ import com.badlogic.gdx.Input;
 public class PlayerBoat extends Boat{
     
     public PlayerBoat(Boat.Boat_Type type) {
-        super(type);
+        super(type, 2);
     }
 
     /**

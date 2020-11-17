@@ -29,7 +29,10 @@ public class Boat extends Entity{
     public int current_health;
     public float current_penalty;
 
+    public int lane_number;
+
     private Boolean in_lane;
+    private long time_of_last_collision;
 
     private static final float MAX_BACKWARDS_SPEED = -20;
     private static final float MIN_TIRED_SPEED = 20;
@@ -37,34 +40,62 @@ public class Boat extends Entity{
 
     private static final float VELOCITY_CONSTANT = 2;
 
+    private static final int LANE_WIDTH = 1920 / 5;
 
-    public Boat(Boat_Type type) {
+    /**
+     * Creates a boat of specified type and in the specified assigned lane
+     * @param type
+     * @param lane
+     */
+    public Boat(Boat_Type type, int lane) {
 
         
-        
+        // Set up sprite
         Texture boat_texture = new Texture("boat.png"); // TODO: Do not hardcode file name
         this.sprite = new Sprite(boat_texture);
         this.sprite.setOrigin(this.sprite.getWidth()/2, this.sprite.getHeight()/2);
         this.sprite.scale(-0.25f);
+        
 
-        this.pos_x = 0;
+        // Set initial position
+        this.lane_number = lane;
+        this.pos_x = 384 * lane + 192;
         this.pos_y = 0;
+        this.sprite.setCenter(pos_x, pos_y);
+
+        // Set direction
         this.direction = 0;
+        this.sprite.setRotation(direction);
+
+
+        // Set stats
         this.current_health = 100;
         this.current_penalty = 0;
         this.velocity = 1;
 
         setStats(type);
 
-
         this.in_lane = true; // We assume the boat starts in lane
+        this.time_of_last_collision = System.currentTimeMillis();
         this.tiredness_factor = 1f;
 
+        // Set hitbox
         this.hitbox = getBoundingPolygon();
-
 
     }
 
+    /**
+     * Creates a boat of defined type and in default lane, lane zero
+     * @param type
+     */
+    public Boat(Boat_Type type) {
+        this(type, 0);
+
+    }
+
+    /**
+     * Gets the bounding polygon around the boat
+     */
     @Override
     public Polygon getBoundingPolygon() {
 
@@ -80,8 +111,8 @@ public class Boat extends Entity{
 
         Polygon output = new Polygon(vertices);
         output.scale(-0.25f);
-        output.setOrigin(24, 60);
-        output.setPosition(pos_x, pos_y);
+        output.setOrigin(sprite.getWidth()/2, sprite.getHeight()/2);
+        output.setPosition(sprite.getX(), sprite.getY());
         output.setRotation(direction);
 
         return output;
@@ -134,32 +165,28 @@ public class Boat extends Entity{
     @Override
     public void update(float delta_time, List<Entity> entities) {
 
-        double rad_angle = this.direction * (Math.PI / 180);
+        // Math for boat movement
+        double rad_angle = direction * (Math.PI / 180);
 
         double delta_y = Math.cos(rad_angle) * velocity * delta_time * VELOCITY_CONSTANT;
         double delta_x = -Math.sin(rad_angle) * velocity * delta_time * VELOCITY_CONSTANT;
 
-        this.pos_x += delta_x;
-        this.pos_y += delta_y;
+        // Apply boat movement
+        pos_x += delta_x;
+        pos_y += delta_y;
+        sprite.translate((float)delta_x, (float)delta_y);
+        hitbox.translate((float)delta_x, (float)delta_y);
 
-        this.sprite.setPosition(this.pos_x, this.pos_y);
-        this.hitbox.setPosition(this.pos_x, this.pos_y);
-        this.hitbox.setRotation(this.direction);
-
-        // DEBUG
-        //System.out.printf("Current velocity: %f\r", this.velocity);
-        //System.out.printf("Current tiredness: %f\r", this.tiredness_factor);
-
+        this.hitbox.setRotation(this.direction);        
         
-        
+        // Do collision
         if (isCollided(entities)) {
-            System.out.println("Boat collided " + this);
             applyCollision(null);
-        } else {
-            System.out.println("Boat not collided " + this);
         }
-        // apply water resistance
+
+        // Apply water resistance
         velocity *= 0.995;
+
         
     }
 
@@ -204,7 +231,6 @@ public class Boat extends Entity{
             this.velocity = Boat.MAX_BACKWARDS_SPEED;
         }
 
-
     }
 
     /**
@@ -246,8 +272,7 @@ public class Boat extends Entity{
     }
 
     private Boolean checkInLane() {
-        //TODO
-        return false;
+        return (pos_x < (lane_number + 1) * LANE_WIDTH) && (pos_x > lane_number * LANE_WIDTH);
     }
     
 
@@ -262,9 +287,22 @@ public class Boat extends Entity{
         pos_x += delta_x;
         pos_y += delta_y;
 
-        this.sprite.setPosition(pos_x, pos_y);
-        this.hitbox.setPosition(pos_x, pos_y);
+        this.sprite.translate((float) delta_x, (float) delta_y);
+        this.hitbox.translate((float) delta_x, (float) delta_y);
+
+
+        // reduce velocity to 0
+        velocity = 0;
+
+        // reduce health according to robustness
+        // TODO: balance damage calculation
+
+        if (System.currentTimeMillis() - time_of_last_collision > 100) {
+            current_health -= robustness_stat / 10f;
+            time_of_last_collision = System.currentTimeMillis();
+        }
         
+
         
     }
 

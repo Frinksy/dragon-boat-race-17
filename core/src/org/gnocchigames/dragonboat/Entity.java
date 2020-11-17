@@ -63,16 +63,13 @@ public abstract class Entity {
         Rectangle rect = this.sprite.getBoundingRectangle();
 
         float [] vertices = {
+            rect.x, rect.y + rect.height,
             rect.x, rect.y,
             rect.x + rect.width, rect.y,
-            rect.x + rect.width, rect.y + rect.height,
-            rect.x, rect.y + rect.height
+            rect.x + rect.width, rect.y + rect.height
         };
 
         Polygon output = new Polygon(vertices);
-        output.setOrigin(rect.x + rect.width / 2, rect.y +rect.height / 2);
-        output.setPosition(pos_x, pos_y);
-
         return output;
 
     }
