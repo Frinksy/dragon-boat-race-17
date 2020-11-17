@@ -15,18 +15,15 @@ public class Obstacle extends Entity {
 
     public int speed_damage;
 
+    private RaceLegScreen screen;
 
-    public Boolean isCollided(List<Entity> entities) {
-        //TODO
-        return false;
-    }
 
     public void applyCollision(Entity other) {
-        //TODO
+        this.remove();
     }
 
     public void remove() {
-        //TODO
+        screen.removeEntity(this);
     }
     
     

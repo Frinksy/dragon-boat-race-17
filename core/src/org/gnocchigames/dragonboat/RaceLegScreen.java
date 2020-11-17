@@ -32,8 +32,10 @@ public class RaceLegScreen extends ScreenAdapter {
     private SpriteBatch batch;
 
     private Texture background_texture;
+    private Texture buoy_texture;
 
     public PlayerBoat player_boat;
+    public Boat other_boat;
     private RaceStructure race_structure;
 
     private Boat.Boat_Type type;
@@ -64,13 +66,17 @@ public class RaceLegScreen extends ScreenAdapter {
         // gets chosen boat type from boat choose screen
         type = BoatSelectScreen.getBoat();
         player_boat = new PlayerBoat(type);
-        player_boat.pos_x = 400;
         entities.add(player_boat);
 
         // DEBUG
-        entities.add(new Boat(Boat_Type.ACCEL));
+        other_boat = new Boat(Boat_Type.ACCEL);
+        entities.add(other_boat);
+
+        entities.add(new Duck(400, 400, 10));
+
 
         background_texture = new Texture("water_tile.png");
+        buoy_texture = new Texture("buoy.png");
 
     }
 
@@ -108,7 +114,13 @@ public class RaceLegScreen extends ScreenAdapter {
         debug_box_renderer.setProjectionMatrix(camera.combined);
         debug_box_renderer.begin(ShapeType.Line);
         debug_box_renderer.setColor(1, 1, 0, 1);
-        debug_box_renderer.polygon(player_boat.getBoundingPolygon().getTransformedVertices());
+
+        for (Entity entity : entities) {
+            debug_box_renderer.polygon(entity.getBoundingPolygon().getTransformedVertices());
+            debug_box_renderer.polygon(entity.hitbox.getTransformedVertices());
+        }
+
+
         debug_box_renderer.end();
     }
 
@@ -150,8 +162,15 @@ public class RaceLegScreen extends ScreenAdapter {
      */
     private void draw_background() {
         for (int x = 0; x <= 1920; x+=200) {
-            for (int y = 0; y <= 1080; y+=200) {
+            for (int y = -1080*100; y <= 1080*100; y+=200) {
                 batch.draw(background_texture, x, y, 200, 200);
+            }
+        }
+
+        // Draw buoys for the lanes
+        for (int y = -1080*100; y <= 1080*100; y+=256) {
+            for (int x = 384; x < 1920; x+=384) {
+                batch.draw(buoy_texture, x-buoy_texture.getWidth()/2, y-buoy_texture.getHeight()/2);
             }
         }
     }
@@ -159,6 +178,14 @@ public class RaceLegScreen extends ScreenAdapter {
 
     public List<Entity> getEntities () {
         return entities;
+    }
+
+    public void addEntity (Entity entity) {
+        entities.add(entity);
+    } 
+
+    public void removeEntity (Entity entity) {
+        entities.remove(entity);
     }
 
 }
