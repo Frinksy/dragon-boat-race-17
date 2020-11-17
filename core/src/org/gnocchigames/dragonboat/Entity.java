@@ -22,6 +22,8 @@ public abstract class Entity {
     public Sprite sprite;
     public float velocity;
     public Polygon hitbox;
+    
+    public RaceLegScreen parent;
 
 
     public  Boolean isCollided(List<Entity> entities) {

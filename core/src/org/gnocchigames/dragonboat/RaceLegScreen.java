@@ -65,11 +65,11 @@ public class RaceLegScreen extends ScreenAdapter {
 
         // gets chosen boat type from boat choose screen
         type = BoatSelectScreen.getBoat();
-        player_boat = new PlayerBoat(type);
+        player_boat = new PlayerBoat(this, type);
         entities.add(player_boat);
 
         // DEBUG
-        other_boat = new Boat(Boat_Type.ACCEL);
+        other_boat = new Boat(this, Boat_Type.ACCEL);
         entities.add(other_boat);
 
         entities.add(new Duck(400, 400, 10));

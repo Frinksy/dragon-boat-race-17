@@ -40,7 +40,7 @@ public class BoatSelectInfo{
     public static Table drawTable(Boat.Boat_Type type){
 
         // declare all tables, labels and progress bars to be displayed
-        Boat boat = new Boat(type);
+        Boat boat = new Boat(null, type);
 
         Table table = new Table();
         table.setFillParent(false);        

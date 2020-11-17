@@ -7,8 +7,8 @@ import com.badlogic.gdx.Input;
 
 public class PlayerBoat extends Boat{
     
-    public PlayerBoat(Boat.Boat_Type type) {
-        super(type, 2);
+    public PlayerBoat(RaceLegScreen parent, Boat.Boat_Type type) {
+        super(parent, type, 2);
     }
 
     /**

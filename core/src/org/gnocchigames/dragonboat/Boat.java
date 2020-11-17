@@ -46,11 +46,13 @@ public class Boat extends Entity{
 
     /**
      * Creates a boat of specified type and in the specified assigned lane
+     * @param parent the parent screen
      * @param type
      * @param lane
      */
-    public Boat(Boat_Type type, int lane) {
+    public Boat(RaceLegScreen parent, Boat_Type type, int lane) {
 
+        this.parent = parent;
         
         // Set up sprite
         Texture boat_texture = new Texture("boat.png"); // TODO: Do not hardcode file name
@@ -88,10 +90,11 @@ public class Boat extends Entity{
 
     /**
      * Creates a boat of defined type and in default lane, lane zero
+     * @param parent the parent screen
      * @param type
      */
-    public Boat(Boat_Type type) {
-        this(type, 0);
+    public Boat(RaceLegScreen parent,  Boat_Type type) {
+        this(parent, type, 0);
 
     }
 
@@ -265,6 +268,9 @@ public class Boat extends Entity{
      * @param diff the angle difference in degrees
      */
     private void changeDirection(int diff) {
+
+        float old_angle = direction;
+
         float angleDiff = this.direction + (diff * this.manoeuverability_stat / 50f); 
         if (angleDiff >= 360) {
             angleDiff -= 360;
@@ -273,6 +279,13 @@ public class Boat extends Entity{
         }
         this.direction = angleDiff;
         this.sprite.setRotation(this.direction);
+        this.hitbox.setRotation(this.direction);
+
+        // check if rotation resulted in a collision
+        if (isCollided(parent.getEntities())) {
+            this.direction = old_angle;
+        }
+
     }
 
     private Boolean isZeroHP() {
