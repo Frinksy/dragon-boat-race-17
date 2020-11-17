@@ -70,6 +70,7 @@ public class PodiumScreen extends ScreenAdapter{
 
         // text labels
         title = new Label("RESULTS", skin);
+        title.setFontScale(1.25f);
         first = new Label("Speedy", skin);
         second = new Label("Robusty", skin);
         third = new Label("Acceleraty", skin);

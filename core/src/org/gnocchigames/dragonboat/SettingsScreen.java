@@ -97,7 +97,8 @@ public class SettingsScreen extends ScreenAdapter{
         });
 
         // text label actors to be used in table
-        title = new Label("Settings", skin);
+        title = new Label("SETTINGS", skin);
+        title.setFontScale(1.25f);
         sound_volume_label = new Label("Sound Volume" , skin);
         sound_enabled_label = new Label("Sound Enabled", skin);
 
