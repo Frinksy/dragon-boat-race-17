@@ -28,6 +28,7 @@ public class RaceLegScreen extends ScreenAdapter {
     
     private DragonBoatGame game;
     private List<Entity> entities;
+    private List<Entity> entities_to_remove;
     private GameCamera camera;
     private SpriteBatch batch;
 
@@ -62,6 +63,7 @@ public class RaceLegScreen extends ScreenAdapter {
         camera.setToOrtho(false, 1920, 1080);
 
         entities = new ArrayList<Entity>();
+        entities_to_remove = new ArrayList<Entity>();
 
         // gets chosen boat type from boat choose screen
         type = BoatSelectScreen.getBoat();
@@ -72,7 +74,7 @@ public class RaceLegScreen extends ScreenAdapter {
         other_boat = new Boat(this, Boat_Type.ACCEL);
         entities.add(other_boat);
 
-        entities.add(new Duck(400, 400, 10));
+        entities.add(new Duck(this, 400, 400, 10));
 
 
         background_texture = new Texture("water_tile.png");
@@ -137,6 +139,10 @@ public class RaceLegScreen extends ScreenAdapter {
 
         // follow the boat with the camera
         camera.followBoat(player_boat);
+
+        for (Entity entity : entities_to_remove) {
+            entities.remove(entity);
+        }
     }
 
     /**
@@ -185,7 +191,7 @@ public class RaceLegScreen extends ScreenAdapter {
     } 
 
     public void removeEntity (Entity entity) {
-        entities.remove(entity);
+        entities_to_remove.add(entity);
     }
 
 }

@@ -26,7 +26,10 @@ public class Duck extends Obstacle {
      * @param speed
      * @param direction
      */
-    public Duck (int x, int y, int speed, DuckDirection direction) {
+    public Duck (RaceLegScreen parent, int x, int y, int speed, DuckDirection direction) {
+        
+        this.parent = parent;
+        
         sprite = new Sprite(new Texture("duck.png"));
         sprite.setOrigin(sprite.getWidth()/2, sprite.getHeight()/2);
         sprite.scale(-0.9f);
@@ -46,8 +49,8 @@ public class Duck extends Obstacle {
      * @param y
      * @param speed
      */
-    public Duck (int x, int y, int speed) {
-        this(x, y, speed, DuckDirection.RIGHT);
+    public Duck (RaceLegScreen parent, int x, int y, int speed) {
+        this(parent, x, y, speed, DuckDirection.RIGHT);
     }
 
     /**
@@ -55,8 +58,8 @@ public class Duck extends Obstacle {
      * @param x
      * @param y
      */
-    public Duck(int x, int y) {
-        this(x, y, 20);
+    public Duck(RaceLegScreen parent, int x, int y) {
+        this(parent, x, y, 20);
     }
 
     @Override
@@ -83,6 +86,12 @@ public class Duck extends Obstacle {
 
         if (hasHitWall()) {
             changeDirection();
+        }
+
+        // Collision
+        if (isCollided(entities)) {
+            System.out.println("Collided");
+            applyCollision(null);
         }
 
     }

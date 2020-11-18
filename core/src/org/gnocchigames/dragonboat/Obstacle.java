@@ -15,15 +15,13 @@ public class Obstacle extends Entity {
 
     public int speed_damage;
 
-    private RaceLegScreen screen;
-
 
     public void applyCollision(Entity other) {
         this.remove();
     }
 
     public void remove() {
-        screen.removeEntity(this);
+        parent.removeEntity(this);
     }
     
     
