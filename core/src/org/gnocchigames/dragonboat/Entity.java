@@ -7,6 +7,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Intersector;
 import com.badlogic.gdx.math.Polygon;
 import com.badlogic.gdx.math.Rectangle;
+import com.badlogic.gdx.utils.FloatArray;
 
 import org.gnocchigames.dragonboat.exceptions.IsNotDrawingException;
 /**
@@ -28,7 +29,7 @@ public abstract class Entity {
 
     public  Boolean isCollided(List<Entity> entities) {
         for (Entity entity : entities) {
-            if (Intersector.intersectPolygons(entity.hitbox, hitbox, null)) {
+            if (Intersector.intersectPolygons(new FloatArray(hitbox.getTransformedVertices()), new FloatArray(entity.hitbox.getTransformedVertices()))) {
                 if (!entity.equals(this)) {
                     return true;
                 }
@@ -65,10 +66,10 @@ public abstract class Entity {
         Rectangle rect = this.sprite.getBoundingRectangle();
 
         float [] vertices = {
-            rect.x, rect.y + rect.height,
             rect.x, rect.y,
             rect.x + rect.width, rect.y,
-            rect.x + rect.width, rect.y + rect.height
+            rect.x + rect.width, rect.y + rect.height,
+            rect.x, rect.y + rect.height
         };
 
         Polygon output = new Polygon(vertices);
