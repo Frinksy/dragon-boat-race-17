@@ -89,10 +89,10 @@ public class Duck extends Obstacle {
         }
 
         // Collision
-        if (isCollided(entities)) {
-            System.out.println("Collided");
-            applyCollision(null);
-        }
+        // if (isCollided(entities)) {
+        //     System.out.println("Collided");
+        //     applyCollision(null);
+        // }
 
     }
 

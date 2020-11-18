@@ -29,8 +29,9 @@ public abstract class Entity {
 
     public  Boolean isCollided(List<Entity> entities) {
         for (Entity entity : entities) {
-            if (Intersector.intersectPolygons(new FloatArray(hitbox.getTransformedVertices()), new FloatArray(entity.hitbox.getTransformedVertices()))) {
+            if (Intersector.intersectPolygons(entity.hitbox, hitbox, null) || Intersector.intersectPolygons(hitbox, entity.hitbox, null)) {
                 if (!entity.equals(this)) {
+                    System.out.println(entity + " is colliding with " + this);
                     return true;
                 }
             }

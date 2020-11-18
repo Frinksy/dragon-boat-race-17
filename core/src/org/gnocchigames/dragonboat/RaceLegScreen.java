@@ -29,6 +29,7 @@ public class RaceLegScreen extends ScreenAdapter {
     private DragonBoatGame game;
     private List<Entity> entities;
     private List<Entity> entities_to_remove;
+    private List<Entity> entities_collided;
     private GameCamera camera;
     private SpriteBatch batch;
 
@@ -64,6 +65,7 @@ public class RaceLegScreen extends ScreenAdapter {
 
         entities = new ArrayList<Entity>();
         entities_to_remove = new ArrayList<Entity>();
+        entities_collided = new ArrayList<Entity>();
 
         // gets chosen boat type from boat choose screen
         type = BoatSelectScreen.getBoat();
@@ -113,17 +115,19 @@ public class RaceLegScreen extends ScreenAdapter {
 
         // TODO: Remove debug hitbox rendering
         // DEBUG
-        debug_box_renderer.setProjectionMatrix(camera.combined);
-        debug_box_renderer.begin(ShapeType.Line);
-        debug_box_renderer.setColor(1, 1, 0, 1);
+        // debug_box_renderer.setProjectionMatrix(camera.combined);
+        // debug_box_renderer.begin(ShapeType.Line);
+        // debug_box_renderer.setColor(1, 1, 0, 1);
 
-        for (Entity entity : entities) {
-            debug_box_renderer.polygon(entity.getBoundingPolygon().getTransformedVertices());
-            debug_box_renderer.polygon(entity.hitbox.getTransformedVertices());
-        }
+        // for (Entity entity : entities) {
+        //     debug_box_renderer.polygon(entity.getBoundingPolygon().getTransformedVertices());
+        //     debug_box_renderer.polygon(entity.hitbox.getTransformedVertices());
+        // }
+
+        // debug_box_renderer.end();
+        // END DEBUG
 
 
-        debug_box_renderer.end();
     }
 
 
@@ -132,14 +136,28 @@ public class RaceLegScreen extends ScreenAdapter {
      * @param delta_time time since last render() call
      */
     public void update(float delta_time) {
-
+        
         for (Entity entity : entities) {
             entity.update(delta_time, entities);
         }
 
+        // Detect collisions
+        for (Entity entity : entities) {
+            if (entity.isCollided(entities)) {
+                entities_collided.add(entity);
+            }
+        }
+
+        // Apply collisions
+        for (Entity entity : entities_collided) {
+            entity.applyCollision(null);
+        }
+        // Clear collision list
+        entities_collided = new ArrayList<Entity>();
+        
         // follow the boat with the camera
         camera.followBoat(player_boat);
-
+        
         for (Entity entity : entities_to_remove) {
             entities.remove(entity);
         }

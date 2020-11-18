@@ -216,9 +216,9 @@ public class Boat extends Entity{
         this.hitbox.setRotation(this.direction);        
         
         // Do collision
-        if (isCollided(entities)) {
-            applyCollision(null);
-        }
+        // if (isCollided(entities)) {
+        //     applyCollision(null);
+        // }
 
         // Apply water resistance
         velocity *= 0.995;
