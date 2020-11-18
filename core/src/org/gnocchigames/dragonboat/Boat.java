@@ -1,5 +1,6 @@
 package org.gnocchigames.dragonboat;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import com.badlogic.gdx.Gdx;
@@ -35,6 +36,10 @@ public class Boat extends Entity{
 
     private Boolean in_lane;
     private long time_of_last_collision;
+    private List<Texture> textures;
+
+    private long last_frame_time;
+    private int current_frame_index;
 
     private static final float MAX_BACKWARDS_SPEED = -20;
     private static final float MIN_TIRED_SPEED = 20;
@@ -55,10 +60,16 @@ public class Boat extends Entity{
         this.parent = parent;
         
         // Set up sprite
-        Texture boat_texture = new Texture("boat.png"); // TODO: Do not hardcode file name
-        this.sprite = new Sprite(boat_texture);
+        // TODO: Do not hardcode file name
+        this.textures = new ArrayList<Texture>();
+        for (int i = 0; i < 5; i++) {
+            this.textures.add(new Texture("boats/boat_brown-" + i + ".png"));
+        }
+        this.sprite = new Sprite(textures.get(0));
         this.sprite.setOrigin(this.sprite.getWidth()/2, this.sprite.getHeight()/2);
         this.sprite.scale(-0.25f);
+        this.last_frame_time = System.currentTimeMillis();
+        this.current_frame_index = 0;
         
 
         // Set initial position
@@ -104,14 +115,24 @@ public class Boat extends Entity{
     @Override
     public Polygon getBoundingPolygon() {
 
-         float [] vertices = {
-            0, 0,
-            0, 100,
-            20, 120,
-            30, 120,
-            50, 100,
-            50, 0
+        // float [] vertices = {
+        //     0, 0,
+        //     0, 100,
+        //     20, 120,
+        //     30, 120,
+        //     50, 100,
+        //     50, 0
 
+        // };
+
+        float [] vertices = {
+            100, 200,
+            136, 136,
+            136, 10,
+            127, 0,
+            72, 0,
+            64, 10,
+            64, 136
         };
 
         Polygon output = new Polygon(vertices);
@@ -201,6 +222,23 @@ public class Boat extends Entity{
 
         // Apply water resistance
         velocity *= 0.995;
+
+
+        // Do the sprite animation
+        if (System.currentTimeMillis() - last_frame_time > 10000 / Math.abs((float)velocity)) {
+            last_frame_time = System.currentTimeMillis();
+            if (velocity > 0) {
+                current_frame_index+=1;
+            }else {
+                current_frame_index-=1;
+            }
+            if (current_frame_index > 4) {
+                current_frame_index = 0;
+            }else if (current_frame_index < 0) {
+                current_frame_index = 4;
+            }
+            sprite.setTexture(textures.get(current_frame_index));
+        }
 
         
     }
