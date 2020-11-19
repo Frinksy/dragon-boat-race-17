@@ -7,7 +7,6 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Intersector;
 import com.badlogic.gdx.math.Polygon;
 import com.badlogic.gdx.math.Rectangle;
-import com.badlogic.gdx.utils.FloatArray;
 
 import org.gnocchigames.dragonboat.exceptions.IsNotDrawingException;
 /**
@@ -26,12 +25,15 @@ public abstract class Entity {
     
     public RaceLegScreen parent;
 
-
+    /**
+     * Checks if the entity has collided with other entities
+     * @param entities the list of entities to check against
+     * @return true if in collision, false otherwise
+     */
     public  Boolean isCollided(List<Entity> entities) {
         for (Entity entity : entities) {
             if (Intersector.intersectPolygons(entity.hitbox, hitbox, null) || Intersector.intersectPolygons(hitbox, entity.hitbox, null)) {
                 if (!entity.equals(this)) {
-                    System.out.println(entity + " is colliding with " + this);
                     return true;
                 }
             }
@@ -60,6 +62,8 @@ public abstract class Entity {
 
     /**
      * Get the bounding polygon, around the entity
+     * By default it is a rectangle encapsulating the sprite
+     * Is implemented more specifically for inheriting classes
      * @return the bounding polygon of the
      */
     public Polygon getBoundingPolygon() {
