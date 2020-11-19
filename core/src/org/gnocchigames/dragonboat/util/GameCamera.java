@@ -1,6 +1,8 @@
-package org.gnocchigames.dragonboat;
+package org.gnocchigames.dragonboat.util;
 
 import com.badlogic.gdx.graphics.OrthographicCamera;
+
+import org.gnocchigames.dragonboat.entities.Boat;
 
 public class GameCamera extends OrthographicCamera{
     

@@ -1,9 +1,11 @@
-package org.gnocchigames.dragonboat;
+package org.gnocchigames.dragonboat.entities;
 
 import java.util.List;
 
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
+
+import org.gnocchigames.dragonboat.screens.RaceLegScreen;
 
 /**
  * Duck

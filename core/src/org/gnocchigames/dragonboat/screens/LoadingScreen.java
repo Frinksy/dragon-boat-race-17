@@ -1,7 +1,9 @@
-package org.gnocchigames.dragonboat;
+package org.gnocchigames.dragonboat.screens;
 
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Screen;
+
+import org.gnocchigames.dragonboat.DragonBoatGame;
 
 public class LoadingScreen implements Screen{
     

@@ -1,4 +1,4 @@
-package org.gnocchigames.dragonboat;
+package org.gnocchigames.dragonboat.entities;
 
 import java.util.List;
 
@@ -9,6 +9,7 @@ import com.badlogic.gdx.math.Polygon;
 import com.badlogic.gdx.math.Rectangle;
 
 import org.gnocchigames.dragonboat.exceptions.IsNotDrawingException;
+import org.gnocchigames.dragonboat.screens.RaceLegScreen;
 /**
  * Entity
  * Base class for all entities in the game

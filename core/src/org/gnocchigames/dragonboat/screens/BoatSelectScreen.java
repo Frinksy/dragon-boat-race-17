@@ -1,5 +1,4 @@
-package org.gnocchigames.dragonboat;
-
+package org.gnocchigames.dragonboat.screens;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.ScreenAdapter;
@@ -18,7 +17,9 @@ import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.ui.ProgressBar;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
 
-import org.gnocchigames.dragonboat.Boat.Boat_Type;
+import org.gnocchigames.dragonboat.DragonBoatGame;
+import org.gnocchigames.dragonboat.entities.Boat;
+import org.gnocchigames.dragonboat.entities.Boat.Boat_Type;
 
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 

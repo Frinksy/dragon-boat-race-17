@@ -1,4 +1,4 @@
-package org.gnocchigames.dragonboat;
+package org.gnocchigames.dragonboat.entities;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -8,6 +8,8 @@ import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.math.Polygon;
+
+import org.gnocchigames.dragonboat.screens.RaceLegScreen;
 
 
 /**

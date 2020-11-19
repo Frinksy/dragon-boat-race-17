@@ -2,6 +2,14 @@ package org.gnocchigames.dragonboat;
 
 import com.badlogic.gdx.Game;
 
+import org.gnocchigames.dragonboat.screens.BoatSelectScreen;
+import org.gnocchigames.dragonboat.screens.ControlsScreen;
+import org.gnocchigames.dragonboat.screens.MainMenuScreen;
+import org.gnocchigames.dragonboat.screens.PodiumScreen;
+import org.gnocchigames.dragonboat.screens.RaceLegScreen;
+import org.gnocchigames.dragonboat.screens.SettingsScreen;
+import org.gnocchigames.dragonboat.util.GameSettings;
+
 /**
  * Main Game class,
  * handles different game screens (MainMenuScreen, RaceLegScreen, etc.)

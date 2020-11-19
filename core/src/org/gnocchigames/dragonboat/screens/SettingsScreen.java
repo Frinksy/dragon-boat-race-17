@@ -1,4 +1,4 @@
-package org.gnocchigames.dragonboat;
+package org.gnocchigames.dragonboat.screens;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.ScreenAdapter;
@@ -14,6 +14,9 @@ import com.badlogic.gdx.scenes.scene2d.ui.Slider;
 import com.badlogic.gdx.scenes.scene2d.ui.CheckBox;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
+
+import org.gnocchigames.dragonboat.DragonBoatGame;
+
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 
 /** Settings screen

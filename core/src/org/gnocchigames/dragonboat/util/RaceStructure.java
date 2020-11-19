@@ -1,7 +1,10 @@
-package org.gnocchigames.dragonboat;
+package org.gnocchigames.dragonboat.util;
 
 import java.util.ArrayList;
-import org.gnocchigames.dragonboat.Boat;
+
+import org.gnocchigames.dragonboat.DragonBoatGame;
+import org.gnocchigames.dragonboat.entities.PlayerBoat;
+import org.gnocchigames.dragonboat.screens.RaceLegScreen;
 
 public class RaceStructure extends DragonBoatGame {
 

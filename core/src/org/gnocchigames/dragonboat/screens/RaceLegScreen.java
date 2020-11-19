@@ -1,4 +1,4 @@
-package org.gnocchigames.dragonboat;
+package org.gnocchigames.dragonboat.screens;
 
 import java.util.List;
 import java.util.ArrayList;
@@ -12,10 +12,15 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer.ShapeType;
 
-import org.gnocchigames.dragonboat.Boat.Boat_Type;
+import org.gnocchigames.dragonboat.DragonBoatGame;
+import org.gnocchigames.dragonboat.entities.Boat;
+import org.gnocchigames.dragonboat.entities.Duck;
+import org.gnocchigames.dragonboat.entities.Entity;
+import org.gnocchigames.dragonboat.entities.PlayerBoat;
+import org.gnocchigames.dragonboat.entities.Boat.Boat_Type;
 import org.gnocchigames.dragonboat.exceptions.IsNotDrawingException;
-
-import org.gnocchigames.dragonboat.RaceStructure;
+import org.gnocchigames.dragonboat.util.GameCamera;
+import org.gnocchigames.dragonboat.util.RaceStructure;
 
 
 

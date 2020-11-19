@@ -1,9 +1,11 @@
-package org.gnocchigames.dragonboat;
+package org.gnocchigames.dragonboat.entities;
 
 import java.util.List;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
+
+import org.gnocchigames.dragonboat.screens.RaceLegScreen;
 
 public class PlayerBoat extends Boat{
     

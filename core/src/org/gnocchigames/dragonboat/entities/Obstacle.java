@@ -1,7 +1,6 @@
-package org.gnocchigames.dragonboat;
+package org.gnocchigames.dragonboat.entities;
 
 import java.util.List;
-
 
 /**
  * Obstacle
