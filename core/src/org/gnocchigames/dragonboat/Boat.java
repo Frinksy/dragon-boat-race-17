@@ -364,6 +364,10 @@ public class Boat extends Entity{
             current_health -= robustness_stat / 10f;
             time_of_last_collision = System.currentTimeMillis();
         }
+        if (current_health < 0) {
+            current_health = 0;
+        }
+        
         
 
         
