@@ -156,7 +156,7 @@ public class Boat extends Entity{
                 this.speed_stat = 100;
                 this.manoeuverability_stat = 50;
                 this.robustness_stat = 40;
-                colour = new Color(Color.RED);
+                colour = new Color(Color.PINK);
                 this.colour = (colour);
                 break;
             case HARD:
@@ -172,7 +172,7 @@ public class Boat extends Entity{
                 this.speed_stat = 80;
                 this.manoeuverability_stat = 70;
                 this.robustness_stat = 40;
-                colour = new Color(Color.BLUE);
+                colour = new Color(Color.CYAN);
                 this.colour = (colour);
                 break;
             case MANOEUVREABLE:
@@ -188,7 +188,7 @@ public class Boat extends Entity{
                 this.speed_stat = 50;
                 this.manoeuverability_stat = 50;
                 this.robustness_stat = 50;
-                colour = new Color(Color.WHITE);
+                colour = new Color(Color.BROWN);
                 this.colour = (colour);
                 break;
         }

@@ -58,7 +58,7 @@ public class MainMenuScreen extends ScreenAdapter{
         final TextButton settings = new TextButton("Settings", skin);
         final TextButton exit = new TextButton("Exit", skin);
         // test button
-        final TextButton podium = new TextButton("Podium", skin);
+        final TextButton podium = new TextButton("Podium (Test)", skin);
 
         // adds listners to the buttons for when they are clicked and screens to change to
         controls.addListener(new ChangeListener(){
