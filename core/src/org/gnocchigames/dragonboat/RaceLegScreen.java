@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.ScreenAdapter;
 import com.badlogic.gdx.graphics.GL20;
+import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
@@ -27,11 +28,15 @@ import org.gnocchigames.dragonboat.RaceStructure;
 public class RaceLegScreen extends ScreenAdapter {
     
     private DragonBoatGame game;
+
     private List<Entity> entities;
     private List<Entity> entities_to_remove;
     private List<Entity> entities_collided;
+
     private GameCamera camera;
+    private OrthographicCamera ui_camera;
     private SpriteBatch batch;
+    private ShapeRenderer shape_renderer;
 
     private Texture background_texture;
     private Texture buoy_texture;
@@ -57,11 +62,17 @@ public class RaceLegScreen extends ScreenAdapter {
      */
     @Override
     public void show() {
+
+        race_structure = new RaceStructure(this);
+
         batch = new SpriteBatch();
+        shape_renderer = new ShapeRenderer();
         debug_box_renderer = new ShapeRenderer();
 
         camera = new GameCamera();
         camera.setToOrtho(false, 1920, 1080);
+        ui_camera = new OrthographicCamera();
+        ui_camera.setToOrtho(false, 1920, 1080);
 
         entities = new ArrayList<Entity>();
         entities_to_remove = new ArrayList<Entity>();
@@ -85,7 +96,7 @@ public class RaceLegScreen extends ScreenAdapter {
     }
 
     /**
-     * Draws screen
+     * Draws screen with all entities and background
      * Should be called every frame
      */
     public void draw() {
@@ -113,6 +124,8 @@ public class RaceLegScreen extends ScreenAdapter {
 
         batch.end();
 
+        draw_info();
+
         // TODO: Remove debug hitbox rendering
         // DEBUG
         // debug_box_renderer.setProjectionMatrix(camera.combined);
@@ -133,6 +146,7 @@ public class RaceLegScreen extends ScreenAdapter {
 
     /**
      * Update all entities in the scene
+     * Apply movement, check for and apply collisions
      * @param delta_time time since last render() call
      */
     public void update(float delta_time) {
@@ -178,6 +192,7 @@ public class RaceLegScreen extends ScreenAdapter {
     @Override
     public void dispose () {
         batch.dispose();
+        shape_renderer.dispose();
     }
 
 
@@ -199,7 +214,43 @@ public class RaceLegScreen extends ScreenAdapter {
         }
     }
     
+    /**
+     * Draw the UI elements of the RaceLegScreen
+     * Elements include health bars, timers, etc.
+     */
+    private void draw_info() {
 
+        shape_renderer.setProjectionMatrix(ui_camera.combined);
+        shape_renderer.begin(ShapeType.Filled);
+        
+        for (Entity entity : entities) {
+            if (entity instanceof Boat) {
+                Boat boat = (Boat) entity;
+
+                shape_renderer.setColor(0, 0, 0, 1);
+                shape_renderer.rect(
+                    boat.lane_number * (1920/5) + 140,
+                    8,
+                    104,
+                    14
+                );
+                shape_renderer.setColor(0, 1, 0, 1);
+                shape_renderer.rect(
+                    boat.lane_number * (1920/5) + 142,
+                    10,
+                    boat.current_health,
+                    10
+                );
+
+            }
+        }
+
+
+
+        shape_renderer.end();
+
+    }
+    
     public List<Entity> getEntities () {
         return entities;
     }

@@ -4,6 +4,13 @@ import java.util.ArrayList;
 import org.gnocchigames.dragonboat.Boat;
 
 public class RaceStructure extends DragonBoatGame {
+
+    RaceLegScreen screen;
+
+    public RaceStructure (RaceLegScreen screen) {
+        this.screen = screen;
+    }
+
     public void reset(){
         
     }
@@ -12,7 +19,7 @@ public class RaceStructure extends DragonBoatGame {
 
     }
     public boolean playerBoatAcross(PlayerBoat player_boat){
-        if (player_boat.pos_y == 720){
+        if (player_boat.pos_y > 1080*5){
             return true;
         }else{
             return false;
