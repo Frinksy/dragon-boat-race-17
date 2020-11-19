@@ -2,9 +2,6 @@ package org.gnocchigames.dragonboat;
 
 import java.util.List;
 
-import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-
-import org.gnocchigames.dragonboat.exceptions.IsNotDrawingException;
 
 /**
  * Obstacle

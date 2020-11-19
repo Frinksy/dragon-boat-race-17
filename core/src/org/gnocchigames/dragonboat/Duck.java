@@ -21,6 +21,7 @@ public class Duck extends Obstacle {
 
     /**
      * Creates a Duck with the specified coordinates, speed and direction
+     * @param parent the parent screen
      * @param x
      * @param y
      * @param speed
@@ -45,6 +46,7 @@ public class Duck extends Obstacle {
     
     /**
      * Creates a Duck with the specified coordinates and speed
+     * @param parent the parent screen
      * @param x
      * @param y
      * @param speed
@@ -55,6 +57,7 @@ public class Duck extends Obstacle {
 
     /**
      * Creates a Duck with the specified coordinates
+     * @param parent the parent screen
      * @param x
      * @param y
      */
@@ -62,6 +65,11 @@ public class Duck extends Obstacle {
         this(parent, x, y, 20);
     }
 
+    /**
+     * Updates the duck, moves it
+     * @param delta_time the time since the last frame
+     * @param entities the list of entities in the game
+     */
     @Override
     public void update(float delta_time, List<Entity> entities) {
 
@@ -96,10 +104,17 @@ public class Duck extends Obstacle {
 
     }
 
+    /**
+     * Checks if Duck has reached either side of the screen
+     * @return true if the Duck has reached either side of the screen, else false
+     */
     private Boolean hasHitWall() {
         return pos_x <= 0 || pos_x > 1920;
     }
 
+    /**
+     * Flips the Duck and changes its direction
+     */
     private void changeDirection() {
         
         if (direction == DuckDirection.RIGHT && pos_x > 1920) {
