@@ -53,6 +53,9 @@ public class RaceLegScreen extends ScreenAdapter {
 
     private Boat.Boat_Type type;
 
+    public float[] x_coords;
+    public float[] y_coords;
+
     ShapeRenderer debug_box_renderer;
 
     public RaceLegScreen (DragonBoatGame game) {
@@ -182,7 +185,10 @@ public class RaceLegScreen extends ScreenAdapter {
             entities.remove(entity);
         }
 
-        AIBoat.AI(other_boat);
+        //float[] check_x = {0f, 500f, 500f, 750f};
+        float[] check_x = AIBoat.getXCoords(1,1);
+        float[] check_y = AIBoat.getYCoords(1,1);
+        AIBoat.AI(other_boat, check_x, check_y);
     }
 
     /**
