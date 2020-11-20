@@ -36,6 +36,9 @@ public class Duck extends Obstacle {
         sprite = new Sprite(new Texture("duck.png"));
         sprite.setOrigin(sprite.getWidth()/2, sprite.getHeight()/2);
         sprite.scale(-0.9f);
+        if (direction == DuckDirection.LEFT) {
+            sprite.flip(true, false);
+        }
         pos_x = x;
         pos_y = y;
 
