@@ -21,7 +21,7 @@ import org.gnocchigames.dragonboat.entities.PlayerBoat;
 import org.gnocchigames.dragonboat.entities.Boat.Boat_Type;
 import org.gnocchigames.dragonboat.exceptions.IsNotDrawingException;
 import org.gnocchigames.dragonboat.util.GameCamera;
-import org.gnocchigames.dragonboat.util.RaceStructure;
+import org.gnocchigames.dragonboat.util.GameStructure;
 
 
 
@@ -49,7 +49,7 @@ public class RaceLegScreen extends ScreenAdapter {
 
     public PlayerBoat player_boat;
     public Boat other_boat;
-    private RaceStructure race_structure;
+    private GameStructure game_structure;
 
     private Boat.Boat_Type type;
 
@@ -72,7 +72,7 @@ public class RaceLegScreen extends ScreenAdapter {
     @Override
     public void show() {
 
-        race_structure = new RaceStructure(this);
+        game_structure = new GameStructure(this);
 
         batch = new SpriteBatch();
         shape_renderer = new ShapeRenderer();
@@ -87,18 +87,20 @@ public class RaceLegScreen extends ScreenAdapter {
         entities_to_remove = new ArrayList<Entity>();
         entities_collided = new ArrayList<Entity>();
 
-        // gets chosen boat type from boat choose screen
-        type = BoatSelectScreen.getBoat();
-        player_boat = new PlayerBoat(this, type);
-        entities.add(player_boat);
+        // // gets chosen boat type from boat choose screen
+         type = BoatSelectScreen.getBoat();
+         player_boat = new PlayerBoat(this, type);
+         entities.add(player_boat);
 
-        // DEBUG
-        other_boat = new Boat(this, Boat_Type.ACCEL);
-        entities.add(other_boat);
+        // // DEBUG
+         other_boat = new Boat(this, Boat_Type.ACCEL);
+         entities.add(other_boat);
 
-        entities.add(new Duck(this, 1000,  500, 10));
+         entities.add(new Duck(this, 1000,  500, 10));
 
-
+        //not working yet
+        //game_structure.set_leg(GameStructure.Legs.LEG_ONE);
+        //game_structure.start_leg();
         background_texture = new Texture("water_tile.png");
         buoy_texture = new Texture("buoy.png");
 
