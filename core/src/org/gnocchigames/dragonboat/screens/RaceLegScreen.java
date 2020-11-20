@@ -13,6 +13,7 @@ import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer.ShapeType;
 
 import org.gnocchigames.dragonboat.DragonBoatGame;
+import org.gnocchigames.dragonboat.entities.AIBoat;
 import org.gnocchigames.dragonboat.entities.Boat;
 import org.gnocchigames.dragonboat.entities.Duck;
 import org.gnocchigames.dragonboat.entities.Entity;
@@ -51,6 +52,9 @@ public class RaceLegScreen extends ScreenAdapter {
     private RaceStructure race_structure;
 
     private Boat.Boat_Type type;
+
+    public float[] x_coords;
+    public float[] y_coords;
 
     ShapeRenderer debug_box_renderer;
 
@@ -92,7 +96,7 @@ public class RaceLegScreen extends ScreenAdapter {
         other_boat = new Boat(this, Boat_Type.ACCEL);
         entities.add(other_boat);
 
-        entities.add(new Duck(this, 400, 400, 10));
+        entities.add(new Duck(this, 1000,  500, 10));
 
 
         background_texture = new Texture("water_tile.png");
@@ -180,6 +184,11 @@ public class RaceLegScreen extends ScreenAdapter {
         for (Entity entity : entities_to_remove) {
             entities.remove(entity);
         }
+
+        //float[] check_x = {0f, 500f, 500f, 750f};
+        float[] check_x = AIBoat.getXCoords(1,1);
+        float[] check_y = AIBoat.getYCoords(1,1);
+        AIBoat.AI(other_boat, check_x, check_y);
     }
 
     /**
@@ -267,5 +276,10 @@ public class RaceLegScreen extends ScreenAdapter {
     public void removeEntity (Entity entity) {
         entities_to_remove.add(entity);
     }
+
+    /**
+    public void AI(Boat boat){
+        other_boat.accelerate();
+    }*/
 
 }

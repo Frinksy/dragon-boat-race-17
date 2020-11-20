@@ -352,9 +352,9 @@ public class Boat extends Entity{
 
         float angleDiff = this.direction + (diff * this.manoeuverability_stat / 50f); 
         if (angleDiff >= 360) {
-            angleDiff -= 360;
+            //angleDiff -= 360;
         }else if (angleDiff < 0) {
-            angleDiff += 360;
+            //angleDiff += 360;
         }
         this.direction = angleDiff;
         this.sprite.setRotation(this.direction);
@@ -409,11 +409,21 @@ public class Boat extends Entity{
             current_health = 0;
         }
         
-        
+    }
 
+    public double getDirection(){
+        double rad_angle = Math.toRadians(direction);
+        return direction;
         
     }
 
+    public float getX(){
+        return pos_x;
+    }
+
+    public float getY(){
+        return pos_x;
+    }
 
     @Override
     public void remove() {
