@@ -8,6 +8,7 @@ import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.math.Polygon;
+import com.badlogic.gdx.utils.Disposable;
 
 import org.gnocchigames.dragonboat.screens.RaceLegScreen;
 
@@ -35,6 +36,8 @@ public class Boat extends Entity{
     public Color colour;
 
     public int lane_number;
+    
+    private Boat_Type type;
 
     private Boolean in_lane;
     private long time_of_last_collision;
@@ -60,13 +63,17 @@ public class Boat extends Entity{
     public Boat(RaceLegScreen parent, Boat_Type type, int lane) {
 
         this.parent = parent;
+        this.type = type;
         
         // Set up sprite
         // TODO: Do not hardcode file name
-        this.textures = new ArrayList<Texture>();
-        for (int i = 0; i < 5; i++) {
-            this.textures.add(new Texture("boats/boat_brown-" + i + ".png"));
-        }
+        // this.textures = new ArrayList<Texture>();
+        // for (int i = 0; i < 5; i++) {
+        //     this.textures.add(new Texture("boats/boat_brown-" + i + ".png"));
+        // }
+
+        this.textures = getTextures(type);
+
         this.sprite = new Sprite(textures.get(0));
         this.sprite.setOrigin(this.sprite.getWidth()/2, this.sprite.getHeight()/2);
         this.sprite.scale(-0.25f);
@@ -194,6 +201,38 @@ public class Boat extends Entity{
                 this.colour = (colour);
                 break;
         }
+    }
+
+    private List<Texture> getTextures(Boat_Type type) {
+        String folder = new String();
+        switch (type) {
+            case FAST:
+                folder = "pink";
+                break;
+            case HARD:
+                folder = "green";
+                break;
+            case ACCEL:
+                folder = "blue";
+                break;
+            case MANOEUVREABLE:
+                folder = "yellow";
+                break;    
+            default:
+                folder = "brown";
+                break;
+        }
+
+
+        List<Texture> output = new ArrayList<Texture>();
+        for (int i = 0; i < 5; i++) {
+            output.add(
+                new Texture("boats/" + folder + "/frame" + i + ".png")
+            );
+        }
+
+        return output;
+
     }
     
     /**
@@ -375,10 +414,11 @@ public class Boat extends Entity{
         
     }
 
+
     @Override
     public void remove() {
-        //TODO
+        for (Texture texture : textures) {
+            texture.dispose();
+        }
     }
-
-
 }
