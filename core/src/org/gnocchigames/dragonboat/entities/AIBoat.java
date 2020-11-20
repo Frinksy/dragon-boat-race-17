@@ -1,6 +1,5 @@
 package org.gnocchigames.dragonboat.entities;
 
-import com.badlogic.gdx.Gdx;
 
 public class AIBoat{
 
