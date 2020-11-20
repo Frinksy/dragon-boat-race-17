@@ -8,7 +8,6 @@ import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.math.Polygon;
-import com.badlogic.gdx.utils.Disposable;
 
 import org.gnocchigames.dragonboat.screens.RaceLegScreen;
 
@@ -40,6 +39,12 @@ public class Boat extends Entity{
     private Boat_Type type;
 
     private Boolean in_lane;
+    private long time_out_of_lane;
+    private long last_out_of_lane_time;
+
+    public long start_time;
+    public long end_time;
+
     private long time_of_last_collision;
     private List<Texture> textures;
 
@@ -66,14 +71,7 @@ public class Boat extends Entity{
         this.type = type;
         
         // Set up sprite
-        // TODO: Do not hardcode file name
-        // this.textures = new ArrayList<Texture>();
-        // for (int i = 0; i < 5; i++) {
-        //     this.textures.add(new Texture("boats/boat_brown-" + i + ".png"));
-        // }
-
         this.textures = getTextures(type);
-
         this.sprite = new Sprite(textures.get(0));
         this.sprite.setOrigin(this.sprite.getWidth()/2, this.sprite.getHeight()/2);
         this.sprite.scale(-0.25f);
@@ -96,7 +94,10 @@ public class Boat extends Entity{
         this.current_health = 100;
         this.current_penalty = 0;
         this.velocity = 1;
-
+        this.time_out_of_lane = 0;
+        this.last_out_of_lane_time = 0;
+        this.start_time = 0;
+        this.end_time = 0;
         setStats(type);
 
         this.in_lane = true; // We assume the boat starts in lane
@@ -165,40 +166,35 @@ public class Boat extends Entity{
                 this.speed_stat = 100;
                 this.manoeuverability_stat = 50;
                 this.robustness_stat = 40;
-                colour = new Color(Color.PINK);
-                this.colour = (colour);
+                this.colour = new Color(Color.PINK);
                 break;
             case HARD:
                 this.acceleration_stat = 60;
                 this.speed_stat = 80;
                 this.manoeuverability_stat = 40;
                 this.robustness_stat = 100;
-                colour = new Color(Color.GREEN);
-                this.colour = (colour);
+                this.colour = new Color(Color.GREEN);
                 break;
             case ACCEL:
                 this.acceleration_stat = 100;
                 this.speed_stat = 80;
                 this.manoeuverability_stat = 70;
                 this.robustness_stat = 40;
-                colour = new Color(Color.CYAN);
-                this.colour = (colour);
+                this.colour = new Color(Color.CYAN);
                 break;
             case MANOEUVREABLE:
                 this.acceleration_stat = 80;
                 this.speed_stat = 75;
                 this.manoeuverability_stat = 100;
                 this.robustness_stat = 20;
-                colour = new Color(Color.YELLOW);
-                this.colour = (colour);
+                this.colour = new Color(Color.YELLOW);
                 break;
             default:
                 this.acceleration_stat = 50;
                 this.speed_stat = 50;
                 this.manoeuverability_stat = 50;
                 this.robustness_stat = 50;
-                colour = new Color(Color.BROWN);
-                this.colour = (colour);
+                this.colour = new Color(Color.BROWN);
                 break;
         }
     }
@@ -279,6 +275,15 @@ public class Boat extends Entity{
                 current_frame_index = 4;
             }
             sprite.setTexture(textures.get(current_frame_index));
+        }
+
+        // Check for in lane
+        if (checkInLane() && !in_lane) {
+            in_lane = true;
+            time_out_of_lane += System.currentTimeMillis() - last_out_of_lane_time;
+        }else if (!checkInLane() && in_lane) {
+            in_lane = false;
+            last_out_of_lane_time = System.currentTimeMillis();
         }
 
         
@@ -367,7 +372,7 @@ public class Boat extends Entity{
 
     }
 
-    private Boolean isZeroHP() {
+    public Boolean isZeroHP() {
         return current_health > 0;
     }
 
@@ -409,6 +414,29 @@ public class Boat extends Entity{
             current_health = 0;
         }
         
+    }
+    /**
+     * Start the race timer
+     */
+    public void startTimer() {
+        start_time = System.currentTimeMillis();
+    }
+
+    /**
+     * Stop the race timer
+     * @return
+     */
+    public long stopTimer() {
+        end_time = System.currentTimeMillis();
+        return end_time - start_time;
+    }
+
+    /**
+     * Get the current time of the boat in the race
+     * @return the time of the boat in the race
+     */
+    public long getCurrentTime() {
+        return System.currentTimeMillis();
     }
 
     public double getDirection(){
