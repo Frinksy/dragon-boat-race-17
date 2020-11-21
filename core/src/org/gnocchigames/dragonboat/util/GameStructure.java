@@ -85,6 +85,7 @@ public class GameStructure {
         Boat.Boat_Type type = BoatSelectScreen.getBoat();
         PlayerBoat player_boat = new PlayerBoat(this.race_screen, type);
         players.add(player_boat);
+        race_screen.player_boat = player_boat;
 
         List<Boat.Boat_Type> available_types = new ArrayList<Boat.Boat_Type>();
         available_types.add(Boat.Boat_Type.FAST);
