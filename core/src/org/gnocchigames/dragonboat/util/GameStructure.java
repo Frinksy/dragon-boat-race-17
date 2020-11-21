@@ -32,18 +32,19 @@ public class GameStructure {
     //multiple is amount of screens
     private static int FINISH_HEIGHT = 1080 * 1;
 
-    public boolean playerBoatAcross(PlayerBoat player_boat){
-        if (player_boat.pos_y > 1080*5){
+    public static boolean playerBoatAcross(PlayerBoat player_boat){
+        if (player_boat.pos_y > 2200){
             return true;
         }else{
             return false;
         }
     }
-    public boolean allBoatsAcross(){
+    public static boolean allBoatsAcross(){
         return false;
     }
-    public boolean raceover(PlayerBoat player_boat){
+    public static boolean raceover(PlayerBoat player_boat){
         if (playerBoatAcross(player_boat) || allBoatsAcross()){
+            System.out.println("yes");
             return true; 
         }else{
             return false;
