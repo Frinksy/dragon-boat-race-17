@@ -102,19 +102,19 @@ public class AIBoat extends Boat{
 
     public static float[] getYCoords(int boat_num, int race_leg){
         if ((boat_num == 0) & (race_leg == 1)){
-            float[] y_coords = {0f, 500f, 1000f, 1250f};
+            float[] y_coords = {0f, 500f, 1000f, 2000f};
             return y_coords;
         }  else if ((boat_num == 1) & (race_leg == 1)) {
-            float[] y_coords = {0f, 500f, 500f, 750f};
+            float[] y_coords = {0f, 500f, 1000f, 2000f};
             return y_coords;
         }  else if ((boat_num == 2) & (race_leg == 1)) {
-            float[] y_coords = {0f, 500f, 500f, 750f};
+            float[] y_coords = {0f, 500f, 1000f, 2000f};
             return y_coords;
         } else if ((boat_num == 3) & (race_leg == 1)) {
-            float[] y_coords = {0f, 500f, 500f, 750f};
+            float[] y_coords = {0f, 500f, 1000f, 2000f};
             return y_coords;
         } else if ((boat_num == 4) & (race_leg == 1)) {
-            float[] y_coords = {0f, 500f, 500f, 750f};
+            float[] y_coords = {0f, 500f, 1000f, 2000f};
             return y_coords;
         }
         return y_coords;
