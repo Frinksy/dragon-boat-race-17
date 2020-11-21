@@ -459,7 +459,6 @@ public class Boat extends Entity{
     }
 
     public double getDirection(){
-        double rad_angle = Math.toRadians(direction);
         return direction;
     }
 
