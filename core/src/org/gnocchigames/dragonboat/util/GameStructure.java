@@ -116,11 +116,13 @@ public class GameStructure {
 
         switch (leg) {
             case LEG_ONE:
-            for(int y=0;y<=20000;y+=3000){
-                for (int lane=0;lane<=5;lane++){
-                    obstacles.add(new Duck(race_screen, 50, y+200, 20, DuckDirection.LEFT,lane));
+            for (int y = 100; y < 20000; y+=1000) {
+                for (int lane = 0; lane < 5; lane++) {
+                  obstacles.add(new Duck(race_screen, lane*384+184, y, 20, DuckDirection.LEFT, lane));
                 }
-            }
+              }
+                
+            
             for(int y=0;y<=20000;y+=1000){
                 for(int x=0;x<=1980;x+=384){
                     obstacles.add(new Rock(race_screen,x+200,y+500));
@@ -139,12 +141,11 @@ public class GameStructure {
                 break;
 
             case LEG_TWO:
-            for(int y=0;y<=20000;y+=3000){
-                for (int lane=0;lane<=5;lane++){
-                    obstacles.add(new Duck(race_screen, 50, y+200, 20, DuckDirection.LEFT,lane));
-                    obstacles.add(new Duck(race_screen, 50, y+1000, 20, DuckDirection.LEFT,lane));
+            for (int y = 100; y < 20000; y+=1000) {
+                for (int lane = 0; lane < 5; lane++) {
+                  obstacles.add(new Duck(race_screen, lane*384+184, y, 20, DuckDirection.LEFT, lane));
                 }
-            }
+              }
             for(int y=0;y<=20000;y+=1000){
                 for(int x=0;x<=1980;x+=384){
                     obstacles.add(new Rock(race_screen,x+200,y+500));
@@ -163,11 +164,11 @@ public class GameStructure {
                 break;
             
             case LEG_THREE:
-            for(int y=0;y<=20000;y+=3000){
-                for (int lane=0;lane<=5;lane++){
-                    obstacles.add(new Duck(race_screen, 50, y+200, 20, DuckDirection.LEFT,lane));
+            for (int y = 100; y < 20000; y+=3000) {
+                for (int lane = 0; lane < 5; lane++) {
+                  obstacles.add(new Duck(race_screen, lane*384+200, y, 25, DuckDirection.LEFT, lane));
                 }
-            }
+              }
             for(int y=0;y<=20000;y+=1000){
                 for(int x=0;x<=1980;x+=384){
                     obstacles.add(new Rock(race_screen,x+200,y+500));
@@ -183,9 +184,7 @@ public class GameStructure {
                     obstacles.add(new TreeLog(race_screen,x+300,y+600));
                 }
             }
-
                 break;
-
             case LEG_FINAL:
                 //remove players who didnt qualify
                 //players.remove()
