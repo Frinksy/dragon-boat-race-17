@@ -31,12 +31,10 @@ public class AIBoat extends Boat{
         super(parent, type, lane);
         check_x = getXCoords(lane, leg_num);
         check_y = getYCoords(lane, leg_num);
-        System.out.println("A");
     }
 
     public void update(float delta_time, List<Entity> entities){
 
-        System.out.println("B");
         super.update(delta_time, entities);
 
         for (int i = 1; i < check_y.length; i++){
@@ -82,11 +80,22 @@ public class AIBoat extends Boat{
 
         System.out.println(boat_num + " " + race_leg);
         if ((boat_num == 0) & (race_leg == 1)){
-            float[] x_coords = {0f, 500f, 500f, 750f};
+            float[] x_coords = {0f, 100f, 50f, 250f};
             return x_coords;
-        } else {
-
+        } else if ((boat_num == 1) & (race_leg == 1)) {
+            float[] x_coords = {0f, 400f, 300f, 750f};
+            return x_coords;
+        }  else if ((boat_num == 2) & (race_leg == 1)) {
+            float[] x_coords = {0f, 900f, 1200f, 1050f};
+            return x_coords;
+        } else if ((boat_num == 3) & (race_leg == 1)) {
+            float[] x_coords = {0f, 1400f, 1300f, 1550f};
+            return x_coords;
+        } else if ((boat_num == 4) & (race_leg == 1)) {
+            float[] x_coords = {0f, 1650f, 1700f, 1850f};
+            return x_coords;
         }
+
         
         return x_coords;
     }
@@ -95,8 +104,19 @@ public class AIBoat extends Boat{
         if ((boat_num == 0) & (race_leg == 1)){
             float[] y_coords = {0f, 500f, 1000f, 1250f};
             return y_coords;
+        }  else if ((boat_num == 1) & (race_leg == 1)) {
+            float[] y_coords = {0f, 500f, 500f, 750f};
+            return y_coords;
+        }  else if ((boat_num == 2) & (race_leg == 1)) {
+            float[] y_coords = {0f, 500f, 500f, 750f};
+            return y_coords;
+        } else if ((boat_num == 3) & (race_leg == 1)) {
+            float[] y_coords = {0f, 500f, 500f, 750f};
+            return y_coords;
+        } else if ((boat_num == 4) & (race_leg == 1)) {
+            float[] y_coords = {0f, 500f, 500f, 750f};
+            return y_coords;
         }
-       
         return y_coords;
     }
 }
