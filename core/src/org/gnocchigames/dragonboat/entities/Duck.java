@@ -141,17 +141,27 @@ public class Duck extends Obstacle {
      */
     private void changeDirection() {
         
-        if (
-            (lane < 0 || lane > 4)    
-            && direction == DuckDirection.RIGHT && pos_x > 1920
-            ) {
-            direction = DuckDirection.LEFT;
-        }else if (direction == DuckDirection.LEFT && pos_x < 0) {
-            direction = DuckDirection.RIGHT;
+        // if not assigned to a lane
+        if (lane < 0 || lane > 4) {
+            if (direction == DuckDirection.LEFT && pos_x < 0) {
+                direction = DuckDirection.RIGHT;
+                sprite.flip(true, false);
+            } else if (direction == DuckDirection.RIGHT && pos_x > 1920) {
+                direction = DuckDirection.LEFT;
+                sprite.flip(true, false);
+            }
         }
-
-        // flip the sprite
-        sprite.flip(true, false);
+        // if assigned to a lane
+        else {
+            if (direction == DuckDirection.LEFT && pos_x < lane * 384) {
+                direction = DuckDirection.RIGHT;
+                sprite.flip(true, false);
+            } else if (direction == DuckDirection.RIGHT && pos_x > (lane+1) * 384) {
+                direction = DuckDirection.LEFT;
+                sprite.flip(true, false);
+            }
+        }
+        
 
     }
 
