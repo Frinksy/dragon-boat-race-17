@@ -10,6 +10,7 @@ import org.gnocchigames.dragonboat.screens.RaceLegScreen;
 import org.gnocchigames.dragonboat.screens.SettingsScreen;
 import org.gnocchigames.dragonboat.screens.NextLegScreen;
 import org.gnocchigames.dragonboat.util.GameSettings;
+import org.gnocchigames.dragonboat.util.TextureStore;
 
 /**
  * Main Game class,
@@ -36,6 +37,8 @@ public class DragonBoatGame extends Game {
 	public final static int PODIUM = 5;
 	public final static int NEXT = 6;
 
+	public TextureStore texture_store;
+
 	/**
 	 * Called at the start to initialise the game
 	 */
@@ -54,6 +57,8 @@ public class DragonBoatGame extends Game {
 
 
 		game_settings = new GameSettings();
+
+		texture_store = new TextureStore();
 	}
 
 	/**
