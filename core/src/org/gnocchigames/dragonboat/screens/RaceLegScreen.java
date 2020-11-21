@@ -135,10 +135,12 @@ public class RaceLegScreen extends ScreenAdapter {
 
 
         for (Entity entity : entities) {
-            try {
-                entity.draw(batch);
-            }catch (IsNotDrawingException e) {
-                Gdx.app.log("Exception: ", e.getMessage());
+            if (isOnScreen(entity)) {
+                try {
+                    entity.draw(batch);
+                }catch (IsNotDrawingException e) {
+                    Gdx.app.log("Exception: ", e.getMessage());
+                }
             }
         }
 
@@ -146,19 +148,19 @@ public class RaceLegScreen extends ScreenAdapter {
 
         draw_info();
 
-        // TODO: Remove debug hitbox rendering
-        // DEBUG
-        debug_box_renderer.setProjectionMatrix(camera.combined);
-        debug_box_renderer.begin(ShapeType.Line);
-        debug_box_renderer.setColor(1, 1, 0, 1);
+        // // TODO: Remove debug hitbox rendering
+        // // DEBUG
+        // debug_box_renderer.setProjectionMatrix(camera.combined);
+        // debug_box_renderer.begin(ShapeType.Line);
+        // debug_box_renderer.setColor(1, 1, 0, 1);
 
-        for (Entity entity : entities) {
-            debug_box_renderer.polygon(entity.getBoundingPolygon().getTransformedVertices());
-            debug_box_renderer.polygon(entity.hitbox.getTransformedVertices());
-        }
+        // for (Entity entity : entities) {
+        //     debug_box_renderer.polygon(entity.getBoundingPolygon().getTransformedVertices());
+        //     debug_box_renderer.polygon(entity.hitbox.getTransformedVertices());
+        // }
 
-        debug_box_renderer.end();
-        // END DEBUG
+        // debug_box_renderer.end();
+        // // END DEBUG
 
 
     }
@@ -177,10 +179,13 @@ public class RaceLegScreen extends ScreenAdapter {
 
         // Detect collisions
         for (Entity entity : entities) {
-            SimpleEntry<Boolean, Entity> collision = entity.isCollidedWith(entities);
-        
-            if (collision.getKey()) {
-                entities_collided.put(entity, collision.getValue());
+
+            if (isOnScreen(entity)) {
+                SimpleEntry<Boolean, Entity> collision = entity.isCollidedWith(entities);
+            
+                if (collision.getKey()) {
+                    entities_collided.put(entity, collision.getValue());
+                }
             }
         }
 
@@ -213,6 +218,7 @@ public class RaceLegScreen extends ScreenAdapter {
     public void render (float delta_time) {
         draw();
         update(delta_time);
+        System.out.println(1/delta_time);
     }
 
     /**
@@ -300,6 +306,10 @@ public class RaceLegScreen extends ScreenAdapter {
 
     public void removeEntity (Entity entity) {
         entities_to_remove.add(entity);
+    }
+
+    private Boolean isOnScreen(Entity entity) {
+        return entity.pos_y > camera.current_y - 400 && entity.pos_y < camera.current_y + camera.viewportHeight + 400;
     }
 
     /**
