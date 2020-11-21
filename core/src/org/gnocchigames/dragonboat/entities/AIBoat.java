@@ -58,7 +58,7 @@ public class AIBoat extends Boat{
                 diff_angle = (wanted_angle_deg - current_angle);
 
                 //DEBUG
-                System.out.println(current_x + " " + current_y);
+                
                 //System.out.println(wanted_angle_deg + " " + current_angle + " " + diff_angle );
                 //System.out.println(i);
         
@@ -81,9 +81,9 @@ public class AIBoat extends Boat{
         System.out.println(lane_num + " " + type + " " + race_leg);
         //Speed
         if ((lane_num == 0) & (type == Boat_Type.FAST)){
-            System.out.println("check");
             if (race_leg == 1){
-                float[] x_coords = {0f, 100f, 50f, 250f};
+                float[] x_coords = {0f, 75f, 330f, 75f, 330f, 75f, 330f, 75f, 330f, 75f, 192f, 75f, 
+                    330f, 75f, 330f, 125f, 125f};
                 return x_coords;
             }
         //Robust
@@ -117,7 +117,8 @@ public class AIBoat extends Boat{
     public static float[] getYCoords(int lane_num, int race_leg, Boat_Type type){
         if ((lane_num == 0) & (type == Boat_Type.FAST)){
             if (race_leg == 1){
-                float[] y_coords = {0f, 500f, 1000f, 2000f};
+                float[] y_coords = {0f, 500f, 1500f, 2500f, 3500f, 4500f, 5500f, 6250f, 7250f, 8250f, 9000f, 9750f, 
+                    10500f, 11250f, 12250f, 12750, 15000};
                 return y_coords;
             }
         //Robust

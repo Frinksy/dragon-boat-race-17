@@ -200,9 +200,9 @@ public class Boat extends Entity{
                 this.colour = new Color(Color.YELLOW);
                 break;
             default:
-                this.acceleration_stat = 75;
-                this.speed_stat = 75;
-                this.manoeuverability_stat = 75;
+                this.acceleration_stat = 100;
+                this.speed_stat = 100;
+                this.manoeuverability_stat = 100;
                 this.robustness_stat = 75;
                 this.colour = new Color(Color.BROWN);
                 break;
