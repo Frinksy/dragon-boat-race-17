@@ -5,16 +5,13 @@ import java.util.List;
 /**
  * Obstacle
  */
-public class Obstacle extends Entity {
+public abstract class Obstacle extends Entity {
 
     public int health_damage;
 
     public int speed_damage;
 
-
-    public void applyCollision(Entity other) {
-        this.remove();
-    }
+    public abstract void applyCollision(Entity other);
 
     public void remove() {
         parent.removeEntity(this);

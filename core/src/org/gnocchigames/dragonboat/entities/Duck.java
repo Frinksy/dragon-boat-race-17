@@ -155,5 +155,12 @@ public class Duck extends Obstacle {
 
     }
 
+    @Override
+    public void applyCollision(Entity other) {
+        if (other instanceof Boat) {
+            this.remove();
+        }
+    }
+
     
 }
