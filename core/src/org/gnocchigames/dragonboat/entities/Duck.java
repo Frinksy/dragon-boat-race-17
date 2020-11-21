@@ -18,9 +18,10 @@ public class Duck extends Obstacle {
 
     private int speed;
     private DuckDirection direction;
+    private int lane;
 
 
-
+    
     /**
      * Creates a Duck with the specified coordinates, speed and direction
      * @param parent the parent screen
@@ -28,10 +29,12 @@ public class Duck extends Obstacle {
      * @param y
      * @param speed
      * @param direction
+     * @param lane
      */
-    public Duck (RaceLegScreen parent, int x, int y, int speed, DuckDirection direction) {
+    public Duck (RaceLegScreen parent, int x, int y, int speed, DuckDirection direction, int lane) {
         
         this.parent = parent;
+        this.lane = lane;
         
         sprite = new Sprite(new Texture("duck.png"));
         sprite.setOrigin(sprite.getWidth()/2, sprite.getHeight()/2);
@@ -41,14 +44,27 @@ public class Duck extends Obstacle {
         }
         pos_x = x;
         pos_y = y;
-
+        
         this.direction = direction;
         this.speed = 40;
         sprite.setCenter(pos_x, pos_y);
-
+        
         hitbox = getBoundingPolygon();
     }
     
+    /**
+     * Creates a Duck with the specified coordinates, speed and direction
+     * @param parent the parent screne
+     * @param x
+     * @param y
+     * @param speed
+     * @param direction
+     */
+    public Duck (RaceLegScreen parent, int x, int y, int speed, DuckDirection direction) {
+        this(parent, x, y, speed, direction, -1);
+        
+    }
+
     /**
      * Creates a Duck with the specified coordinates and speed
      * @param parent the parent screen
@@ -114,7 +130,10 @@ public class Duck extends Obstacle {
      * @return true if the Duck has reached either side of the screen, else false
      */
     private Boolean hasHitWall() {
+        if (lane < 0 || lane > 4) {
         return pos_x <= 0 || pos_x > 1920;
+        }
+        return pos_x <= 384*lane || pos_x >= 384*(lane+1);
     }
 
     /**
@@ -122,7 +141,10 @@ public class Duck extends Obstacle {
      */
     private void changeDirection() {
         
-        if (direction == DuckDirection.RIGHT && pos_x > 1920) {
+        if (
+            (lane < 0 || lane > 4)    
+            && direction == DuckDirection.RIGHT && pos_x > 1920
+            ) {
             direction = DuckDirection.LEFT;
         }else if (direction == DuckDirection.LEFT && pos_x < 0) {
             direction = DuckDirection.RIGHT;
