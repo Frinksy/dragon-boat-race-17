@@ -11,6 +11,7 @@ import com.badlogic.gdx.ScreenAdapter;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer.ShapeType;
@@ -49,6 +50,7 @@ public class RaceLegScreen extends ScreenAdapter {
 
     private Texture background_texture;
     private Texture buoy_texture;
+    private Sprite buoy_sprite;
 
     public PlayerBoat player_boat;
     public Boat other_boat;
@@ -106,6 +108,8 @@ public class RaceLegScreen extends ScreenAdapter {
         game_structure.start_leg();
         background_texture = new Texture("water_tile.png");
         buoy_texture = new Texture("buoy.png");
+        buoy_sprite = new Sprite(buoy_texture);
+        buoy_sprite.scale(-0.75f);
 
     }
 
@@ -142,16 +146,16 @@ public class RaceLegScreen extends ScreenAdapter {
 
         // TODO: Remove debug hitbox rendering
         // DEBUG
-        // debug_box_renderer.setProjectionMatrix(camera.combined);
-        // debug_box_renderer.begin(ShapeType.Line);
-        // debug_box_renderer.setColor(1, 1, 0, 1);
+        debug_box_renderer.setProjectionMatrix(camera.combined);
+        debug_box_renderer.begin(ShapeType.Line);
+        debug_box_renderer.setColor(1, 1, 0, 1);
 
-        // for (Entity entity : entities) {
-        //     debug_box_renderer.polygon(entity.getBoundingPolygon().getTransformedVertices());
-        //     debug_box_renderer.polygon(entity.hitbox.getTransformedVertices());
-        // }
+        for (Entity entity : entities) {
+            debug_box_renderer.polygon(entity.getBoundingPolygon().getTransformedVertices());
+            debug_box_renderer.polygon(entity.hitbox.getTransformedVertices());
+        }
 
-        // debug_box_renderer.end();
+        debug_box_renderer.end();
         // END DEBUG
 
 
@@ -230,7 +234,8 @@ public class RaceLegScreen extends ScreenAdapter {
         // Draw buoys for the lanes
         for (int y = -1080*100; y <= 1080*100; y+=256) {
             for (int x = 384; x < 1920; x+=384) {
-                batch.draw(buoy_texture, x-buoy_texture.getWidth()/2, y-buoy_texture.getHeight()/2);
+                buoy_sprite.setCenter(x, y);
+                buoy_sprite.draw(batch);
             }
         }
     }
