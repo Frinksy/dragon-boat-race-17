@@ -11,6 +11,7 @@ import org.gnocchigames.dragonboat.entities.AIBoat;
 import org.gnocchigames.dragonboat.screens.RaceLegScreen;
 import org.gnocchigames.dragonboat.screens.BoatSelectScreen;
 import org.gnocchigames.dragonboat.entities.PlayerBoat;
+import org.gnocchigames.dragonboat.entities.Rock;
 import org.gnocchigames.dragonboat.entities.Duck.DuckDirection;
 
 
@@ -104,9 +105,9 @@ public class GameStructure {
         //
         // Commented out to have the game run
         // These lines should be put back into the switch statement
-        // players.add(new AIBoat(race_screen, available_types.get(1), 1, 1));
-        // players.add(new AIBoat(race_screen, available_types.get(2), 3, 1));
-        // players.add(new AIBoat(race_screen, available_types.get(3), 4, 1));
+        players.add(new AIBoat(race_screen, available_types.get(1), 1, 1));
+        players.add(new AIBoat(race_screen, available_types.get(2), 3, 1));
+        players.add(new AIBoat(race_screen, available_types.get(3), 4, 1));
 
 
         switch (leg) {
