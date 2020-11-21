@@ -112,12 +112,13 @@ public class GameStructure {
 
         switch (leg) {
             case LEG_ONE:
-            for (int x = 192; x <= 1920; x+=384) {
-                for(int y=0;y<=5;y++){
-                    obstacles.add(new Duck(race_screen, x, 500, 20, DuckDirection.LEFT,y));
-
-                }
-                
+            for (int x = 250; x <= 1920; x+=384) {
+                for(int y=700;y<=20000;y+=1500){
+                    for (int lane=0;lane<=5;lane++){
+                        obstacles.add(new Duck(race_screen, x, y, 20, DuckDirection.LEFT,lane));
+                        obstacles.add(new Rock(race_screen,x+300,y+2000));
+                        }
+                    }
                 }
                 break;
 
