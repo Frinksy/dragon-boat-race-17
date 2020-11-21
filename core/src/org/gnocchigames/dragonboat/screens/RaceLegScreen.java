@@ -281,6 +281,7 @@ public class RaceLegScreen extends ScreenAdapter {
             if (entity instanceof Boat) {
                 Boat boat = (Boat) entity;
 
+                // Draw health bars
                 shape_renderer.setColor(0, 0, 0, 1);
                 shape_renderer.rect(
                     boat.lane_number * (1920/5) + 140,
@@ -293,6 +294,22 @@ public class RaceLegScreen extends ScreenAdapter {
                     boat.lane_number * (1920/5) + 142,
                     10,
                     boat.current_health,
+                    10
+                );
+
+                // Draw tiredness bars
+                shape_renderer.setColor(0, 0, 0, 1);
+                shape_renderer.rect(
+                    boat.lane_number * (1920/5) + 140,
+                    23,
+                    104,
+                    14
+                );
+                shape_renderer.setColor(0, 1, 1, 1);
+                shape_renderer.rect(
+                    boat.lane_number * (1920/5) + 142,
+                    25,
+                    boat.tiredness_factor * 100,
                     10
                 );
 
