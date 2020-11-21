@@ -33,7 +33,7 @@ public class GameStructure {
     private static int FINISH_HEIGHT = 1080 * 1;
 
     public boolean playerBoatAcross(PlayerBoat player_boat){
-        if (player_boat.pos_y > 2200){
+        if (player_boat.pos_y > 20000){
             return true;
         }else{
             return false;

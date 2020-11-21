@@ -29,8 +29,8 @@ public class AIBoat extends Boat{
 
         
         super(parent, type, lane);
-        check_x = getXCoords(lane, leg_num);
-        check_y = getYCoords(lane, leg_num);
+        check_x = getXCoords(lane, leg_num, type);
+        check_y = getYCoords(lane, leg_num, type);
     }
 
     public void update(float delta_time, List<Entity> entities){
@@ -58,7 +58,7 @@ public class AIBoat extends Boat{
                 diff_angle = (wanted_angle_deg - current_angle);
 
                 //DEBUG
-                //System.out.println(check_x + " " + current_x + " " + check_y + " " + current_y);
+                System.out.println(current_x + " " + current_y);
                 //System.out.println(wanted_angle_deg + " " + current_angle + " " + diff_angle );
                 //System.out.println(i);
         
@@ -76,46 +76,74 @@ public class AIBoat extends Boat{
     }
 
 
-    public static float[] getXCoords(int boat_num, int race_leg){
+    public static float[] getXCoords(int lane_num, int race_leg, Boat_Type type){
 
-        System.out.println(boat_num + " " + race_leg);
-        if ((boat_num == 0) & (race_leg == 1)){
-            float[] x_coords = {0f, 100f, 50f, 250f};
-            return x_coords;
-        } else if ((boat_num == 1) & (race_leg == 1)) {
-            float[] x_coords = {0f, 400f, 300f, 750f};
-            return x_coords;
-        }  else if ((boat_num == 2) & (race_leg == 1)) {
-            float[] x_coords = {0f, 900f, 1200f, 1050f};
-            return x_coords;
-        } else if ((boat_num == 3) & (race_leg == 1)) {
-            float[] x_coords = {0f, 1400f, 1300f, 1550f};
-            return x_coords;
-        } else if ((boat_num == 4) & (race_leg == 1)) {
-            float[] x_coords = {0f, 1650f, 1700f, 1850f};
-            return x_coords;
+        System.out.println(lane_num + " " + type + " " + race_leg);
+        //Speed
+        if ((lane_num == 0) & (type == Boat_Type.FAST)){
+            System.out.println("check");
+            if (race_leg == 1){
+                float[] x_coords = {0f, 100f, 50f, 250f};
+                return x_coords;
+            }
+        //Robust
+        } else if (((lane_num == 1) & (type == Boat_Type.HARD)) || ((lane_num == 0) & (type == Boat_Type.HARD))){
+            if (race_leg == 1){
+                float[] x_coords = {0f, 400f, 500f, 750f};
+                return x_coords;
+            }
+        //Acc
+        } else if (((lane_num == 1) & (type == Boat_Type.ACCEL)) || ((lane_num == 3) & (type == Boat_Type.ACCEL))){
+            if (race_leg == 1){
+                float[] x_coords = {0f, 1000f, 900f, 750f};
+                return x_coords;
+            }
+        //Maneuver
+        } else if (((lane_num == 3) & (type == Boat_Type.MANOEUVREABLE)) || ((lane_num == 4) & (type == Boat_Type.MANOEUVREABLE))){
+            if (race_leg == 1){
+                float[] x_coords = {0f, 1300f, 1400f, 1300f};
+                return x_coords;
+            }
+        //Default
+        } else if ((lane_num == 4) & (type == Boat_Type.DEFAULT)){
+            if (race_leg == 1){
+                float[] x_coords = {0f, 1700f, 1650f, 1750f};
+                return x_coords;
+            }
         }
-
-        
         return x_coords;
     }
 
-    public static float[] getYCoords(int boat_num, int race_leg){
-        if ((boat_num == 0) & (race_leg == 1)){
-            float[] y_coords = {0f, 500f, 1000f, 2000f};
-            return y_coords;
-        }  else if ((boat_num == 1) & (race_leg == 1)) {
-            float[] y_coords = {0f, 500f, 1000f, 2000f};
-            return y_coords;
-        }  else if ((boat_num == 2) & (race_leg == 1)) {
-            float[] y_coords = {0f, 500f, 1000f, 2000f};
-            return y_coords;
-        } else if ((boat_num == 3) & (race_leg == 1)) {
-            float[] y_coords = {0f, 500f, 1000f, 2000f};
-            return y_coords;
-        } else if ((boat_num == 4) & (race_leg == 1)) {
-            float[] y_coords = {0f, 500f, 1000f, 2000f};
-            return y_coords;
+    public static float[] getYCoords(int lane_num, int race_leg, Boat_Type type){
+        if ((lane_num == 0) & (type == Boat_Type.FAST)){
+            if (race_leg == 1){
+                float[] y_coords = {0f, 500f, 1000f, 2000f};
+                return y_coords;
+            }
+        //Robust
+        } else if (((lane_num == 1) & (type == Boat_Type.HARD)) || ((lane_num == 0) & (type == Boat_Type.HARD))){
+            if (race_leg == 1){
+                float[] y_coords = {0f, 500f, 1000f, 2000f};
+                return y_coords;
+            }
+        //Acc
+        } else if (((lane_num == 1) & (type == Boat_Type.ACCEL)) || ((lane_num == 3) & (type == Boat_Type.ACCEL))){
+            if (race_leg == 1){
+                float[] y_coords = {0f, 500f, 1000f, 2000f};
+                return y_coords;
+            }
+        //Maneuver
+        } else if (((lane_num == 3) & (type == Boat_Type.MANOEUVREABLE)) || ((lane_num == 4) & (type == Boat_Type.MANOEUVREABLE))){
+            if (race_leg == 1){
+                float[] y_coords = {0f, 500f, 1000f, 2000f};
+                return y_coords;
+            }
+        //Default
+        } else if ((lane_num == 4) & (type == Boat_Type.DEFAULT)){
+            if (race_leg == 1){
+                float[] y_coords = {0f, 500f, 1000f, 2000f};
+                return y_coords;
+            }
         }
         return y_coords;
     }
