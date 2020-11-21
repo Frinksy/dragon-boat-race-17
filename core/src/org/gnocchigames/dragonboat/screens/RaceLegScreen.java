@@ -90,20 +90,20 @@ public class RaceLegScreen extends ScreenAdapter {
         entities_to_remove = new ArrayList<Entity>();
         entities_collided = new HashMap<Entity, Entity>();
 
-        // // gets chosen boat type from boat choose screen
-         type = BoatSelectScreen.getBoat();
-         player_boat = new PlayerBoat(this, type);
-         entities.add(player_boat);
+        // // // gets chosen boat type from boat choose screen
+        //  type = BoatSelectScreen.getBoat();
+        //  player_boat = new PlayerBoat(this, type);
+        //  entities.add(player_boat);
 
-        // // DEBUG
-         other_boat = new Boat(this, Boat_Type.ACCEL);
-         entities.add(other_boat);
+        // // // DEBUG
+        //  other_boat = new Boat(this, Boat_Type.ACCEL);
+        //  entities.add(other_boat);
 
-         entities.add(new Duck(this, 1000,  500, 10));
+        //  entities.add(new Duck(this, 1000,  500, 10));
 
         //not working yet
-        //game_structure.set_leg(GameStructure.Legs.LEG_ONE);
-        //game_structure.start_leg();
+        game_structure.set_leg(GameStructure.Legs.LEG_ONE);
+        game_structure.start_leg();
         background_texture = new Texture("water_tile.png");
         buoy_texture = new Texture("buoy.png");
 

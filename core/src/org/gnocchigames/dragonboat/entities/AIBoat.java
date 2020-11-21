@@ -10,6 +10,9 @@ public class AIBoat extends Boat{
 
     public Boat boat;
 
+    public float[] check_x;
+    public float[] check_y;
+
     public static double current_angle;
     public static double wanted_angle_rad;
     public static double wanted_angle_deg;
@@ -26,37 +29,23 @@ public class AIBoat extends Boat{
 
         
         super(parent, type, lane);
-        float[] check_x = getXCoords(lane, leg_num);
-        float[] check_y = getYCoords(lane, leg_num);
+        check_x = getXCoords(lane, leg_num);
+        check_y = getYCoords(lane, leg_num);
         System.out.println("A");
     }
 
-    public void update(float delta_time, List<Entity> entities, float[] check_x, float[] check_y){
+    public void update(float delta_time, List<Entity> entities){
 
         System.out.println("B");
         super.update(delta_time, entities);
 
-        AI(boat, check_x, check_y);
-    }
-
-    /**
-     * The ai for our boat
-     * takes a list of checkpoints and uses boat controls to turn/ move them to it
-     */
-    public static void AI(Boat boat, float[] x, float[] y){
-        
-        float[]check_x = x;
-        float[]check_y = y;
-        //float[] check_x = {0f, 500f, 500f, 750f};
-        //float[] check_y = {0f, 500f, 1000f, 1500f};
-
-        for (int i = 1; i < (check_y.length); i++){
+        for (int i = 1; i < check_y.length; i++){
 
             if ((current_y < check_y[i]) & (current_y >= check_y[i-1])){
                 // get all currrent necessary boat stats
-                current_x = boat.pos_x;
-                current_y = boat.pos_y;
-                current_angle = boat.getDirection();
+                current_x = pos_x;
+                current_y = pos_y;
+                current_angle = getDirection();
 
                 //find the angle needed to get to the checkpoin
                 wanted_angle_rad = Math.atan((check_y[i] - current_y)/(check_x[i] - current_x));
@@ -76,22 +65,23 @@ public class AIBoat extends Boat{
                 //System.out.println(i);
         
                 //uses diff angle to decide which way to turn
-                boat.accelerate();
+                accelerate();
                 if (diff_angle < 1){
-                    boat.turnRight();
+                    turnRight();
                 } else if (diff_angle > 1){
-                    boat.turnLeft();
+                    turnLeft();
                 } else {
-                    boat.accelerate();
+                    accelerate();
                 }
             }
         }
     }
 
+
     public static float[] getXCoords(int boat_num, int race_leg){
 
         System.out.println(boat_num + " " + race_leg);
-        if ((boat_num == 1) & (race_leg == 1)){
+        if ((boat_num == 0) & (race_leg == 1)){
             float[] x_coords = {0f, 500f, 500f, 750f};
             return x_coords;
         } else {
@@ -102,7 +92,7 @@ public class AIBoat extends Boat{
     }
 
     public static float[] getYCoords(int boat_num, int race_leg){
-        if ((boat_num == 1) & (race_leg == 1)){
+        if ((boat_num == 0) & (race_leg == 1)){
             float[] y_coords = {0f, 500f, 1000f, 1250f};
             return y_coords;
         }
