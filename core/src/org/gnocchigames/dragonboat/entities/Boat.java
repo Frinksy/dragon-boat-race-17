@@ -418,7 +418,8 @@ public class Boat extends Entity{
         // TODO: balance damage calculation
 
         if (System.currentTimeMillis() - time_of_last_collision > 100) {
-            current_health -= robustness_stat / 10f;
+            float damage = ((110-robustness_stat)/2f);
+            current_health -= damage;
             time_of_last_collision = System.currentTimeMillis();
         }
         if (current_health < 0) {
@@ -447,7 +448,6 @@ public class Boat extends Entity{
      * @return the time of the boat in the race
      */
     public long getCurrentTime() {
-        System.out.println(System.currentTimeMillis() - start_time);
         return System.currentTimeMillis() - start_time;
     }
 
