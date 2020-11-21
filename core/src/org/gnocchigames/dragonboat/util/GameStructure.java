@@ -30,10 +30,10 @@ public class GameStructure {
     private List<Boat> players; // The list of players in the game
     private List<Obstacle> obstacles; // The list of obstacles in the game
     //multiple is amount of screens
-    private static int FINISH_HEIGHT = 1080 * 1;
+    private static int FINISH_HEIGHT = 20000;
 
     public boolean playerBoatAcross(PlayerBoat player_boat){
-        if (player_boat.pos_y > 20000){
+        if (player_boat.pos_y > FINISH_HEIGHT){
             return true;
         }else{
             return false;
@@ -76,12 +76,13 @@ public class GameStructure {
      */
     public void start_leg() {
 
+        System.out.println(players.size());
         // Reset race_screen
         //race_screen.resetEntities();
         
         // Add the players to the race
         for (Boat player : players) {
-            
+            player.startTimer();
             race_screen.addEntity(player);
             //player.AIBoat(race_screen, players, 1, 1);
             

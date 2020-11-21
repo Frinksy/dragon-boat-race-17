@@ -8,11 +8,14 @@ import java.util.AbstractMap.SimpleEntry;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.ScreenAdapter;
+import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer.ShapeType;
 
@@ -27,16 +30,12 @@ import org.gnocchigames.dragonboat.exceptions.IsNotDrawingException;
 import org.gnocchigames.dragonboat.util.GameCamera;
 import org.gnocchigames.dragonboat.util.GameStructure;
 
-
-
 /**
- * RaceLegScreen
- * Base class for a leg of the dragon boat race
- * Keeps track of entities, updates them
- * Draws scene every frame
+ * RaceLegScreen Base class for a leg of the dragon boat race Keeps track of
+ * entities, updates them Draws scene every frame
  */
 public class RaceLegScreen extends ScreenAdapter {
-    
+
     public DragonBoatGame game;
 
     private List<Entity> entities;
@@ -52,6 +51,7 @@ public class RaceLegScreen extends ScreenAdapter {
     private Texture background_texture;
     private Texture buoy_texture;
     private Sprite buoy_sprite;
+    private BitmapFont font;
 
     public PlayerBoat player_boat;
     public Boat other_boat;
@@ -64,11 +64,11 @@ public class RaceLegScreen extends ScreenAdapter {
 
     ShapeRenderer debug_box_renderer;
 
-    public RaceLegScreen (DragonBoatGame game) {
+    public RaceLegScreen(DragonBoatGame game) {
         super();
         this.game = game;
-        //System.out.println("raceover = "+race_structure.raceover(player_boat));
-        
+        // System.out.println("raceover = "+race_structure.raceover(player_boat));
+
     }
 
     /**
@@ -112,6 +112,12 @@ public class RaceLegScreen extends ScreenAdapter {
         buoy_sprite = new Sprite(buoy_texture);
         buoy_sprite.scale(-0.75f);
         finish_texture = new Texture("finish.png");
+       
+        FreeTypeFontGenerator generator = new FreeTypeFontGenerator(new FileHandle("Retro Gaming.ttf"));
+        FreeTypeFontGenerator.FreeTypeFontParameter param = new FreeTypeFontGenerator.FreeTypeFontParameter();
+        param.size = 100;
+        font = generator.generateFont(param);
+        generator.dispose();
         
     }
 
@@ -238,6 +244,9 @@ public class RaceLegScreen extends ScreenAdapter {
      * Draw the tiled background
      */
     private void draw_background() {
+
+        batch.setProjectionMatrix(camera.combined);
+
         for (int x = 0; x <= 1920; x+=200) {
             for (int y = -1080*100; y <= 1080*100; y+=200) {
                 batch.draw(background_texture, x, y, 200, 200);
@@ -289,6 +298,10 @@ public class RaceLegScreen extends ScreenAdapter {
 
             }
         }
+        batch.setProjectionMatrix(ui_camera.combined);
+        batch.begin();
+        font.draw(batch, player_boat.getFormattedCurrentTime(), 660, 1000);
+        batch.end();
 
 
 

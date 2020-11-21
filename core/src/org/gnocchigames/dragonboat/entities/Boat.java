@@ -1,5 +1,6 @@
 package org.gnocchigames.dragonboat.entities;
 
+import java.time.Duration;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -446,7 +447,15 @@ public class Boat extends Entity{
      * @return the time of the boat in the race
      */
     public long getCurrentTime() {
-        return System.currentTimeMillis();
+        System.out.println(System.currentTimeMillis() - start_time);
+        return System.currentTimeMillis() - start_time;
+    }
+
+    public String getFormattedCurrentTime() {
+        Duration duration = Duration.ofMillis(getCurrentTime());
+
+        String output = String.format("%02d:%02d.%03d", duration.toMinutesPart(), duration.toSecondsPart(), duration.toMillisPart());
+        return output;
     }
 
     public double getDirection(){
