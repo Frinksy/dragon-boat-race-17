@@ -1,7 +1,12 @@
 package org.gnocchigames.dragonboat.entities;
 
+import java.util.List;
 
-public class AIBoat{
+import org.gnocchigames.dragonboat.util.GameStructure;
+import org.gnocchigames.dragonboat.screens.RaceLegScreen;
+
+
+public class AIBoat extends Boat{
 
     public Boat boat;
 
@@ -17,6 +22,23 @@ public class AIBoat{
     public static float dif_x;
     public static float dif_y;
 
+    public AIBoat(RaceLegScreen parent, Boat_Type type, int lane, int leg_num){
+
+        
+        super(parent, type, lane);
+        float[] check_x = getXCoords(lane, leg_num);
+        float[] check_y = getYCoords(lane, leg_num);
+        System.out.println("A");
+    }
+
+    public void update(float delta_time, List<Entity> entities, float[] check_x, float[] check_y){
+
+        System.out.println("B");
+        super.update(delta_time, entities);
+
+        AI(boat, check_x, check_y);
+    }
+
     /**
      * The ai for our boat
      * takes a list of checkpoints and uses boat controls to turn/ move them to it
@@ -29,6 +51,7 @@ public class AIBoat{
         //float[] check_y = {0f, 500f, 1000f, 1500f};
 
         for (int i = 1; i < (check_y.length); i++){
+
             if ((current_y < check_y[i]) & (current_y >= check_y[i-1])){
                 // get all currrent necessary boat stats
                 current_x = boat.pos_x;
@@ -48,9 +71,9 @@ public class AIBoat{
                 diff_angle = (wanted_angle_deg - current_angle);
 
                 //DEBUG
-                System.out.println(check_x + " " + current_x + " " + check_y + " " + current_y);
+                //System.out.println(check_x + " " + current_x + " " + check_y + " " + current_y);
                 //System.out.println(wanted_angle_deg + " " + current_angle + " " + diff_angle );
-                System.out.println(i);
+                //System.out.println(i);
         
                 //uses diff angle to decide which way to turn
                 boat.accelerate();

@@ -7,6 +7,7 @@ import org.gnocchigames.dragonboat.DragonBoatGame;
 import org.gnocchigames.dragonboat.entities.Boat;
 import org.gnocchigames.dragonboat.entities.Duck;
 import org.gnocchigames.dragonboat.entities.Obstacle;
+import org.gnocchigames.dragonboat.entities.AIBoat;
 import org.gnocchigames.dragonboat.screens.RaceLegScreen;
 import org.gnocchigames.dragonboat.screens.BoatSelectScreen;
 import org.gnocchigames.dragonboat.entities.PlayerBoat;
@@ -62,7 +63,10 @@ public class GameStructure {
         
         // Add the players to the race
         for (Boat player : players) {
+            
             race_screen.addEntity(player);
+            //player.AIBoat(race_screen, players, 1, 1);
+            
         }
 
         // Add the obstacles to the course

@@ -193,9 +193,9 @@ public class RaceLegScreen extends ScreenAdapter {
         }
 
         //float[] check_x = {0f, 500f, 500f, 750f};
-        float[] check_x = AIBoat.getXCoords(1,1);
-        float[] check_y = AIBoat.getYCoords(1,1);
-        AIBoat.AI(other_boat, check_x, check_y);
+        //float[] check_x = AIBoat.getXCoords(1,1);
+        //float[] check_y = AIBoat.getYCoords(1,1);
+        //AIBoat.AI(other_boat, check_x, check_y);
     }
 
     /**
