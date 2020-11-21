@@ -12,6 +12,7 @@ import org.gnocchigames.dragonboat.screens.RaceLegScreen;
 import org.gnocchigames.dragonboat.screens.BoatSelectScreen;
 import org.gnocchigames.dragonboat.entities.PlayerBoat;
 import org.gnocchigames.dragonboat.entities.Rock;
+import org.gnocchigames.dragonboat.entities.TreeLog;
 import org.gnocchigames.dragonboat.entities.Duck.DuckDirection;
 
 
@@ -112,12 +113,24 @@ public class GameStructure {
 
         switch (leg) {
             case LEG_ONE:
-            for (int x = 250; x <= 1920; x+=384) {
-                for(int y=700;y<=20000;y+=1500){
+                for(int y=0;y<=20000;y+=3000){
                     for (int lane=0;lane<=5;lane++){
-                        obstacles.add(new Duck(race_screen, x, y, 20, DuckDirection.LEFT,lane));
-                        obstacles.add(new Rock(race_screen,x+300,y+2000));
-                        }
+                        obstacles.add(new Duck(race_screen, 50, y+200, 20, DuckDirection.LEFT,lane));
+                    }
+                }
+                for(int y=0;y<=20000;y+=1000){
+                    for(int x=0;x<=1980;x+=384){
+                        obstacles.add(new Rock(race_screen,x+200,y+500));
+                    }
+                }
+                for(int y=0;y<=20000;y+=1500){
+                    for(int x=0;x<=1980;x+=384){
+                        obstacles.add(new TreeLog(race_screen,x+300,y+1000));
+                    }
+                }
+                for(int y=0;y<=20000;y+=750){
+                    for(int x=0;x<=1980;x+=384){
+                        obstacles.add(new TreeLog(race_screen,x+25,y+1000));
                     }
                 }
                 break;
