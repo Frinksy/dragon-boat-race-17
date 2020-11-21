@@ -37,7 +37,7 @@ import org.gnocchigames.dragonboat.util.GameStructure;
  */
 public class RaceLegScreen extends ScreenAdapter {
     
-    private DragonBoatGame game;
+    public DragonBoatGame game;
 
     private List<Entity> entities;
     private List<Entity> entities_to_remove;
@@ -198,7 +198,7 @@ public class RaceLegScreen extends ScreenAdapter {
             entities.remove(entity);
         }
 
-        GameStructure.raceover(player_boat);
+        game_structure.raceover(player_boat);
 
         //float[] check_x = {0f, 500f, 500f, 750f};
         //float[] check_x = AIBoat.getXCoords(1,1);
