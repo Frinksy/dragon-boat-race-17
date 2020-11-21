@@ -55,7 +55,7 @@ public class Boat extends Entity{
     private static final float MIN_TIRED_SPEED = 20;
     private static final float MIN_TIREDNESS_FACTOR = 0.1f;
 
-    private static final float VELOCITY_CONSTANT = 2;
+    private static final float VELOCITY_CONSTANT = 4;
 
     private static final int LANE_WIDTH = 1920 / 5;
 
@@ -200,10 +200,10 @@ public class Boat extends Entity{
                 this.colour = new Color(Color.YELLOW);
                 break;
             default:
-                this.acceleration_stat = 50;
-                this.speed_stat = 50;
-                this.manoeuverability_stat = 50;
-                this.robustness_stat = 50;
+                this.acceleration_stat = 75;
+                this.speed_stat = 75;
+                this.manoeuverability_stat = 75;
+                this.robustness_stat = 75;
                 this.colour = new Color(Color.BROWN);
                 break;
         }
@@ -452,7 +452,6 @@ public class Boat extends Entity{
     public double getDirection(){
         double rad_angle = Math.toRadians(direction);
         return direction;
-        
     }
 
     public float getX(){
