@@ -1,6 +1,10 @@
 package org.gnocchigames.dragonboat.entities;
 
+import java.util.Map;
+import java.util.Map.Entry;
+import java.util.HashMap;
 import java.util.List;
+import java.util.AbstractMap.SimpleEntry;
 
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
@@ -10,9 +14,9 @@ import com.badlogic.gdx.math.Rectangle;
 
 import org.gnocchigames.dragonboat.exceptions.IsNotDrawingException;
 import org.gnocchigames.dragonboat.screens.RaceLegScreen;
+
 /**
- * Entity
- * Base class for all entities in the game
+ * Entity Base class for all entities in the game
  */
 public abstract class Entity {
 
@@ -23,7 +27,7 @@ public abstract class Entity {
     public Sprite sprite;
     public float velocity;
     public Polygon hitbox;
-    
+
     public RaceLegScreen parent;
 
     /**
@@ -31,7 +35,7 @@ public abstract class Entity {
      * @param entities the list of entities to check against
      * @return true if in collision, false otherwise
      */
-    public  Boolean isCollided(List<Entity> entities) {
+    public Boolean isCollided(List<Entity> entities) {
         for (Entity entity : entities) {
             if (Intersector.intersectPolygons(entity.hitbox, hitbox, null) || Intersector.intersectPolygons(hitbox, entity.hitbox, null)) {
                 if (!entity.equals(this)) {
@@ -41,6 +45,17 @@ public abstract class Entity {
         }
         return false;
     };
+
+    public SimpleEntry<Boolean, Entity> isCollidedWith(List<Entity> entities) {
+        for (Entity entity : entities) {
+            if (Intersector.intersectPolygons(entity.hitbox, hitbox, null) || Intersector.intersectPolygons(hitbox, entity.hitbox, null)) {
+                if (!entity.equals(this)) {
+                    return new SimpleEntry<Boolean, Entity>(true, entity);
+                }
+            }
+        }
+        return new SimpleEntry<Boolean, Entity>(false, null);
+    }
 
     public abstract void applyCollision(Entity other);
 

@@ -2,6 +2,9 @@ package org.gnocchigames.dragonboat.screens;
 
 import java.util.List;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.AbstractMap;
+import java.util.AbstractMap.SimpleEntry;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.ScreenAdapter;
@@ -37,7 +40,7 @@ public class RaceLegScreen extends ScreenAdapter {
 
     private List<Entity> entities;
     private List<Entity> entities_to_remove;
-    private List<Entity> entities_collided;
+    private AbstractMap<Entity, Entity> entities_collided;
 
     private GameCamera camera;
     private OrthographicCamera ui_camera;
@@ -85,7 +88,7 @@ public class RaceLegScreen extends ScreenAdapter {
 
         entities = new ArrayList<Entity>();
         entities_to_remove = new ArrayList<Entity>();
-        entities_collided = new ArrayList<Entity>();
+        entities_collided = new HashMap<Entity, Entity>();
 
         // // gets chosen boat type from boat choose screen
          type = BoatSelectScreen.getBoat();
@@ -168,17 +171,19 @@ public class RaceLegScreen extends ScreenAdapter {
 
         // Detect collisions
         for (Entity entity : entities) {
-            if (entity.isCollided(entities)) {
-                entities_collided.add(entity);
+            SimpleEntry<Boolean, Entity> collision = entity.isCollidedWith(entities);
+        
+            if (collision.getKey()) {
+                entities_collided.put(entity, collision.getValue());
             }
         }
 
         // Apply collisions
-        for (Entity entity : entities_collided) {
-            entity.applyCollision(null);
+        for (Entity entity : entities_collided.keySet()) {
+            entity.applyCollision(entities_collided.get(entity));
         }
         // Clear collision list
-        entities_collided = new ArrayList<Entity>();
+        entities_collided = new HashMap<Entity, Entity>();
         
         // follow the boat with the camera
         camera.followBoat(player_boat);
