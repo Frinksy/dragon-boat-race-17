@@ -48,6 +48,7 @@ public class RaceLegScreen extends ScreenAdapter {
     private SpriteBatch batch;
     private ShapeRenderer shape_renderer;
 
+    private Texture finish_texture;
     private Texture background_texture;
     private Texture buoy_texture;
     private Sprite buoy_sprite;
@@ -110,7 +111,8 @@ public class RaceLegScreen extends ScreenAdapter {
         buoy_texture = new Texture("buoy.png");
         buoy_sprite = new Sprite(buoy_texture);
         buoy_sprite.scale(-0.75f);
-
+        finish_texture = new Texture("finish.png");
+        
     }
 
     /**
@@ -218,6 +220,9 @@ public class RaceLegScreen extends ScreenAdapter {
     public void dispose () {
         batch.dispose();
         shape_renderer.dispose();
+        background_texture.dispose();
+        finish_texture.dispose();
+        buoy_texture.dispose();
     }
 
 
@@ -231,6 +236,11 @@ public class RaceLegScreen extends ScreenAdapter {
             }
         }
 
+        // Draw the finish line
+        for (int x = 0; x < 1920; x+=finish_texture.getWidth()) {
+            batch.draw(finish_texture, x, 20000-200);
+        }
+
         // Draw buoys for the lanes
         for (int y = -1080*100; y <= 1080*100; y+=256) {
             for (int x = 384; x < 1920; x+=384) {
@@ -238,6 +248,7 @@ public class RaceLegScreen extends ScreenAdapter {
                 buoy_sprite.draw(batch);
             }
         }
+
     }
     
     /**
