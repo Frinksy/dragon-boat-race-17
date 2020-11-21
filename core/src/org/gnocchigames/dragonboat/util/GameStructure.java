@@ -32,19 +32,27 @@ public class GameStructure {
     //multiple is amount of screens
     private static int FINISH_HEIGHT = 1080 * 1;
 
-    public static boolean playerBoatAcross(PlayerBoat player_boat){
+    public boolean playerBoatAcross(PlayerBoat player_boat){
         if (player_boat.pos_y > 2200){
             return true;
         }else{
             return false;
         }
     }
-    public static boolean allBoatsAcross(){
+    public boolean allBoatsAcross(){
         return false;
     }
-    public static boolean raceover(PlayerBoat player_boat){
+    public boolean raceover(PlayerBoat player_boat){
         if (playerBoatAcross(player_boat) || allBoatsAcross()){
-            System.out.println("yes");
+            System.out.println("test");
+            for (Obstacle obstacle : obstacles){
+                race_screen.removeEntity(obstacle);
+            }
+            for (Boat boat : players){
+                race_screen.removeEntity(boat);
+            }
+            set_leg(Legs.LEG_TWO);
+            start_leg();
             return true; 
         }else{
             return false;
@@ -58,6 +66,10 @@ public class GameStructure {
         players = new ArrayList<Boat>(5);
         obstacles = new ArrayList<Obstacle>();
     } 
+
+    public void callScreen(){
+
+    }
 
     /**
      * Start the current set leg
