@@ -74,7 +74,7 @@ public class Boat extends Entity{
         this.textures = getTextures(type);
         this.sprite = new Sprite(textures.get(0));
         this.sprite.setOrigin(this.sprite.getWidth()/2, this.sprite.getHeight()/2);
-        this.sprite.scale(-0.25f);
+        this.sprite.scale(-0.50f);
         this.last_frame_time = System.currentTimeMillis();
         this.current_frame_index = 0;
         
@@ -135,18 +135,28 @@ public class Boat extends Entity{
 
         // };
 
+        // float [] vertices = {
+        //     100, 200,
+        //     136, 136,
+        //     136, 10,
+        //     127, 0,
+        //     72, 0,
+        //     64, 10,
+        //     64, 136
+        // };
+
         float [] vertices = {
-            100, 200,
-            136, 136,
-            136, 10,
-            127, 0,
-            72, 0,
-            64, 10,
-            64, 136
+            60, 0,
+            47, 13,
+            47, 204,
+            102, 300,
+            156, 204,
+            156, 13,
+            144, 0
         };
 
         Polygon output = new Polygon(vertices);
-        output.scale(-0.25f);
+        output.scale(-0.50f);
         output.setOrigin(sprite.getWidth()/2, sprite.getHeight()/2);
         output.setPosition(sprite.getX(), sprite.getY());
         output.setRotation(direction);
@@ -223,7 +233,7 @@ public class Boat extends Entity{
         List<Texture> output = new ArrayList<Texture>();
         for (int i = 0; i < 5; i++) {
             output.add(
-                new Texture("boats/" + folder + "/frame" + i + ".png")
+                new Texture("boats/" + folder + "/frame-" + i + ".png")
             );
         }
 
