@@ -32,10 +32,4 @@ public class TreeLog extends Obstacle {
         remove();
     }
 
-    @Override
-    public void remove() {
-        texture.dispose();
-        super.remove();
-    }
-
 }
