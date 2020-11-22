@@ -30,7 +30,7 @@ public class GameStructure {
     private List<Boat> players; // The list of players in the game
     private List<Obstacle> obstacles; // The list of obstacles in the game
     //multiple is amount of screens
-    private static int FINISH_HEIGHT = 20000;
+    private static int FINISH_HEIGHT = 1000;
 
     public boolean playerBoatAcross(PlayerBoat player_boat){
         if (player_boat.pos_y > FINISH_HEIGHT){
@@ -48,9 +48,16 @@ public class GameStructure {
             for (Obstacle obstacle : obstacles){
                 race_screen.removeEntity(obstacle);
             }
+            for (Boat boat : players) {
+                boat.stopTimer();
+            }
+
+            game.score_board.computeRoundEndScores();
+            
             for (Boat boat : players){
                 race_screen.removeEntity(boat);
             }
+            game.changeScreen(DragonBoatGame.NEXT);
             set_leg(Legs.LEG_TWO);
             start_leg();
             return true; 
@@ -86,6 +93,7 @@ public class GameStructure {
             player.startTimer();
             race_screen.addEntity(player);
             race_screen.boats.add(player);
+            game.score_board.addPlayers(players);
             //player.AIBoat(race_screen, players, 1, 1);
             
         }

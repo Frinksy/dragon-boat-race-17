@@ -9,6 +9,8 @@ import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.math.Polygon;
+import com.badlogic.gdx.scenes.scene2d.ui.Label;
+import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 
 import org.gnocchigames.dragonboat.DragonBoatGame;
 import org.gnocchigames.dragonboat.screens.RaceLegScreen;
@@ -475,6 +477,37 @@ public class Boat extends Entity{
 
     public float getY(){
         return pos_x;
+    }
+
+    public String getName() {
+        String name = new String();
+        switch (type) {
+            case FAST:
+                name = "Speedy";
+                break;
+            case HARD:
+                name = "Robusty";
+                break;
+            case ACCEL:
+                name = "Acceleraty";
+                break;
+            case MANOEUVREABLE:
+                name = "Manoeuvrabley";
+                break;
+            default:
+                name = "Defaulty";
+                break;
+        }
+
+        return name;
+    }
+
+    public Label getNameLabel(Skin skin) {
+
+        Label output = new Label(getName(), skin);
+        output.setColor(colour);
+        return output;
+
     }
 
     @Override
