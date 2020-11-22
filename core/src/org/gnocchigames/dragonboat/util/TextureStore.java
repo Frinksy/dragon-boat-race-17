@@ -31,8 +31,10 @@ public class TextureStore {
         map.put("rock/rock1.png", new Texture("rock/rock1.png"));
         map.put("rock/rock2.png", new Texture("rock/rock2.png"));
         map.put("rock/rock3.png", new Texture("rock/rock3.png"));
-        
-
+        map.put("podium.png", new Texture("podium.png"));
+        map.put("buoy.png", new Texture("buoy.png"));
+        map.put("water_tile.png", new Texture("water_tile.png"));
+        map.put("finish.png", new Texture("finish.png"));
 
     }
 

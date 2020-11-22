@@ -3,6 +3,7 @@ package org.gnocchigames.dragonboat.entities;
 import java.util.List;
 
 import org.gnocchigames.dragonboat.util.GameStructure;
+import org.gnocchigames.dragonboat.DragonBoatGame;
 import org.gnocchigames.dragonboat.screens.RaceLegScreen;
 
 
@@ -10,7 +11,6 @@ public class AIBoat extends Boat{
 
     public Boat boat;
 
-    public static int a;
     public float[] check_x;
     public float[] check_y;
 
@@ -26,10 +26,10 @@ public class AIBoat extends Boat{
     public  float dif_x;
     public  float dif_y;
 
-    public AIBoat(RaceLegScreen parent, Boat_Type type, int lane, int leg_num){
+    public AIBoat(DragonBoatGame game, RaceLegScreen parent, Boat_Type type, int lane, int leg_num){
 
         
-        super(parent, type, lane);
+        super(game, parent, type, lane);
         check_x = getXCoords(lane, leg_num, type);
         check_y = getYCoords(lane, leg_num, type);
     }
@@ -81,7 +81,7 @@ public class AIBoat extends Boat{
 
         System.out.println(lane_num + " " + type + " " + race_leg);
         //Speed
-        a = lane_num*394;
+        int a = lane_num*394;
         if (race_leg == 1){
             float[] x_coords = {0f+a, 50f+a, 330f+a, 50f+a, 320f+a, 50f+a, 340f+a, 50f+a, 330f+a, 50f+a, 50f+a, 50f+a, 
                 330f+a, 50f+a, 330f+a, 75f+a, 75f+a, 192f+a, 75f+a, 75f+a, 330f+a, 75f+a, 330f+a, 100f+a, 50f+a, 330f+a, 192f+a, 50f+a, 50f+a};

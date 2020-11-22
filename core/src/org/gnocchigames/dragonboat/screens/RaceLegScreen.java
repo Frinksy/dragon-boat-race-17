@@ -78,7 +78,7 @@ public class RaceLegScreen extends ScreenAdapter {
     @Override
     public void show() {
 
-        game_structure = new GameStructure(this);
+        game_structure = new GameStructure(game, this);
 
         batch = new SpriteBatch();
         shape_renderer = new ShapeRenderer();
@@ -108,11 +108,11 @@ public class RaceLegScreen extends ScreenAdapter {
         //not working yet
         game_structure.set_leg(GameStructure.Legs.LEG_ONE);
         game_structure.start_leg();
-        background_texture = new Texture("water_tile.png");
-        buoy_texture = new Texture("buoy.png");
+        background_texture = game.texture_store.map.get("water_tile.png");
+        buoy_texture = game.texture_store.map.get("buoy.png");
         buoy_sprite = new Sprite(buoy_texture);
         buoy_sprite.scale(-0.75f);
-        finish_texture = new Texture("finish.png");
+        finish_texture = game.texture_store.map.get("finish.png");
        
         FreeTypeFontGenerator generator = new FreeTypeFontGenerator(Gdx.files.internal("Retro Gaming.ttf"));
         FreeTypeFontGenerator.FreeTypeFontParameter param = new FreeTypeFontGenerator.FreeTypeFontParameter();
