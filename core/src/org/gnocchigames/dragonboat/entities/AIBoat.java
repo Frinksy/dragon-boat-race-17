@@ -84,7 +84,7 @@ public class AIBoat extends Boat{
         a = lane_num*394;
         if (race_leg == 1){
             float[] x_coords = {0f+a, 50f+a, 330f+a, 50f+a, 320f+a, 50f+a, 340f+a, 50f+a, 330f+a, 50f+a, 50f+a, 50f+a, 
-                330f+a, 50f+a, 330f+a, 75f+a, 75f+a, 192f+a, 75f+a, 75f+a, 330f+a, 75f+a, 330f+a, 50f+a, 330f+a, 192f+a, 50f+a, 50f+a};
+                330f+a, 50f+a, 330f+a, 75f+a, 75f+a, 192f+a, 75f+a, 75f+a, 330f+a, 75f+a, 330f+a, 100f+a, 50f+a, 330f+a, 192f+a, 50f+a, 50f+a};
             return x_coords;
         //Robust
         } else if (race_leg == 2){
@@ -120,7 +120,7 @@ public class AIBoat extends Boat{
     public float[] getYCoords(int lane_num, int race_leg, Boat_Type type){
         if (race_leg == 1){
             float[] y_coords = {0f, 500f, 1500f, 2500f, 3500f, 4500f, 5500f, 6300f, 7250f, 8250f, 9000f, 9750f, 
-                10500f, 11500f, 12250f, 13000f, 13500f, 14000f, 14500f, 15000f, 15500f, 16500f, 17500f, 18500f, 19500f, 20000f, 20500f, 21000f};
+                10500f, 11500f, 12250f, 13000f, 13500f, 14000f, 14500f, 15000f, 15500f, 16500f, 17500f, 18000f, 18500f, 19500f, 20000f, 20500f, 21000f};
             return y_coords;
             
         //Robust
