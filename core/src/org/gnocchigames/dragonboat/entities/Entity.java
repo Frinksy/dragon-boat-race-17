@@ -12,6 +12,7 @@ import com.badlogic.gdx.math.Intersector;
 import com.badlogic.gdx.math.Polygon;
 import com.badlogic.gdx.math.Rectangle;
 
+import org.gnocchigames.dragonboat.DragonBoatGame;
 import org.gnocchigames.dragonboat.exceptions.IsNotDrawingException;
 import org.gnocchigames.dragonboat.screens.RaceLegScreen;
 
@@ -29,6 +30,7 @@ public abstract class Entity {
     public Polygon hitbox;
 
     public RaceLegScreen parent;
+    public DragonBoatGame game;
 
     /**
      * Checks if the entity has collided with other entities

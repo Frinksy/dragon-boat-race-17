@@ -10,6 +10,7 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.math.Polygon;
 
+import org.gnocchigames.dragonboat.DragonBoatGame;
 import org.gnocchigames.dragonboat.screens.RaceLegScreen;
 
 
@@ -66,8 +67,9 @@ public class Boat extends Entity{
      * @param type
      * @param lane
      */
-    public Boat(RaceLegScreen parent, Boat_Type type, int lane) {
+    public Boat(DragonBoatGame game, RaceLegScreen parent, Boat_Type type, int lane) {
 
+        this.game = game;
         this.parent = parent;
         this.type = type;
         
@@ -115,8 +117,8 @@ public class Boat extends Entity{
      * @param parent the parent screen
      * @param type
      */
-    public Boat(RaceLegScreen parent,  Boat_Type type) {
-        this(parent, type, 0);
+    public Boat(DragonBoatGame game, RaceLegScreen parent,  Boat_Type type) {
+        this(game, parent, type, 0);
 
     }
 
@@ -234,8 +236,10 @@ public class Boat extends Entity{
         List<Texture> output = new ArrayList<Texture>();
         for (int i = 0; i < 5; i++) {
             output.add(
-                new Texture("boats/" + folder + "/frame-" + i + ".png")
-            );
+                //new Texture("boats/" + folder + "/frame-" + i + ".png")
+                game.texture_store.map.get("boats/" + folder + "/frame-" + i + ".png")         
+                //game.texture_store.map.get("duck.png")
+                );
         }
 
         return output;

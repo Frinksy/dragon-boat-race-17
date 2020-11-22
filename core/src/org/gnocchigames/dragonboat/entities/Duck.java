@@ -5,6 +5,7 @@ import java.util.List;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 
+import org.gnocchigames.dragonboat.DragonBoatGame;
 import org.gnocchigames.dragonboat.screens.RaceLegScreen;
 
 /**
@@ -31,12 +32,13 @@ public class Duck extends Obstacle {
      * @param direction
      * @param lane
      */
-    public Duck (RaceLegScreen parent, int x, int y, int speed, DuckDirection direction, int lane) {
+    public Duck (DragonBoatGame game, RaceLegScreen parent, int x, int y, int speed, DuckDirection direction, int lane) {
         
+        this.game = game;
         this.parent = parent;
         this.lane = lane;
         
-        sprite = new Sprite(new Texture("duck.png"));
+        sprite = new Sprite(parent.game.texture_store.map.get("duck.png"));
         sprite.setOrigin(sprite.getWidth()/2, sprite.getHeight()/2);
         sprite.scale(-0.9f);
         if (direction == DuckDirection.LEFT) {
@@ -60,8 +62,8 @@ public class Duck extends Obstacle {
      * @param speed
      * @param direction
      */
-    public Duck (RaceLegScreen parent, int x, int y, int speed, DuckDirection direction) {
-        this(parent, x, y, speed, direction, -1);
+    public Duck (DragonBoatGame game, RaceLegScreen parent, int x, int y, int speed, DuckDirection direction) {
+        this(game, parent, x, y, speed, direction, -1);
         
     }
 
@@ -72,8 +74,8 @@ public class Duck extends Obstacle {
      * @param y
      * @param speed
      */
-    public Duck (RaceLegScreen parent, int x, int y, int speed) {
-        this(parent, x, y, speed, DuckDirection.RIGHT);
+    public Duck (DragonBoatGame game, RaceLegScreen parent, int x, int y, int speed) {
+        this(game, parent, x, y, speed, DuckDirection.RIGHT);
     }
 
     /**
@@ -82,8 +84,8 @@ public class Duck extends Obstacle {
      * @param x
      * @param y
      */
-    public Duck(RaceLegScreen parent, int x, int y) {
-        this(parent, x, y, 20);
+    public Duck(DragonBoatGame game, RaceLegScreen parent, int x, int y) {
+        this(game, parent, x, y, 20);
     }
 
     /**

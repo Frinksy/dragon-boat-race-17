@@ -7,6 +7,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.ProgressBar;
 
+import org.gnocchigames.dragonboat.DragonBoatGame;
 import org.gnocchigames.dragonboat.entities.Boat;
 
 
@@ -30,10 +31,10 @@ public class BoatSelectInfo{
     /**
      * Draw the boat select table to the screen
      */
-    public static Table drawTable(Boat.Boat_Type type){
+    public static Table drawTable(DragonBoatGame game, Boat.Boat_Type type){
 
         // declare all tables, labels and progress bars to be displayed
-        Boat boat = new Boat(null, type);
+        Boat boat = new Boat(game, null, type);
 
         Table table = new Table();
         table.setFillParent(false);        

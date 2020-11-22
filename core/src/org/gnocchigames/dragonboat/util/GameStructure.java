@@ -61,10 +61,11 @@ public class GameStructure {
    
 
     
-    public GameStructure(RaceLegScreen parent) {
+    public GameStructure(DragonBoatGame game, RaceLegScreen parent) {
         race_screen = parent;
         players = new ArrayList<Boat>(5);
         obstacles = new ArrayList<Obstacle>();
+        this.game = game;
     } 
 
     public void callScreen(){
@@ -107,7 +108,7 @@ public class GameStructure {
         obstacles = new ArrayList<Obstacle>();
 
         Boat.Boat_Type type = BoatSelectScreen.getBoat();
-        PlayerBoat player_boat = new PlayerBoat(this.race_screen, type);
+        PlayerBoat player_boat = new PlayerBoat(game, this.race_screen, type);
         players.add(player_boat);
         race_screen.player_boat = player_boat;
 
@@ -120,36 +121,36 @@ public class GameStructure {
 
         available_types.remove(type);
         
-        players.add(new AIBoat(race_screen, available_types.get(0), 0, 2));
+        players.add(new AIBoat(game, race_screen, available_types.get(0), 0, 1));
         //
         // Commented out to have the game run
         // These lines should be put back into the switch statement
-        players.add(new AIBoat(race_screen, available_types.get(1), 1, 2));
-        players.add(new AIBoat(race_screen, available_types.get(2), 3, 2));
-        players.add(new AIBoat(race_screen, available_types.get(3), 4, 2));
+        players.add(new AIBoat(game, race_screen, available_types.get(1), 1, 1));
+        players.add(new AIBoat(game, race_screen, available_types.get(2), 3, 1));
+        players.add(new AIBoat(game, race_screen, available_types.get(3), 4, 1));
 
         switch (leg) {
             case LEG_ONE:
             for (int y = 100; y < 20000; y+=1000) {
                 for (int lane = 0; lane < 5; lane++) {
-                  obstacles.add(new Duck(race_screen, lane*384+184, y, 20, DuckDirection.LEFT, lane));
+                  obstacles.add(new Duck(game, race_screen, lane*384+184, y, 20, DuckDirection.LEFT, lane));
                 }
               }
                 
             
             for(int y=0;y<=20000;y+=1000){
                 for(int x=0;x<=1980;x+=384){
-                    obstacles.add(new Rock(race_screen,x+200,y+500));
+                    obstacles.add(new Rock(game, race_screen,x+200,y+500));
                 }
             }
             for(int y=0;y<=20000;y+=1752){
                 for(int x=0;x<=1980;x+=384){
-                    obstacles.add(new TreeLog(race_screen,x+75,y+1752));
+                    obstacles.add(new TreeLog(game, race_screen,x+75,y+1752));
                 }
             }
             for(int y=0;y<=20000;y+=1752){
                 for(int x=0;x<=1980;x+=384){
-                    obstacles.add(new TreeLog(race_screen,x+300,y+876));
+                    obstacles.add(new TreeLog(game, race_screen,x+300,y+876));
                 }
             }
                 break;
@@ -157,22 +158,22 @@ public class GameStructure {
             case LEG_TWO:
             for (int y = 100; y < 20000; y+=1000) {
                 for (int lane = 0; lane < 5; lane++) {
-                  obstacles.add(new Duck(race_screen, lane*384+184, y, 20, DuckDirection.LEFT, lane));
+                  obstacles.add(new Duck(game, race_screen, lane*384+184, y, 20, DuckDirection.LEFT, lane));
                 }
               }
             for(int y=0;y<=20000;y+=1000){
                 for(int x=0;x<=1980;x+=384){
-                    obstacles.add(new Rock(race_screen,x+200,y+500));
+                    obstacles.add(new Rock(game, race_screen,x+200,y+500));
                 }
             }
             for(int y=0;y<=20000;y+=1500){
                 for(int x=0;x<=1980;x+=384){
-                    obstacles.add(new TreeLog(race_screen,x+300,y+1000));
+                    obstacles.add(new TreeLog(game, race_screen,x+300,y+1000));
                 }
             }
             for(int y=0;y<=20000;y+=750){
                 for(int x=0;x<=1980;x+=384){
-                    obstacles.add(new TreeLog(race_screen,x+25,y+1000));
+                    obstacles.add(new TreeLog(game, race_screen,x+25,y+1000));
                 }
             }
                 break;
@@ -180,22 +181,22 @@ public class GameStructure {
             case LEG_THREE:
             for (int y = 100; y < 20000; y+=3000) {
                 for (int lane = 0; lane < 5; lane++) {
-                  obstacles.add(new Duck(race_screen, lane*384+200, y, 25, DuckDirection.LEFT, lane));
+                  obstacles.add(new Duck(game, race_screen, lane*384+200, y, 25, DuckDirection.LEFT, lane));
                 }
               }
             for(int y=0;y<=20000;y+=1000){
                 for(int x=0;x<=1980;x+=384){
-                    obstacles.add(new Rock(race_screen,x+200,y+500));
+                    obstacles.add(new Rock(game, race_screen,x+200,y+500));
                 }
             }
             for(int y=0;y<=20000;y+=876){
                 for(int x=0;x<=1980;x+=384){
-                    obstacles.add(new TreeLog(race_screen,x+75,y+1000));
+                    obstacles.add(new TreeLog(game, race_screen,x+75,y+1000));
                 }
             }
             for(int y=0;y<=20000;y+=876){
                 for(int x=0;x<=1980;x+=384){
-                    obstacles.add(new TreeLog(race_screen,x+300,y+600));
+                    obstacles.add(new TreeLog(game, race_screen,x+300,y+600));
                 }
             }
                 break;

@@ -5,12 +5,13 @@ import java.util.List;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 
+import org.gnocchigames.dragonboat.DragonBoatGame;
 import org.gnocchigames.dragonboat.screens.RaceLegScreen;
 
 public class PlayerBoat extends Boat{
     
-    public PlayerBoat(RaceLegScreen parent, Boat.Boat_Type type) {
-        super(parent, type, 2);
+    public PlayerBoat(DragonBoatGame game, RaceLegScreen parent, Boat.Boat_Type type) {
+        super(game, parent, type, 2);
     }
 
     /**
