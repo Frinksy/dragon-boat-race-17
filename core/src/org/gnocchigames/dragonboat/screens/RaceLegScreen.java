@@ -8,7 +8,6 @@ import java.util.AbstractMap.SimpleEntry;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.ScreenAdapter;
-import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
@@ -54,7 +53,7 @@ public class RaceLegScreen extends ScreenAdapter {
     private BitmapFont font;
 
     public PlayerBoat player_boat;
-    public Boat other_boat;
+    public List<Boat> boats;
     private GameStructure game_structure;
 
     private Boat.Boat_Type type;
@@ -92,6 +91,7 @@ public class RaceLegScreen extends ScreenAdapter {
         entities = new ArrayList<Entity>();
         entities_to_remove = new ArrayList<Entity>();
         entities_collided = new HashMap<Entity, Entity>();
+        boats = new ArrayList<Boat>();
 
         // // // gets chosen boat type from boat choose screen
         //  type = BoatSelectScreen.getBoat();
@@ -113,7 +113,7 @@ public class RaceLegScreen extends ScreenAdapter {
         buoy_sprite.scale(-0.75f);
         finish_texture = new Texture("finish.png");
        
-        FreeTypeFontGenerator generator = new FreeTypeFontGenerator(new FileHandle("Retro Gaming.ttf"));
+        FreeTypeFontGenerator generator = new FreeTypeFontGenerator(Gdx.files.internal("Retro Gaming.ttf"));
         FreeTypeFontGenerator.FreeTypeFontParameter param = new FreeTypeFontGenerator.FreeTypeFontParameter();
         param.size = 100;
         font = generator.generateFont(param);
@@ -184,9 +184,9 @@ public class RaceLegScreen extends ScreenAdapter {
         }
 
         // Detect collisions
-        for (Entity entity : entities) {
+        for (Entity entity : getCollidableEntites()) {
 
-            if (isOnScreen(entity)) {
+            if (true) {
                 SimpleEntry<Boolean, Entity> collision = entity.isCollidedWith(entities);
             
                 if (collision.getKey()) {
@@ -346,5 +346,22 @@ public class RaceLegScreen extends ScreenAdapter {
     public void AI(Boat boat){
         other_boat.accelerate();
     }*/
+
+    private List<Entity> getCollidableEntites() {
+
+        List<Entity> output = new ArrayList<Entity>();
+
+        for (Entity entity : entities) {
+            for (Boat boat : boats) {
+                if (entity.pos_y > boat.pos_y - 400 && entity.pos_y < boat.pos_y + 400) {
+                    output.add(entity);
+                    break;
+                }
+            }
+        }
+
+
+        return output;
+    }
 
 }
