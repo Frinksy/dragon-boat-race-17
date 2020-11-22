@@ -8,7 +8,6 @@ import java.util.AbstractMap.SimpleEntry;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.ScreenAdapter;
-import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
@@ -113,7 +112,7 @@ public class RaceLegScreen extends ScreenAdapter {
         buoy_sprite.scale(-0.75f);
         finish_texture = new Texture("finish.png");
        
-        FreeTypeFontGenerator generator = new FreeTypeFontGenerator(new FileHandle("Retro Gaming.ttf"));
+        FreeTypeFontGenerator generator = new FreeTypeFontGenerator(Gdx.files.internal("Retro Gaming.ttf"));
         FreeTypeFontGenerator.FreeTypeFontParameter param = new FreeTypeFontGenerator.FreeTypeFontParameter();
         param.size = 100;
         font = generator.generateFont(param);
