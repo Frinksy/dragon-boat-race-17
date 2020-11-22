@@ -23,6 +23,7 @@ import org.gnocchigames.dragonboat.entities.AIBoat;
 import org.gnocchigames.dragonboat.entities.Boat;
 import org.gnocchigames.dragonboat.entities.Duck;
 import org.gnocchigames.dragonboat.entities.Entity;
+import org.gnocchigames.dragonboat.entities.Obstacle;
 import org.gnocchigames.dragonboat.entities.PlayerBoat;
 import org.gnocchigames.dragonboat.entities.Boat.Boat_Type;
 import org.gnocchigames.dragonboat.exceptions.IsNotDrawingException;
@@ -140,13 +141,21 @@ public class RaceLegScreen extends ScreenAdapter {
         batch.begin();
 
 
-        for (Entity entity : entities) {
-            if (isOnScreen(entity)) {
-                try {
-                    entity.draw(batch);
-                }catch (IsNotDrawingException e) {
-                    Gdx.app.log("Exception: ", e.getMessage());
-                }
+        // for (Entity entity : entities) {
+        //     if (isOnScreen(entity)) {
+        //         try {
+        //             entity.draw(batch);
+        //         }catch (IsNotDrawingException e) {
+        //             Gdx.app.log("Exception: ", e.getMessage());
+        //         }
+        //     }
+        // }
+
+        for (Entity entity : getDrawableEntities()) {
+            try {
+                entity.draw(batch);
+            } catch (IsNotDrawingException e) {
+                Gdx.app.log("Exception: ", e.getMessage());
             }
         }
 
@@ -179,15 +188,16 @@ public class RaceLegScreen extends ScreenAdapter {
      */
     public void update(float delta_time) {
         
-        for (Entity entity : entities) {
+        for (Entity entity : getUpdateableEntities()) {
             entity.update(delta_time, entities);
         }
 
         // Detect collisions
-        for (Entity entity : getCollidableEntites()) {
+        List<Entity> collideable_entities = getCollidableEntites();
+        for (Entity entity : collideable_entities) {
 
             if (true) {
-                SimpleEntry<Boolean, Entity> collision = entity.isCollidedWith(entities);
+                SimpleEntry<Boolean, Entity> collision = entity.isCollidedWith(collideable_entities);
             
                 if (collision.getKey()) {
                     entities_collided.put(entity, collision.getValue());
@@ -351,15 +361,54 @@ public class RaceLegScreen extends ScreenAdapter {
 
         List<Entity> output = new ArrayList<Entity>();
 
-        for (Entity entity : entities) {
-            for (Boat boat : boats) {
-                if (entity.pos_y > boat.pos_y - 400 && entity.pos_y < boat.pos_y + 400) {
+        for (Entity entity : getUpdateableEntities()) {
+            if (entity instanceof Obstacle) {
+                for (Boat boat : boats) {
+                    if (entity.pos_y > boat.pos_y - 400 && entity.pos_y < boat.pos_y + 400) {
+                        output.add(entity);
+                        break;
+                    }
+                }
+            } else if (entity instanceof Boat) {
+                if (((Boat)entity).isAlive()) {
                     output.add(entity);
-                    break;
                 }
             }
         }
 
+
+        return output;
+    }
+
+    private List<Entity> getUpdateableEntities() {
+        List<Entity> output = new ArrayList<Entity>();
+
+        for (Entity entity : entities) {
+            if (entity instanceof Boat) {
+                if (((Boat)entity).isAlive()) {
+                    output.add(entity);
+                }
+            }else {
+                output.add(entity);
+            }
+        }
+        return output;
+    }
+
+    private List<Entity> getDrawableEntities() {
+        List<Entity> output = new ArrayList<Entity>();
+
+        for (Entity entity : entities) {
+            if (isOnScreen(entity)) {
+                if (entity instanceof Boat) {
+                    if (((Boat)entity).isAlive()) {
+                        output.add(entity);
+                    }
+                } else {
+                    output.add(entity);
+                }
+            }
+        }
 
         return output;
     }
