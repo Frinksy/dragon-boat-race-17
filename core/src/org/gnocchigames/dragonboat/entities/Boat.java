@@ -458,7 +458,10 @@ public class Boat extends Entity{
     public String getFormattedCurrentTime() {
         Duration duration = Duration.ofMillis(getCurrentTime());
 
-        String output = String.format("%02d:%02d.%03d", duration.toMinutesPart(), duration.toSecondsPart(), duration.toMillisPart());
+        String output = String.format("%02d:%02d.%03d",
+        duration.toMinutes(),
+        duration.toMillis()%60000 / 1000,
+        duration.toMillis()%1000);
         return output;
     }
 
