@@ -140,13 +140,21 @@ public class RaceLegScreen extends ScreenAdapter {
         batch.begin();
 
 
-        for (Entity entity : entities) {
-            if (isOnScreen(entity)) {
-                try {
-                    entity.draw(batch);
-                }catch (IsNotDrawingException e) {
-                    Gdx.app.log("Exception: ", e.getMessage());
-                }
+        // for (Entity entity : entities) {
+        //     if (isOnScreen(entity)) {
+        //         try {
+        //             entity.draw(batch);
+        //         }catch (IsNotDrawingException e) {
+        //             Gdx.app.log("Exception: ", e.getMessage());
+        //         }
+        //     }
+        // }
+
+        for (Entity entity : getDrawableEntities()) {
+            try {
+                entity.draw(batch);
+            } catch (IsNotDrawingException e) {
+                Gdx.app.log("Exception: ", e.getMessage());
             }
         }
 
@@ -179,7 +187,7 @@ public class RaceLegScreen extends ScreenAdapter {
      */
     public void update(float delta_time) {
         
-        for (Entity entity : entities) {
+        for (Entity entity : getUpdateableEntities()) {
             entity.update(delta_time, entities);
         }
 
@@ -351,7 +359,7 @@ public class RaceLegScreen extends ScreenAdapter {
 
         List<Entity> output = new ArrayList<Entity>();
 
-        for (Entity entity : entities) {
+        for (Entity entity : getUpdateableEntities()) {
             for (Boat boat : boats) {
                 if (entity.pos_y > boat.pos_y - 400 && entity.pos_y < boat.pos_y + 400) {
                     output.add(entity);
@@ -360,6 +368,40 @@ public class RaceLegScreen extends ScreenAdapter {
             }
         }
 
+
+        return output;
+    }
+
+    private List<Entity> getUpdateableEntities() {
+        List<Entity> output = new ArrayList<Entity>();
+
+        for (Entity entity : entities) {
+            if (entity instanceof Boat) {
+                if (((Boat)entity).isAlive()) {
+                    output.add(entity);
+                }
+            }else {
+                output.add(entity);
+            }
+        }
+        System.out.println(output.size());
+        return output;
+    }
+
+    private List<Entity> getDrawableEntities() {
+        List<Entity> output = new ArrayList<Entity>();
+
+        for (Entity entity : entities) {
+            if (isOnScreen(entity)) {
+                if (entity instanceof Boat) {
+                    if (((Boat)entity).isAlive()) {
+                        output.add(entity);
+                    }
+                } else {
+                    output.add(entity);
+                }
+            }
+        }
 
         return output;
     }

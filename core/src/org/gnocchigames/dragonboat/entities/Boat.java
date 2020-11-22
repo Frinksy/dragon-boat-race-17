@@ -383,7 +383,7 @@ public class Boat extends Entity{
 
     }
 
-    public Boolean isZeroHP() {
+    public Boolean isAlive() {
         return current_health > 0;
     }
 
