@@ -84,6 +84,7 @@ public class GameStructure {
         for (Boat player : players) {
             player.startTimer();
             race_screen.addEntity(player);
+            race_screen.boats.add(player);
             //player.AIBoat(race_screen, players, 1, 1);
             
         }

@@ -53,7 +53,7 @@ public class RaceLegScreen extends ScreenAdapter {
     private BitmapFont font;
 
     public PlayerBoat player_boat;
-    public Boat other_boat;
+    public List<Boat> boats;
     private GameStructure game_structure;
 
     private Boat.Boat_Type type;
@@ -91,6 +91,7 @@ public class RaceLegScreen extends ScreenAdapter {
         entities = new ArrayList<Entity>();
         entities_to_remove = new ArrayList<Entity>();
         entities_collided = new HashMap<Entity, Entity>();
+        boats = new ArrayList<Boat>();
 
         // // // gets chosen boat type from boat choose screen
         //  type = BoatSelectScreen.getBoat();
@@ -183,9 +184,9 @@ public class RaceLegScreen extends ScreenAdapter {
         }
 
         // Detect collisions
-        for (Entity entity : entities) {
+        for (Entity entity : getCollidableEntites()) {
 
-            if (isOnScreen(entity)) {
+            if (true) {
                 SimpleEntry<Boolean, Entity> collision = entity.isCollidedWith(entities);
             
                 if (collision.getKey()) {
@@ -345,5 +346,22 @@ public class RaceLegScreen extends ScreenAdapter {
     public void AI(Boat boat){
         other_boat.accelerate();
     }*/
+
+    private List<Entity> getCollidableEntites() {
+
+        List<Entity> output = new ArrayList<Entity>();
+
+        for (Entity entity : entities) {
+            for (Boat boat : boats) {
+                if (entity.pos_y > boat.pos_y - 400 && entity.pos_y < boat.pos_y + 400) {
+                    output.add(entity);
+                    break;
+                }
+            }
+        }
+
+
+        return output;
+    }
 
 }
