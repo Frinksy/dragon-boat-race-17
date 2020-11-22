@@ -11,6 +11,7 @@ public class AIBoat extends Boat{
 
     public Boat boat;
 
+    public int a;
     public float[] check_x;
     public float[] check_y;
 
@@ -88,8 +89,10 @@ public class AIBoat extends Boat{
             return x_coords;
         //Robust
         } else if (race_leg == 2){
-            float[] x_coords = {0f+a, 75f+a, 330f+a, 75f+a, 330f+a, 75f+a, 330f+a, 75f+a, 330f+a, 75f+a, 75f+a, 75f+a, 
-                330f+a, 75f+a, 330f+a, 125f+a, 125f+a, 300f+a, 125f+a, 300f+a, 100f+a, 300f+a, 192f+a, 50f+a};
+            float[] x_coords = {0f+a, 50f+a, 150f+a, 300f+a, 300f+a, 110f+a, 100f+a, 110f+a, 300f+a, 140f+a,
+            300f+a, 80f+a, 85f+a, 100f+a, 275f+a, 275f+a, 150+a, 100f+a, 90f+a, 200f+a, 110f+a, 90f+a, 90f+a,
+            180f+a, 300f+a, 100f+a, 85f+a, 300f+a, 300f+a, 150f+a, 300f+a, 100f+a, 100f+a, 300f+a,
+            300f+a, 150f+a, 300f+a, 300f+a, 95f+a, 85f+a, 300f+a, 150f+a, 90f+a, 140f+a, 90f+a, 90f+a};
             return x_coords;
         }
         //Acc
@@ -125,8 +128,10 @@ public class AIBoat extends Boat{
             
         //Robust
         } else if (race_leg == 2){
-            float[] y_coords = {0f, 500f, 1500f, 2500f, 3500f, 4500f, 5500f, 6250f, 7250f, 8250f, 9000f, 9750f, 
-                10500f, 11250f, 12250f, 13000, 15000, 15500f, 16500f, 17500f, 18500f, 19500f, 20000f, 21000f};
+            float[] y_coords = {0f, 500f, 1000f, 1500f, 2000f, 2400f, 2650f, 3000f, 3500f, 4000f, 4500f,
+            5000f, 5450f,  5600f, 6000f, 6500f, 7000f, 7500f, 7600f, 7850f, 8400f, 8600f, 9600f,
+            10000f, 10500f, 11000f, 11600f, 12250f, 12750f, 13000f, 13500f, 14000f, 14750f, 15250f, 15500f,
+            16000f, 16500f, 17000f, 17400f, 17600f, 182500f, 18750f, 19250f, 20000f, 20400f, 21000f};
             return y_coords;
         }
         //Acc
