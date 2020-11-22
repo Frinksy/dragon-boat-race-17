@@ -11,8 +11,10 @@ import com.badlogic.gdx.ScreenAdapter;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer.ShapeType;
 
@@ -21,22 +23,19 @@ import org.gnocchigames.dragonboat.entities.AIBoat;
 import org.gnocchigames.dragonboat.entities.Boat;
 import org.gnocchigames.dragonboat.entities.Duck;
 import org.gnocchigames.dragonboat.entities.Entity;
+import org.gnocchigames.dragonboat.entities.Obstacle;
 import org.gnocchigames.dragonboat.entities.PlayerBoat;
 import org.gnocchigames.dragonboat.entities.Boat.Boat_Type;
 import org.gnocchigames.dragonboat.exceptions.IsNotDrawingException;
 import org.gnocchigames.dragonboat.util.GameCamera;
 import org.gnocchigames.dragonboat.util.GameStructure;
 
-
-
 /**
- * RaceLegScreen
- * Base class for a leg of the dragon boat race
- * Keeps track of entities, updates them
- * Draws scene every frame
+ * RaceLegScreen Base class for a leg of the dragon boat race Keeps track of
+ * entities, updates them Draws scene every frame
  */
 public class RaceLegScreen extends ScreenAdapter {
-    
+
     public DragonBoatGame game;
 
     private List<Entity> entities;
@@ -52,9 +51,10 @@ public class RaceLegScreen extends ScreenAdapter {
     private Texture background_texture;
     private Texture buoy_texture;
     private Sprite buoy_sprite;
+    private BitmapFont font;
 
     public PlayerBoat player_boat;
-    public Boat other_boat;
+    public List<Boat> boats;
     private GameStructure game_structure;
 
     private Boat.Boat_Type type;
@@ -64,11 +64,11 @@ public class RaceLegScreen extends ScreenAdapter {
 
     ShapeRenderer debug_box_renderer;
 
-    public RaceLegScreen (DragonBoatGame game) {
+    public RaceLegScreen(DragonBoatGame game) {
         super();
         this.game = game;
-        //System.out.println("raceover = "+race_structure.raceover(player_boat));
-        
+        // System.out.println("raceover = "+race_structure.raceover(player_boat));
+
     }
 
     /**
@@ -92,6 +92,7 @@ public class RaceLegScreen extends ScreenAdapter {
         entities = new ArrayList<Entity>();
         entities_to_remove = new ArrayList<Entity>();
         entities_collided = new HashMap<Entity, Entity>();
+        boats = new ArrayList<Boat>();
 
         // // // gets chosen boat type from boat choose screen
         //  type = BoatSelectScreen.getBoat();
@@ -112,6 +113,12 @@ public class RaceLegScreen extends ScreenAdapter {
         buoy_sprite = new Sprite(buoy_texture);
         buoy_sprite.scale(-0.75f);
         finish_texture = new Texture("finish.png");
+       
+        FreeTypeFontGenerator generator = new FreeTypeFontGenerator(Gdx.files.internal("Retro Gaming.ttf"));
+        FreeTypeFontGenerator.FreeTypeFontParameter param = new FreeTypeFontGenerator.FreeTypeFontParameter();
+        param.size = 100;
+        font = generator.generateFont(param);
+        generator.dispose();
         
     }
 
@@ -134,13 +141,21 @@ public class RaceLegScreen extends ScreenAdapter {
         batch.begin();
 
 
-        for (Entity entity : entities) {
-            if (isOnScreen(entity)) {
-                try {
-                    entity.draw(batch);
-                }catch (IsNotDrawingException e) {
-                    Gdx.app.log("Exception: ", e.getMessage());
-                }
+        // for (Entity entity : entities) {
+        //     if (isOnScreen(entity)) {
+        //         try {
+        //             entity.draw(batch);
+        //         }catch (IsNotDrawingException e) {
+        //             Gdx.app.log("Exception: ", e.getMessage());
+        //         }
+        //     }
+        // }
+
+        for (Entity entity : getDrawableEntities()) {
+            try {
+                entity.draw(batch);
+            } catch (IsNotDrawingException e) {
+                Gdx.app.log("Exception: ", e.getMessage());
             }
         }
 
@@ -173,15 +188,16 @@ public class RaceLegScreen extends ScreenAdapter {
      */
     public void update(float delta_time) {
         
-        for (Entity entity : entities) {
+        for (Entity entity : getUpdateableEntities()) {
             entity.update(delta_time, entities);
         }
 
         // Detect collisions
-        for (Entity entity : entities) {
+        List<Entity> collideable_entities = getCollidableEntites();
+        for (Entity entity : collideable_entities) {
 
-            if (isOnScreen(entity)) {
-                SimpleEntry<Boolean, Entity> collision = entity.isCollidedWith(entities);
+            if (true) {
+                SimpleEntry<Boolean, Entity> collision = entity.isCollidedWith(collideable_entities);
             
                 if (collision.getKey()) {
                     entities_collided.put(entity, collision.getValue());
@@ -238,6 +254,9 @@ public class RaceLegScreen extends ScreenAdapter {
      * Draw the tiled background
      */
     private void draw_background() {
+
+        batch.setProjectionMatrix(camera.combined);
+
         for (int x = 0; x <= 1920; x+=200) {
             for (int y = -1080*100; y <= 1080*100; y+=200) {
                 batch.draw(background_texture, x, y, 200, 200);
@@ -272,6 +291,7 @@ public class RaceLegScreen extends ScreenAdapter {
             if (entity instanceof Boat) {
                 Boat boat = (Boat) entity;
 
+                // Draw health bars
                 shape_renderer.setColor(0, 0, 0, 1);
                 shape_renderer.rect(
                     boat.lane_number * (1920/5) + 140,
@@ -287,8 +307,28 @@ public class RaceLegScreen extends ScreenAdapter {
                     10
                 );
 
+                // Draw tiredness bars
+                shape_renderer.setColor(0, 0, 0, 1);
+                shape_renderer.rect(
+                    boat.lane_number * (1920/5) + 140,
+                    23,
+                    104,
+                    14
+                );
+                shape_renderer.setColor(0, 1, 1, 1);
+                shape_renderer.rect(
+                    boat.lane_number * (1920/5) + 142,
+                    25,
+                    boat.tiredness_factor * 100,
+                    10
+                );
+
             }
         }
+        batch.setProjectionMatrix(ui_camera.combined);
+        batch.begin();
+        font.draw(batch, player_boat.getFormattedCurrentTime(), 660, 1000);
+        batch.end();
 
 
 
@@ -316,5 +356,61 @@ public class RaceLegScreen extends ScreenAdapter {
     public void AI(Boat boat){
         other_boat.accelerate();
     }*/
+
+    private List<Entity> getCollidableEntites() {
+
+        List<Entity> output = new ArrayList<Entity>();
+
+        for (Entity entity : getUpdateableEntities()) {
+            if (entity instanceof Obstacle) {
+                for (Boat boat : boats) {
+                    if (entity.pos_y > boat.pos_y - 400 && entity.pos_y < boat.pos_y + 400) {
+                        output.add(entity);
+                        break;
+                    }
+                }
+            } else if (entity instanceof Boat) {
+                if (((Boat)entity).isAlive()) {
+                    output.add(entity);
+                }
+            }
+        }
+
+
+        return output;
+    }
+
+    private List<Entity> getUpdateableEntities() {
+        List<Entity> output = new ArrayList<Entity>();
+
+        for (Entity entity : entities) {
+            if (entity instanceof Boat) {
+                if (((Boat)entity).isAlive()) {
+                    output.add(entity);
+                }
+            }else {
+                output.add(entity);
+            }
+        }
+        return output;
+    }
+
+    private List<Entity> getDrawableEntities() {
+        List<Entity> output = new ArrayList<Entity>();
+
+        for (Entity entity : entities) {
+            if (isOnScreen(entity)) {
+                if (entity instanceof Boat) {
+                    if (((Boat)entity).isAlive()) {
+                        output.add(entity);
+                    }
+                } else {
+                    output.add(entity);
+                }
+            }
+        }
+
+        return output;
+    }
 
 }

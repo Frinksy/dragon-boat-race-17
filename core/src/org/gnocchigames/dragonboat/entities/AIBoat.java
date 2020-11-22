@@ -10,20 +10,21 @@ public class AIBoat extends Boat{
 
     public Boat boat;
 
+    public static int a;
     public float[] check_x;
     public float[] check_y;
 
-    public static double current_angle;
-    public static double wanted_angle_rad;
-    public static double wanted_angle_deg;
-    public static double diff_angle;
+    public  double current_angle;
+    public  double wanted_angle_rad;
+    public  double wanted_angle_deg;
+    public  double diff_angle;
 
-    public static float current_x;
-    public static float current_y;
-    public static float[] x_coords;
-    public static float[] y_coords;
-    public static float dif_x;
-    public static float dif_y;
+    public  float current_x;
+    public  float current_y;
+    public  float[] x_coords;
+    public  float[] y_coords;
+    public  float dif_x;
+    public  float dif_y;
 
     public AIBoat(RaceLegScreen parent, Boat_Type type, int lane, int leg_num){
 
@@ -58,7 +59,7 @@ public class AIBoat extends Boat{
                 diff_angle = (wanted_angle_deg - current_angle);
 
                 //DEBUG
-                System.out.println(current_x + " " + current_y);
+                
                 //System.out.println(wanted_angle_deg + " " + current_angle + " " + diff_angle );
                 //System.out.println(i);
         
@@ -76,75 +77,77 @@ public class AIBoat extends Boat{
     }
 
 
-    public static float[] getXCoords(int lane_num, int race_leg, Boat_Type type){
+    public float[] getXCoords(int lane_num, int race_leg, Boat_Type type){
 
         System.out.println(lane_num + " " + type + " " + race_leg);
         //Speed
-        if ((lane_num == 0) & (type == Boat_Type.FAST)){
-            System.out.println("check");
-            if (race_leg == 1){
-                float[] x_coords = {0f, 100f, 50f, 250f};
-                return x_coords;
-            }
+        a = lane_num*394;
+        if (race_leg == 1){
+            float[] x_coords = {0f+a, 50f+a, 330f+a, 50f+a, 320f+a, 50f+a, 340f+a, 50f+a, 330f+a, 50f+a, 50f+a, 50f+a, 
+                330f+a, 50f+a, 330f+a, 75f+a, 75f+a, 192f+a, 75f+a, 75f+a, 330f+a, 75f+a, 330f+a, 100f+a, 50f+a, 330f+a, 192f+a, 50f+a, 50f+a};
+            return x_coords;
         //Robust
-        } else if (((lane_num == 1) & (type == Boat_Type.HARD)) || ((lane_num == 0) & (type == Boat_Type.HARD))){
-            if (race_leg == 1){
-                float[] x_coords = {0f, 400f, 500f, 750f};
-                return x_coords;
-            }
+        } else if (race_leg == 2){
+            float[] x_coords = {0f+a, 75f+a, 330f+a, 75f+a, 330f+a, 75f+a, 330f+a, 75f+a, 330f+a, 75f+a, 75f+a, 75f+a, 
+                330f+a, 75f+a, 330f+a, 125f+a, 125f+a, 300f+a, 125f+a, 300f+a, 100f+a, 300f+a, 192f+a, 50f+a};
+            return x_coords;
+        }
         //Acc
-        } else if (((lane_num == 1) & (type == Boat_Type.ACCEL)) || ((lane_num == 3) & (type == Boat_Type.ACCEL))){
+        /**} else if (lane_num == 2){
+            a = lane_num * 384;
             if (race_leg == 1){
-                float[] x_coords = {0f, 1000f, 900f, 750f};
+                float[] x_coords = {0f, 30f+a, 350f+a, -10f+a, 390f+a, -50f+a, 500f+a, -100f+a, 600f+a, -250f+a, -250f+a, 500f+a, -250f+a, 192f+a, 800f+a};
                 return x_coords;
             }
         //Maneuver
-        } else if (((lane_num == 3) & (type == Boat_Type.MANOEUVREABLE)) || ((lane_num == 4) & (type == Boat_Type.MANOEUVREABLE))){
+        } else if (lane_num == 3){
+            a = lane_num * 384;
             if (race_leg == 1){
                 float[] x_coords = {0f, 1300f, 1400f, 1300f};
                 return x_coords;
             }
         //Default
-        } else if ((lane_num == 4) & (type == Boat_Type.DEFAULT)){
+        } else if (lane_num == 4){
+            a = lane_num * 384;
             if (race_leg == 1){
                 float[] x_coords = {0f, 1700f, 1650f, 1750f};
                 return x_coords;
             }
-        }
+        }*/
         return x_coords;
     }
 
-    public static float[] getYCoords(int lane_num, int race_leg, Boat_Type type){
-        if ((lane_num == 0) & (type == Boat_Type.FAST)){
-            if (race_leg == 1){
-                float[] y_coords = {0f, 500f, 1000f, 2000f};
-                return y_coords;
-            }
+    public float[] getYCoords(int lane_num, int race_leg, Boat_Type type){
+        if (race_leg == 1){
+            float[] y_coords = {0f, 500f, 1500f, 2500f, 3500f, 4500f, 5500f, 6300f, 7250f, 8250f, 9000f, 9750f, 
+                10500f, 11500f, 12250f, 13000f, 13500f, 14000f, 14500f, 15000f, 15500f, 16500f, 17500f, 18000f, 18500f, 19500f, 20000f, 20500f, 21000f};
+            return y_coords;
+            
         //Robust
-        } else if (((lane_num == 1) & (type == Boat_Type.HARD)) || ((lane_num == 0) & (type == Boat_Type.HARD))){
-            if (race_leg == 1){
-                float[] y_coords = {0f, 500f, 1000f, 2000f};
-                return y_coords;
-            }
+        } else if (race_leg == 2){
+            float[] y_coords = {0f, 500f, 1500f, 2500f, 3500f, 4500f, 5500f, 6250f, 7250f, 8250f, 9000f, 9750f, 
+                10500f, 11250f, 12250f, 13000, 15000, 15500f, 16500f, 17500f, 18500f, 19500f, 20000f, 21000f};
+            return y_coords;
+        }
         //Acc
-        } else if (((lane_num == 1) & (type == Boat_Type.ACCEL)) || ((lane_num == 3) & (type == Boat_Type.ACCEL))){
+        /**} else if (((lane_num == 1) && (type == Boat_Type.ACCEL)) || ((lane_num == 3) && (type == Boat_Type.ACCEL))){
             if (race_leg == 1){
-                float[] y_coords = {0f, 500f, 1000f, 2000f};
+                float[] y_coords = {0f, 500f, 1750f, 3000f, 4250f, 5500f, 6500f, 7650f, 8650f, 9250f, 9750f, 10250f, 10750f, 11500f, 12250f};
                 return y_coords;
             }
         //Maneuver
-        } else if (((lane_num == 3) & (type == Boat_Type.MANOEUVREABLE)) || ((lane_num == 4) & (type == Boat_Type.MANOEUVREABLE))){
+        } else if (lane_num == 3){
             if (race_leg == 1){
                 float[] y_coords = {0f, 500f, 1000f, 2000f};
                 return y_coords;
             }
         //Default
-        } else if ((lane_num == 4) & (type == Boat_Type.DEFAULT)){
+        } else if (lane_num == 4){
             if (race_leg == 1){
                 float[] y_coords = {0f, 500f, 1000f, 2000f};
                 return y_coords;
             }
-        }
+        }*/
         return y_coords;
     }
 }

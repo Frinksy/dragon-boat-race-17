@@ -1,5 +1,6 @@
 package org.gnocchigames.dragonboat.entities;
 
+import java.time.Duration;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -172,38 +173,38 @@ public class Boat extends Entity{
     final private void setStats(Boat_Type type) {
         switch (type) {
             case FAST:
-                this.acceleration_stat = 70;
+                this.acceleration_stat = 35;
                 this.speed_stat = 100;
-                this.manoeuverability_stat = 50;
-                this.robustness_stat = 40;
+                this.manoeuverability_stat = 40;
+                this.robustness_stat = 30;
                 this.colour = new Color(Color.PINK);
                 break;
             case HARD:
                 this.acceleration_stat = 60;
-                this.speed_stat = 80;
+                this.speed_stat = 85;
                 this.manoeuverability_stat = 40;
                 this.robustness_stat = 100;
                 this.colour = new Color(Color.GREEN);
                 break;
             case ACCEL:
                 this.acceleration_stat = 100;
-                this.speed_stat = 80;
+                this.speed_stat = 90;
                 this.manoeuverability_stat = 70;
-                this.robustness_stat = 40;
+                this.robustness_stat = 75;
                 this.colour = new Color(Color.CYAN);
                 break;
             case MANOEUVREABLE:
-                this.acceleration_stat = 80;
-                this.speed_stat = 75;
+                this.acceleration_stat = 60;
+                this.speed_stat = 90;
                 this.manoeuverability_stat = 100;
-                this.robustness_stat = 20;
+                this.robustness_stat = 75;
                 this.colour = new Color(Color.YELLOW);
                 break;
             default:
-                this.acceleration_stat = 75;
-                this.speed_stat = 75;
-                this.manoeuverability_stat = 75;
-                this.robustness_stat = 75;
+                this.acceleration_stat = 85;
+                this.speed_stat = 85;
+                this.manoeuverability_stat = 85;
+                this.robustness_stat = 85;
                 this.colour = new Color(Color.BROWN);
                 break;
         }
@@ -382,7 +383,7 @@ public class Boat extends Entity{
 
     }
 
-    public Boolean isZeroHP() {
+    public Boolean isAlive() {
         return current_health > 0;
     }
 
@@ -417,7 +418,8 @@ public class Boat extends Entity{
         // TODO: balance damage calculation
 
         if (System.currentTimeMillis() - time_of_last_collision > 100) {
-            current_health -= robustness_stat / 10f;
+            float damage = ((110-robustness_stat)/2f);
+            current_health -= damage;
             time_of_last_collision = System.currentTimeMillis();
         }
         if (current_health < 0) {
@@ -446,11 +448,17 @@ public class Boat extends Entity{
      * @return the time of the boat in the race
      */
     public long getCurrentTime() {
-        return System.currentTimeMillis();
+        return System.currentTimeMillis() - start_time;
+    }
+
+    public String getFormattedCurrentTime() {
+        Duration duration = Duration.ofMillis(getCurrentTime());
+
+        String output = String.format("%02d:%02d.%03d", duration.toMinutesPart(), duration.toSecondsPart(), duration.toMillisPart());
+        return output;
     }
 
     public double getDirection(){
-        double rad_angle = Math.toRadians(direction);
         return direction;
     }
 
