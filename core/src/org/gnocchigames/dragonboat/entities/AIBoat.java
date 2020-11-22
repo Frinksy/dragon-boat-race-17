@@ -14,17 +14,17 @@ public class AIBoat extends Boat{
     public float[] check_x;
     public float[] check_y;
 
-    public static double current_angle;
-    public static double wanted_angle_rad;
-    public static double wanted_angle_deg;
-    public static double diff_angle;
+    public  double current_angle;
+    public  double wanted_angle_rad;
+    public  double wanted_angle_deg;
+    public  double diff_angle;
 
-    public static float current_x;
-    public static float current_y;
-    public static float[] x_coords;
-    public static float[] y_coords;
-    public static float dif_x;
-    public static float dif_y;
+    public  float current_x;
+    public  float current_y;
+    public  float[] x_coords;
+    public  float[] y_coords;
+    public  float dif_x;
+    public  float dif_y;
 
     public AIBoat(RaceLegScreen parent, Boat_Type type, int lane, int leg_num){
 
@@ -77,7 +77,7 @@ public class AIBoat extends Boat{
     }
 
 
-    public static float[] getXCoords(int lane_num, int race_leg, Boat_Type type){
+    public float[] getXCoords(int lane_num, int race_leg, Boat_Type type){
 
         System.out.println(lane_num + " " + type + " " + race_leg);
         //Speed
@@ -117,7 +117,7 @@ public class AIBoat extends Boat{
         return x_coords;
     }
 
-    public static float[] getYCoords(int lane_num, int race_leg, Boat_Type type){
+    public float[] getYCoords(int lane_num, int race_leg, Boat_Type type){
         if (race_leg == 1){
             float[] y_coords = {0f, 500f, 1500f, 2500f, 3500f, 4500f, 5500f, 6250f, 7250f, 8250f, 9000f, 9750f, 
                 10500f, 11250f, 12250f, 13000, 15000, 15500f, 16500f, 17500f, 18500f, 19500f, 20000f, 21000f};
