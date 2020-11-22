@@ -23,6 +23,7 @@ import org.gnocchigames.dragonboat.entities.AIBoat;
 import org.gnocchigames.dragonboat.entities.Boat;
 import org.gnocchigames.dragonboat.entities.Duck;
 import org.gnocchigames.dragonboat.entities.Entity;
+import org.gnocchigames.dragonboat.entities.Obstacle;
 import org.gnocchigames.dragonboat.entities.PlayerBoat;
 import org.gnocchigames.dragonboat.entities.Boat.Boat_Type;
 import org.gnocchigames.dragonboat.exceptions.IsNotDrawingException;
@@ -192,10 +193,11 @@ public class RaceLegScreen extends ScreenAdapter {
         }
 
         // Detect collisions
-        for (Entity entity : getCollidableEntites()) {
+        List<Entity> collideable_entities = getCollidableEntites();
+        for (Entity entity : collideable_entities) {
 
             if (true) {
-                SimpleEntry<Boolean, Entity> collision = entity.isCollidedWith(entities);
+                SimpleEntry<Boolean, Entity> collision = entity.isCollidedWith(collideable_entities);
             
                 if (collision.getKey()) {
                     entities_collided.put(entity, collision.getValue());
@@ -360,10 +362,16 @@ public class RaceLegScreen extends ScreenAdapter {
         List<Entity> output = new ArrayList<Entity>();
 
         for (Entity entity : getUpdateableEntities()) {
-            for (Boat boat : boats) {
-                if (entity.pos_y > boat.pos_y - 400 && entity.pos_y < boat.pos_y + 400) {
+            if (entity instanceof Obstacle) {
+                for (Boat boat : boats) {
+                    if (entity.pos_y > boat.pos_y - 400 && entity.pos_y < boat.pos_y + 400) {
+                        output.add(entity);
+                        break;
+                    }
+                }
+            } else if (entity instanceof Boat) {
+                if (((Boat)entity).isAlive()) {
                     output.add(entity);
-                    break;
                 }
             }
         }
@@ -384,7 +392,6 @@ public class RaceLegScreen extends ScreenAdapter {
                 output.add(entity);
             }
         }
-        System.out.println(output.size());
         return output;
     }
 
