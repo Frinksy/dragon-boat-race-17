@@ -173,31 +173,31 @@ public class Boat extends Entity{
     final private void setStats(Boat_Type type) {
         switch (type) {
             case FAST:
-                this.acceleration_stat = 70;
+                this.acceleration_stat = 40;
                 this.speed_stat = 100;
-                this.manoeuverability_stat = 50;
-                this.robustness_stat = 40;
+                this.manoeuverability_stat = 40;
+                this.robustness_stat = 30;
                 this.colour = new Color(Color.PINK);
                 break;
             case HARD:
                 this.acceleration_stat = 60;
-                this.speed_stat = 80;
+                this.speed_stat = 85;
                 this.manoeuverability_stat = 40;
                 this.robustness_stat = 100;
                 this.colour = new Color(Color.GREEN);
                 break;
             case ACCEL:
                 this.acceleration_stat = 100;
-                this.speed_stat = 80;
+                this.speed_stat = 90;
                 this.manoeuverability_stat = 70;
-                this.robustness_stat = 40;
+                this.robustness_stat = 70;
                 this.colour = new Color(Color.CYAN);
                 break;
             case MANOEUVREABLE:
-                this.acceleration_stat = 80;
-                this.speed_stat = 75;
+                this.acceleration_stat = 60;
+                this.speed_stat = 90;
                 this.manoeuverability_stat = 100;
-                this.robustness_stat = 20;
+                this.robustness_stat = 50;
                 this.colour = new Color(Color.YELLOW);
                 break;
             default:
