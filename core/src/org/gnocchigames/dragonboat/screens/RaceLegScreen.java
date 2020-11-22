@@ -63,7 +63,7 @@ public class RaceLegScreen extends ScreenAdapter {
     public float[] y_coords;
 
     ShapeRenderer debug_box_renderer;
-
+    
     public RaceLegScreen(DragonBoatGame game) {
         super();
         this.game = game;
@@ -106,7 +106,7 @@ public class RaceLegScreen extends ScreenAdapter {
         //  entities.add(new Duck(this, 1000,  500, 10));
 
         //not working yet
-        game_structure.set_leg(GameStructure.Legs.LEG_ONE);
+        game_structure.set_leg(GameStructure.Legs.LEG_TWO);
         game_structure.start_leg();
         background_texture = new Texture("water_tile.png");
         buoy_texture = new Texture("buoy.png");
