@@ -84,24 +84,10 @@ public class AIBoat extends Boat{
         //Speed
         int a = lane_num*394;
         if (race_leg == 1){
-            /** Real leg one
             float[] x_coords = {0f+a, 50f+a, 330f+a, 50f+a, 320f+a, 50f+a, 340f+a, 50f+a, 330f+a, 50f+a, 50f+a, 50f+a, 
                 330f+a, 50f+a, 330f+a, 75f+a, 75f+a, 192f+a, 75f+a, 75f+a, 330f+a, 75f+a, 330f+a, 100f+a, 50f+a, 330f+a, 192f+a, 50f+a, 50f+a};
-            */
-            if (type == Boat.Boat_Type.FAST){
-                float[] x_coords = {0f+a, 100f+a, 160f+a, 120f+a, 160f+a, 120f+a, 150f+a, 175f+a, 300f+a, 300f+a,
-                    250f+a, 275f+a, 200f+a, 250f+a, 300f+a, 130f+a, 150f+a, 75f+a};
-                return x_coords;
-            } else {
-                float[] x_coords = {0f+a, 75f+a, 150f+a, 75f+a, 150f+a, 75f+a, 180f+a, 200f+a, 250f+a, 175f+a,
-                    250f+a, 150f+a, 250f+a, 165f+a, 280f+a, 270f+a, 150f+a, 150f+a, 50f+a, 150f+a, 50f+a,
-                    125f+a, 50f+a, 50f+a, 150f+a, 150f+a, 250f+a, 150f+a, 250f+a, 150f+a, 250f+a, 150f+a,
-                    140f+a, 65f+a, 150f+a, 60f+a, 150f+a, 60f+a, 150f+a, 30f+a, 150f+a, 150f+a, 250f+a,
-                    150f+a, 275f+a, 150f+a, 250f+a, 150f+a, 150f+a};
-                return x_coords;
-            }
+            return x_coords;
             
-        //Robust
         } else if (race_leg == 2){
             if (type == Boat.Boat_Type.FAST){
                 float[] x_coords = {0f+a, 50f+a, 150f+a, 120f+a, 100f+a, 75f+a, 90f+a, 90f+a, 
@@ -118,33 +104,28 @@ public class AIBoat extends Boat{
             }
             
         } else if (race_leg == 3){
-            float[] x_coords = {0f+a, 150f+a};
+            if (type == Boat.Boat_Type.FAST){
+                float[] x_coords = {0f+a, 100f+a, 160f+a, 120f+a, 160f+a, 120f+a, 150f+a, 175f+a, 300f+a, 300f+a,
+                    250f+a, 275f+a, 200f+a, 250f+a, 300f+a, 130f+a, 150f+a, 75f+a};
+                return x_coords;
+            } else {
+                float[] x_coords = {0f+a, 75f+a, 150f+a, 75f+a, 150f+a, 75f+a, 180f+a, 200f+a, 250f+a, 175f+a,
+                    250f+a, 150f+a, 250f+a, 165f+a, 280f+a, 270f+a, 150f+a, 150f+a, 50f+a, 150f+a, 50f+a,
+                    125f+a, 50f+a, 50f+a, 150f+a, 150f+a, 250f+a, 150f+a, 250f+a, 150f+a, 250f+a, 150f+a,
+                    140f+a, 65f+a, 150f+a, 60f+a, 150f+a, 60f+a, 150f+a, 30f+a, 150f+a, 150f+a, 250f+a,
+                    150f+a, 275f+a, 150f+a, 250f+a, 150f+a, 150f+a};
+                return x_coords;
+            }
         }
         return x_coords;
     }
 
     public float[] getYCoords(int lane_num, int race_leg, Boat_Type type){
         if (race_leg == 1){
-            /** real leg 1 y coords
             float[] y_coords = {0f, 500f, 1500f, 2500f, 3500f, 4500f, 5500f, 6300f, 7250f, 8250f, 9000f, 9750f, 
                 10500f, 11500f, 12250f, 13000f, 13500f, 14000f, 14500f, 15000f, 15500f, 16500f, 17500f, 18000f, 18500f, 19500f, 20000f, 20500f, 21000f};
             return y_coords;
-            */
-            if (type == Boat.Boat_Type.FAST){
-                float[] y_coords = {0f, 400f, 900f, 1300f, 1900f, 2400f, 2700f, 3150f, 3400f, 3600f,
-                    4000f, 4500f, 4900f, 5400f, 5900f, 6400f, 7000f, 7400f};
-                return y_coords;
-            } else {
-                float[] y_coords = {0f, 400f, 900f, 1400f, 1900f, 2400f, 2900f, 3300f, 3500f, 4100f,
-                    4400f, 4900f, 5400f, 5800f, 6200f, 6450f, 6800f, 7100f, 7500f, 8000f, 8300f,
-                    8800f, 9200f, 9400f, 9700f, 10200, 10500, 11000, 11500, 12000f, 12500f, 13000f,
-                    13250f, 13500f, 14000f, 14500f, 15000f, 15500f, 16000f, 16400f, 16900f, 17300f, 17500f,
-                    18000f, 18500f, 19000f, 19500f, 20000f, 21000f};
-                return y_coords;
-            }
-            
-            
-        //Robust
+        
         } else if (race_leg == 2){
             if (type == Boat.Boat_Type.FAST){
                 float[] y_coords = {0f, 500f, 1000f, 1500f, 1750f, 2000f, 2500f, 3250f, 3500f,
@@ -161,7 +142,18 @@ public class AIBoat extends Boat{
             }
             
         }   else if (race_leg == 3){
-            float[] y_coords = {0f, 500f};
+            if (type == Boat.Boat_Type.FAST){
+                float[] y_coords = {0f, 400f, 900f, 1300f, 1900f, 2400f, 2700f, 3150f, 3400f, 3600f,
+                    4000f, 4500f, 4900f, 5400f, 5900f, 6400f, 7000f, 7400f};
+                return y_coords;
+            } else {
+                float[] y_coords = {0f, 400f, 900f, 1400f, 1900f, 2400f, 2900f, 3300f, 3500f, 4100f,
+                    4400f, 4900f, 5400f, 5800f, 6200f, 6450f, 6800f, 7100f, 7500f, 8000f, 8300f,
+                    8800f, 9200f, 9400f, 9700f, 10200, 10500, 11000, 11500, 12000f, 12500f, 13000f,
+                    13250f, 13500f, 14000f, 14500f, 15000f, 15500f, 16000f, 16400f, 16900f, 17300f, 17500f,
+                    18000f, 18500f, 19000f, 19500f, 20000f, 21000f};
+                return y_coords;
+            }
         }
         return y_coords;
     }
