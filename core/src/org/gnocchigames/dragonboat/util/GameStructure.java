@@ -51,18 +51,18 @@ public class GameStructure {
     public boolean raceover(PlayerBoat player_boat){
         if (isBoatAcross(player_boat) || allBoatsAcross()){
             System.out.println("test");
-            // for (Obstacle obstacle : obstacles){
-            //     race_screen.removeEntity(obstacle);
-            // }
+            for (Obstacle obstacle : obstacles){
+                race_screen.removeEntity(obstacle);
+            }
             for (Boat boat : players) {
                 boat.stopTimer();
             }
 
             game.score_board.computeRoundEndScores();
             
-            // for (Boat boat : players){
-            //     race_screen.removeEntity(boat);
-            // }
+            for (Boat boat : players){
+                race_screen.removeEntity(boat);
+            }
             game.changeScreen(DragonBoatGame.NEXT);
             incrementCurrentLeg();
             game.score_board.eliminateBoats(current_leg);
