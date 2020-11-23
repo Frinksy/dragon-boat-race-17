@@ -49,7 +49,7 @@ public class PodiumScreen extends ScreenAdapter{
 
         // creates labels, images and buttons actors to be used in the stage
 
-        Texture podium_texture = new Texture("podium.png");
+        Texture podium_texture = parent.texture_store.map.get("podium.png");
         Image podium = new Image(podium_texture);
         //podium.setOrigin(1);
         //stage.addActor(podium);

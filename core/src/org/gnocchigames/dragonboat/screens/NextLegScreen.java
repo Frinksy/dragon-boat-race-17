@@ -30,6 +30,8 @@ public class NextLegScreen extends ScreenAdapter{
         stage = new Stage(new ScreenViewport());
         Gdx.input.setInputProcessor(stage);
 
+        Table scores_table = parent.score_board.drawScoreTable();
+
         Table table = new Table();
         table.setFillParent(true);
         stage.addActor(table);
@@ -42,7 +44,7 @@ public class NextLegScreen extends ScreenAdapter{
                 parent.changeScreen(DragonBoatGame.RACE_LEG);
             }
         });
-
+        table.add(scores_table);
         table.add(next);
 
     }

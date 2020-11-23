@@ -63,15 +63,15 @@ public class BoatSelectScreen extends ScreenAdapter{
 
         // gets tables containing the boat stats from BoatSelectInfo class
         Table table_default = new Table();
-        table_default = BoatSelectInfo.drawTable(Boat.Boat_Type.DEFAULT);
+        table_default = BoatSelectInfo.drawTable(parent, Boat.Boat_Type.DEFAULT);
         Table table_fast = new Table();
-        table_fast = BoatSelectInfo.drawTable(Boat.Boat_Type.FAST);
+        table_fast = BoatSelectInfo.drawTable(parent, Boat.Boat_Type.FAST);
         Table table_acceleration = new Table();
-        table_acceleration = BoatSelectInfo.drawTable(Boat.Boat_Type.ACCEL);
+        table_acceleration = BoatSelectInfo.drawTable(parent, Boat.Boat_Type.ACCEL);
         Table table_maneuverable = new Table();
-        table_maneuverable = BoatSelectInfo.drawTable(Boat.Boat_Type.MANOEUVREABLE);
+        table_maneuverable = BoatSelectInfo.drawTable(parent, Boat.Boat_Type.MANOEUVREABLE);
         Table table_robust = new Table();
-        table_robust = BoatSelectInfo.drawTable(Boat.Boat_Type.HARD);
+        table_robust = BoatSelectInfo.drawTable(parent, Boat.Boat_Type.HARD);
 
         Skin skin = new Skin(Gdx.files.internal("clean-crispy/clean-crispy-ui.json"));
 

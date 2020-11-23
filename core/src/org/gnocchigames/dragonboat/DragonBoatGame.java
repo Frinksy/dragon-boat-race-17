@@ -1,7 +1,11 @@
 package org.gnocchigames.dragonboat;
 
+import java.util.ArrayList;
+
 import com.badlogic.gdx.Game;
 
+import org.gnocchigames.dragonboat.entities.Boat;
+import org.gnocchigames.dragonboat.score.ScoreBoard;
 import org.gnocchigames.dragonboat.screens.BoatSelectScreen;
 import org.gnocchigames.dragonboat.screens.ControlsScreen;
 import org.gnocchigames.dragonboat.screens.MainMenuScreen;
@@ -38,6 +42,7 @@ public class DragonBoatGame extends Game {
 	public final static int NEXT = 6;
 
 	public TextureStore texture_store;
+	public ScoreBoard score_board;
 
 	/**
 	 * Called at the start to initialise the game
@@ -57,7 +62,7 @@ public class DragonBoatGame extends Game {
 
 
 		game_settings = new GameSettings();
-
+		score_board = new ScoreBoard(this, new ArrayList<Boat>());
 		texture_store = new TextureStore();
 	}
 

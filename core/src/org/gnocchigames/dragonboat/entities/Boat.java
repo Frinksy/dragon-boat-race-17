@@ -9,7 +9,10 @@ import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.math.Polygon;
+import com.badlogic.gdx.scenes.scene2d.ui.Label;
+import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 
+import org.gnocchigames.dragonboat.DragonBoatGame;
 import org.gnocchigames.dragonboat.screens.RaceLegScreen;
 
 
@@ -66,8 +69,9 @@ public class Boat extends Entity{
      * @param type
      * @param lane
      */
-    public Boat(RaceLegScreen parent, Boat_Type type, int lane) {
+    public Boat(DragonBoatGame game, RaceLegScreen parent, Boat_Type type, int lane) {
 
+        this.game = game;
         this.parent = parent;
         this.type = type;
         
@@ -115,8 +119,8 @@ public class Boat extends Entity{
      * @param parent the parent screen
      * @param type
      */
-    public Boat(RaceLegScreen parent,  Boat_Type type) {
-        this(parent, type, 0);
+    public Boat(DragonBoatGame game, RaceLegScreen parent,  Boat_Type type) {
+        this(game, parent, type, 0);
 
     }
 
@@ -176,7 +180,7 @@ public class Boat extends Entity{
                 this.acceleration_stat = 35;
                 this.speed_stat = 100;
                 this.manoeuverability_stat = 40;
-                this.robustness_stat = 30;
+                this.robustness_stat = 90;
                 this.colour = new Color(Color.PINK);
                 break;
             case HARD:
@@ -234,8 +238,10 @@ public class Boat extends Entity{
         List<Texture> output = new ArrayList<Texture>();
         for (int i = 0; i < 5; i++) {
             output.add(
-                new Texture("boats/" + folder + "/frame-" + i + ".png")
-            );
+                //new Texture("boats/" + folder + "/frame-" + i + ".png")
+                game.texture_store.map.get("boats/" + folder + "/frame-" + i + ".png")         
+                //game.texture_store.map.get("duck.png")
+                );
         }
 
         return output;
@@ -377,7 +383,7 @@ public class Boat extends Entity{
         this.hitbox.setRotation(this.direction);
 
         // check if rotation resulted in a collision
-        if (isCollided(parent.getEntities())) {
+        if (isCollided(parent.getCollidableEntites())) {
             this.direction = old_angle;
         }
 
@@ -439,7 +445,15 @@ public class Boat extends Entity{
      * @return
      */
     public long stopTimer() {
-        end_time = System.currentTimeMillis();
+        if (end_time == 0) {
+            
+            end_time = System.currentTimeMillis();
+            if (!in_lane) {
+                end_time += System.currentTimeMillis() - last_out_of_lane_time;
+            }
+            end_time += current_penalty;
+
+        }
         return end_time - start_time;
     }
 
@@ -454,7 +468,10 @@ public class Boat extends Entity{
     public String getFormattedCurrentTime() {
         Duration duration = Duration.ofMillis(getCurrentTime());
 
-        String output = String.format("%02d:%02d.%03d", duration.toMinutesPart(), duration.toSecondsPart(), duration.toMillisPart());
+        String output = String.format("%02d:%02d.%03d",
+        duration.toMinutes(),
+        duration.toMillis()%60000 / 1000,
+        duration.toMillis()%1000);
         return output;
     }
 
@@ -468,6 +485,37 @@ public class Boat extends Entity{
 
     public float getY(){
         return pos_x;
+    }
+
+    public String getName() {
+        String name = new String();
+        switch (type) {
+            case FAST:
+                name = "Speedy";
+                break;
+            case HARD:
+                name = "Robusty";
+                break;
+            case ACCEL:
+                name = "Acceleraty";
+                break;
+            case MANOEUVREABLE:
+                name = "Manoeuvrabley";
+                break;
+            default:
+                name = "Defaulty";
+                break;
+        }
+
+        return name;
+    }
+
+    public Label getNameLabel(Skin skin) {
+
+        Label output = new Label(getName(), skin);
+        output.setColor(colour);
+        return output;
+
     }
 
     @Override

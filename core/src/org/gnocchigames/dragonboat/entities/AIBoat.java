@@ -3,6 +3,7 @@ package org.gnocchigames.dragonboat.entities;
 import java.util.List;
 
 import org.gnocchigames.dragonboat.util.GameStructure;
+import org.gnocchigames.dragonboat.DragonBoatGame;
 import org.gnocchigames.dragonboat.screens.RaceLegScreen;
 
 
@@ -10,7 +11,7 @@ public class AIBoat extends Boat{
 
     public Boat boat;
 
-    public static int a;
+    public int a;
     public float[] check_x;
     public float[] check_y;
 
@@ -26,10 +27,10 @@ public class AIBoat extends Boat{
     public  float dif_x;
     public  float dif_y;
 
-    public AIBoat(RaceLegScreen parent, Boat_Type type, int lane, int leg_num){
+    public AIBoat(DragonBoatGame game, RaceLegScreen parent, Boat_Type type, int lane, int leg_num){
 
         
-        super(parent, type, lane);
+        super(game, parent, type, lane);
         check_x = getXCoords(lane, leg_num, type);
         check_y = getYCoords(lane, leg_num, type);
     }
@@ -81,16 +82,26 @@ public class AIBoat extends Boat{
 
         System.out.println(lane_num + " " + type + " " + race_leg);
         //Speed
-        a = lane_num*394;
+        int a = lane_num*394;
         if (race_leg == 1){
             float[] x_coords = {0f+a, 50f+a, 330f+a, 50f+a, 320f+a, 50f+a, 340f+a, 50f+a, 330f+a, 50f+a, 50f+a, 50f+a, 
                 330f+a, 50f+a, 330f+a, 75f+a, 75f+a, 192f+a, 75f+a, 75f+a, 330f+a, 75f+a, 330f+a, 100f+a, 50f+a, 330f+a, 192f+a, 50f+a, 50f+a};
             return x_coords;
         //Robust
         } else if (race_leg == 2){
-            float[] x_coords = {0f+a, 75f+a, 330f+a, 75f+a, 330f+a, 75f+a, 330f+a, 75f+a, 330f+a, 75f+a, 75f+a, 75f+a, 
-                330f+a, 75f+a, 330f+a, 125f+a, 125f+a, 300f+a, 125f+a, 300f+a, 100f+a, 300f+a, 192f+a, 50f+a};
-            return x_coords;
+            if (type == Boat.Boat_Type.FAST){
+                float[] x_coords = {0f, 50f+a, 150f+a, 120f+a, 100f+a, 75f+a, 90f+a, 90f+a, 
+                50f+a, 90f+a, 300f+a, 300f+a, 120f+a, 100f+a, 290f+a, 150f+a, 170f+a, 300f+a, 300f+a, 100f+a,
+                100f+a, 70f+a};
+                return x_coords;
+            } else {
+                float[] x_coords = {0f+a, 50f+a, 150f+a, 300f+a, 300f+a, 120f+a, 80f+a, 110f+a, 300f+a, 150f+a,
+                    300f+a, 80f+a, 85f+a, 100f+a, 275f+a, 275f+a, 150+a, 100f+a, 90f+a, 200f+a, 110f+a, 90f+a, 90f+a,
+                    180f+a, 300f+a, 100f+a, 90f+a, 300f+a, 300f+a, 150f+a, 300f+a, 100f+a, 100f+a, 300f+a,
+                    300f+a, 150f+a, 300f+a, 300f+a, 95f+a, 85f+a, 300f+a, 150f+a, 90f+a, 140f+a, 80f+a, 80f+a};
+                return x_coords;
+            }
+            
         }
         //Acc
         /**} else if (lane_num == 2){
@@ -125,9 +136,19 @@ public class AIBoat extends Boat{
             
         //Robust
         } else if (race_leg == 2){
-            float[] y_coords = {0f, 500f, 1500f, 2500f, 3500f, 4500f, 5500f, 6250f, 7250f, 8250f, 9000f, 9750f, 
-                10500f, 11250f, 12250f, 13000, 15000, 15500f, 16500f, 17500f, 18500f, 19500f, 20000f, 21000f};
-            return y_coords;
+            if (type == Boat.Boat_Type.FAST){
+                float[] y_coords = {0f, 500f, 1000f, 1500f, 1750f, 2000f, 2500f, 3250f, 3500f,
+                    3750f, 4250f, 4500f, 5250f, 5750f, 6300f, 6750f, 6900f, 7500f, 8500f, 9500f,
+                    10500f, 20000f};
+                return y_coords;
+            } else {
+                float[] y_coords = {0f, 500f, 1000f, 1500f, 1800f, 2300f, 2650f, 3000f, 3500f, 3800f, 4500f,
+                    5000f, 5450f,  5600f, 6000f, 6500f, 7000f, 7500f, 7600f, 7850f, 8400f, 8600f, 9600f,
+                    10000f, 10500f, 11000f, 11600f, 12250f, 12750f, 13000f, 13300f, 14000f, 14750f, 15250f, 15500f,
+                    16000f, 16500f, 17000f, 17400f, 17600f, 182500f, 18750f, 19250f, 20000f, 20400f, 21000f};
+                return y_coords;
+            }
+            
         }
         //Acc
         /**} else if (((lane_num == 1) && (type == Boat_Type.ACCEL)) || ((lane_num == 3) && (type == Boat_Type.ACCEL))){

@@ -29,6 +29,7 @@ import org.gnocchigames.dragonboat.entities.Boat.Boat_Type;
 import org.gnocchigames.dragonboat.exceptions.IsNotDrawingException;
 import org.gnocchigames.dragonboat.util.GameCamera;
 import org.gnocchigames.dragonboat.util.GameStructure;
+import org.gnocchigames.dragonboat.util.GameStructure.Legs;
 
 /**
  * RaceLegScreen Base class for a leg of the dragon boat race Keeps track of
@@ -63,22 +64,12 @@ public class RaceLegScreen extends ScreenAdapter {
     public float[] y_coords;
 
     ShapeRenderer debug_box_renderer;
-
+    
     public RaceLegScreen(DragonBoatGame game) {
         super();
         this.game = game;
-        // System.out.println("raceover = "+race_structure.raceover(player_boat));
 
-    }
-
-    /**
-     * Called when DragonBoatGame switches to this screen
-     * Instantiates required objects
-     */
-    @Override
-    public void show() {
-
-        game_structure = new GameStructure(this);
+        game_structure = new GameStructure(game, this);
 
         batch = new SpriteBatch();
         shape_renderer = new ShapeRenderer();
@@ -106,20 +97,31 @@ public class RaceLegScreen extends ScreenAdapter {
         //  entities.add(new Duck(this, 1000,  500, 10));
 
         //not working yet
-        game_structure.set_leg(GameStructure.Legs.LEG_ONE);
-        game_structure.start_leg();
-        background_texture = new Texture("water_tile.png");
-        buoy_texture = new Texture("buoy.png");
+        background_texture = game.texture_store.map.get("water_tile.png");
+        buoy_texture = game.texture_store.map.get("buoy.png");
         buoy_sprite = new Sprite(buoy_texture);
         buoy_sprite.scale(-0.75f);
-        finish_texture = new Texture("finish.png");
+        finish_texture = game.texture_store.map.get("finish.png");
        
         FreeTypeFontGenerator generator = new FreeTypeFontGenerator(Gdx.files.internal("Retro Gaming.ttf"));
         FreeTypeFontGenerator.FreeTypeFontParameter param = new FreeTypeFontGenerator.FreeTypeFontParameter();
         param.size = 100;
         font = generator.generateFont(param);
         generator.dispose();
+
+        game_structure.set_leg(Legs.LEG_ONE);
+        // System.out.println("raceover = "+race_structure.raceover(player_boat));
+
+    }
+
+    /**
+     * Called when DragonBoatGame switches to this screen
+     * Starts a leg
+     */
+    @Override
+    public void show() {
         
+        game_structure.start_leg();
     }
 
     /**
@@ -189,7 +191,7 @@ public class RaceLegScreen extends ScreenAdapter {
     public void update(float delta_time) {
         
         for (Entity entity : getUpdateableEntities()) {
-            entity.update(delta_time, entities);
+            entity.update(delta_time, getUpdateableEntities());
         }
 
         // Detect collisions
@@ -219,6 +221,12 @@ public class RaceLegScreen extends ScreenAdapter {
             entities.remove(entity);
         }
 
+        for (Boat boat : boats) {
+            if (game_structure.isBoatAcross(boat)) {
+                boat.stopTimer();
+            }
+        }
+ 
         game_structure.raceover(player_boat);
 
         //float[] check_x = {0f, 500f, 500f, 750f};
@@ -234,7 +242,7 @@ public class RaceLegScreen extends ScreenAdapter {
     public void render (float delta_time) {
         draw();
         update(delta_time);
-        System.out.println(1/delta_time);
+        //System.out.println(1/delta_time);
     }
 
     /**
@@ -357,7 +365,7 @@ public class RaceLegScreen extends ScreenAdapter {
         other_boat.accelerate();
     }*/
 
-    private List<Entity> getCollidableEntites() {
+    public List<Entity> getCollidableEntites() {
 
         List<Entity> output = new ArrayList<Entity>();
 
@@ -411,6 +419,13 @@ public class RaceLegScreen extends ScreenAdapter {
         }
 
         return output;
+    }
+
+    public void resetEntities() {
+        entities = new ArrayList<Entity>();
+        entities_to_remove = new ArrayList<Entity>();
+        entities_collided = new HashMap<Entity, Entity>();
+        boats = new ArrayList<Boat>();
     }
 
 }
