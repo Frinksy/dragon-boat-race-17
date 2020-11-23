@@ -49,7 +49,6 @@ public class ScoreBoard {
         }
     }
 
-    // TODO: REMOVE TIME FROM FIRST LEG
     
     public void computeRoundEndScores() {
         for (String player : times.keySet()) {
@@ -125,10 +124,14 @@ public class ScoreBoard {
     }
 
     public void eliminateBoats(GameStructure.Legs next_leg) {
-        List<String> boats_to_remove = new ArrayList<String>();
+
         switch (next_leg) {
             case LEG_TWO:
                 // Do nothing, everyone gets to retry
+                for (String name : times.keySet()) {
+                    times.put(name, 0l);
+                }
+                eliminated_boats = new ArrayList<String>();
                 break;
             case LEG_THREE:
                 // Eliminate dead boats

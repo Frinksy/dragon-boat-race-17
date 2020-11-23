@@ -35,19 +35,20 @@ public class Boat extends Entity{
     public float tiredness_factor;
     public float direction;
     public int current_health;
-    public float current_penalty;
     public Color colour;
-
+    
     public int lane_number;
     
     private Boat_Type type;
-
+    
     private Boolean in_lane;
     private long time_out_of_lane;
     private long last_out_of_lane_time;
-
+    public  long current_penalty;
+    
     public long start_time;
     public long end_time;
+    public Boolean done;
 
     private long time_of_last_collision;
     private List<Texture> textures;
@@ -103,6 +104,7 @@ public class Boat extends Entity{
         this.last_out_of_lane_time = 0;
         this.start_time = 0;
         this.end_time = 0;
+        this.done = false;
         setStats(type);
 
         this.in_lane = true; // We assume the boat starts in lane
@@ -445,7 +447,8 @@ public class Boat extends Entity{
      * @return
      */
     public long stopTimer() {
-        if (end_time == 0) {
+        if (!done) {
+
             
             end_time = System.currentTimeMillis();
             if (!in_lane) {
@@ -453,7 +456,14 @@ public class Boat extends Entity{
             }
             end_time += current_penalty;
 
+            done = true;
+
         }
+
+        return end_time;
+    }
+
+    public long getLegTime() {
         return end_time - start_time;
     }
 

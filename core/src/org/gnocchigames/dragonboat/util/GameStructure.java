@@ -43,11 +43,7 @@ public class GameStructure {
 
     
     public boolean isBoatAcross(Boat boat){
-        if (boat.pos_y > FINISH_HEIGHT){
-            return true;
-        }else{
-            return false;
-        }
+        return boat.pos_y > FINISH_HEIGHT;
     }
     public boolean allBoatsAcross(){
         return false;
@@ -55,18 +51,18 @@ public class GameStructure {
     public boolean raceover(PlayerBoat player_boat){
         if (isBoatAcross(player_boat) || allBoatsAcross()){
             System.out.println("test");
-            for (Obstacle obstacle : obstacles){
-                race_screen.removeEntity(obstacle);
-            }
+            // for (Obstacle obstacle : obstacles){
+            //     race_screen.removeEntity(obstacle);
+            // }
             for (Boat boat : players) {
                 boat.stopTimer();
             }
 
             game.score_board.computeRoundEndScores();
             
-            for (Boat boat : players){
-                race_screen.removeEntity(boat);
-            }
+            // for (Boat boat : players){
+            //     race_screen.removeEntity(boat);
+            // }
             game.changeScreen(DragonBoatGame.NEXT);
             incrementCurrentLeg();
             game.score_board.eliminateBoats(current_leg);
@@ -98,10 +94,10 @@ public class GameStructure {
             player.startTimer();
             race_screen.addEntity(player);
             race_screen.boats.add(player);
-            game.score_board.addPlayers(players);
             //player.AIBoat(race_screen, players, 1, 1);
             
         }
+        game.score_board.addPlayers(players);
 
         // Add the obstacles to the course
         for (Obstacle obstacle : obstacles) {
@@ -200,7 +196,7 @@ public class GameStructure {
                 add_boats_to_leg(4);
                 for(int y=0;y<=20000;y+=876){
                     for(int x=384;x<=1152;x+=384){
-                        obstacles.add(new TreeLog(race_screen,x+300,y+600));
+                        obstacles.add(new TreeLog(game, race_screen,x+300,y+600));
                     }
                 }
                 //remove players who didnt qualify
