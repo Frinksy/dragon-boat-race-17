@@ -61,12 +61,12 @@ public class GameStructure {
         return false;
     }
     public boolean raceover(PlayerBoat player_boat){
-        if (!player_boat.isAlive()) {
+        if (!player_boat.isAlive() && current_leg!=Legs.LEG_ONE) {
             game.changeScreen(DragonBoatGame.GAME_OVER);
             resetAll();
             return true;
         }
-        else if (isBoatAcross(player_boat) || allBoatsAcross()){
+        else if (isBoatAcross(player_boat) || allBoatsAcross() || !player_boat.isAlive()){
             System.out.println("test");
             for (Obstacle obstacle : obstacles){
                 race_screen.removeEntity(obstacle);
