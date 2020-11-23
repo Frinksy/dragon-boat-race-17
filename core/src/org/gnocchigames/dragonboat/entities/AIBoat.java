@@ -90,15 +90,16 @@ public class AIBoat extends Boat{
         //Robust
         } else if (race_leg == 2){
             if (type == Boat.Boat_Type.FAST){
-                float[] x_coords = {0f, 50f+a, 150f+a, 120f+a, 100f+a, 75f+a, 90f+a, 90f+a, 
+                float[] x_coords = {0f+a, 50f+a, 150f+a, 120f+a, 100f+a, 75f+a, 90f+a, 90f+a, 
                 50f+a, 90f+a, 300f+a, 300f+a, 120f+a, 100f+a, 290f+a, 150f+a, 170f+a, 300f+a, 300f+a, 100f+a,
-                100f+a, 70f+a};
+                100f+a, 100f+a, 300f+a, 300f+a, 200f+a, 300f+a, 140f+a, 120f+a, 120f+a, 300f+a, 150f+a, 100f+a, 250f+a, 
+                130f+a, 200f+a, 300f+a, 200f+a, 300f+a, 160f+a, 100f+a, 100f+a};
                 return x_coords;
             } else {
                 float[] x_coords = {0f+a, 50f+a, 150f+a, 300f+a, 300f+a, 120f+a, 80f+a, 110f+a, 300f+a, 150f+a,
                     300f+a, 80f+a, 85f+a, 100f+a, 275f+a, 275f+a, 150+a, 100f+a, 90f+a, 200f+a, 110f+a, 90f+a, 90f+a,
                     180f+a, 300f+a, 100f+a, 90f+a, 300f+a, 300f+a, 150f+a, 300f+a, 100f+a, 100f+a, 300f+a,
-                    300f+a, 150f+a, 300f+a, 300f+a, 95f+a, 85f+a, 300f+a, 150f+a, 90f+a, 140f+a, 80f+a, 80f+a};
+                    300f+a, 150f+a, 300f+a, 300f+a, 95f+a, 85f+a, 300f+a, 150f+a, 75f+a, 75f+a, 75f+a, 75f+a};
                 return x_coords;
             }
             
@@ -139,7 +140,8 @@ public class AIBoat extends Boat{
             if (type == Boat.Boat_Type.FAST){
                 float[] y_coords = {0f, 500f, 1000f, 1500f, 1750f, 2000f, 2500f, 3250f, 3500f,
                     3750f, 4250f, 4500f, 5250f, 5750f, 6300f, 6750f, 6900f, 7500f, 8500f, 9500f,
-                    10500f, 20000f};
+                    10500f, 11500f, 12000f, 12500f, 13000f, 13500f, 14000f, 14500f, 15000f, 15500f, 16000f, 16500f, 17000f, 17500f, 
+                    18000f, 18500f, 19000f, 19600f, 20000f, 24000f, 21000};
                 return y_coords;
             } else {
                 float[] y_coords = {0f, 500f, 1000f, 1500f, 1800f, 2300f, 2650f, 3000f, 3500f, 3800f, 4500f,

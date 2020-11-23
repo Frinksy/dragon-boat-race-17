@@ -125,7 +125,7 @@ public class GameStructure {
         switch (leg) {
             case LEG_ONE:
             add_boats_to_leg(1);
-            for (int y = 100; y < 20000; y+=1000) {
+            for (int y = 1100; y < 20000; y+=1000) {
                 for (int lane = 0; lane < 5; lane++) {
                   obstacles.add(new Duck(game, race_screen, lane*384+184, y, 20, DuckDirection.LEFT, lane));
                 }
@@ -151,7 +151,7 @@ public class GameStructure {
 
             case LEG_TWO:
             add_boats_to_leg(2);
-            for (int y = 100; y < 20000; y+=1000) {
+            for (int y = 1100; y < 20000; y+=1000) {
                 for (int lane = 0; lane < 5; lane++) {
                   obstacles.add(new Duck(game, race_screen, lane*384+184, y, 20, DuckDirection.LEFT, lane));
                 }
