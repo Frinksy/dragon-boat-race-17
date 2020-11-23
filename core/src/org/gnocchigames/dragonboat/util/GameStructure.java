@@ -21,17 +21,27 @@ public class GameStructure {
     public static enum Legs {
         LEG_ONE, LEG_TWO, LEG_THREE, LEG_FINAL
     }
-
-
+    
+    
     private DragonBoatGame game;
-
+    
     private RaceLegScreen race_screen; // The screen which will be used to draw and update the legs
-
+    
     private List<Boat> players; // The list of players in the game
     private List<Obstacle> obstacles; // The list of obstacles in the game
+    private Legs current_leg;
     //multiple is amount of screens
     private static int FINISH_HEIGHT = 20000;
+    
+    public GameStructure(DragonBoatGame game, RaceLegScreen parent) {
+        race_screen = parent;
+        players = new ArrayList<Boat>(5);
+        obstacles = new ArrayList<Obstacle>();
+        this.game = game;
+        current_leg = Legs.LEG_ONE;
+    } 
 
+    
     public boolean isBoatAcross(Boat boat){
         if (boat.pos_y > FINISH_HEIGHT){
             return true;
@@ -58,22 +68,17 @@ public class GameStructure {
                 race_screen.removeEntity(boat);
             }
             game.changeScreen(DragonBoatGame.NEXT);
-            set_leg(Legs.LEG_TWO);
-            start_leg();
+            incrementCurrentLeg();
+            game.score_board.eliminateBoats(current_leg);
+            
+            set_leg(current_leg);
+
             return true; 
         }else{
             return false;
         }
     }
    
-
-    
-    public GameStructure(DragonBoatGame game, RaceLegScreen parent) {
-        race_screen = parent;
-        players = new ArrayList<Boat>(5);
-        obstacles = new ArrayList<Obstacle>();
-        this.game = game;
-    } 
 
     public void callScreen(){
 
@@ -115,30 +120,11 @@ public class GameStructure {
         players = new ArrayList<Boat>();
         obstacles = new ArrayList<Obstacle>();
 
-        Boat.Boat_Type type = BoatSelectScreen.getBoat();
-        PlayerBoat player_boat = new PlayerBoat(game, this.race_screen, type);
-        players.add(player_boat);
-        race_screen.player_boat = player_boat;
-
-        List<Boat.Boat_Type> available_types = new ArrayList<Boat.Boat_Type>();
-        available_types.add(Boat.Boat_Type.FAST);
-        available_types.add(Boat.Boat_Type.HARD);
-        available_types.add(Boat.Boat_Type.ACCEL);
-        available_types.add(Boat.Boat_Type.MANOEUVREABLE);
-        available_types.add(Boat.Boat_Type.DEFAULT);
-
-        available_types.remove(type);
         
-        players.add(new AIBoat(game, race_screen, available_types.get(0), 0, 2));
-        //
-        // Commented out to have the game run
-        // These lines should be put back into the switch statement
-        players.add(new AIBoat(game, race_screen, available_types.get(1), 1, 2));
-        players.add(new AIBoat(game, race_screen, available_types.get(2), 3, 2));
-        players.add(new AIBoat(game, race_screen, available_types.get(3), 4, 2));
 
         switch (leg) {
             case LEG_ONE:
+            add_boats_to_leg(1);
             for (int y = 100; y < 20000; y+=1000) {
                 for (int lane = 0; lane < 5; lane++) {
                   obstacles.add(new Duck(game, race_screen, lane*384+184, y, 20, DuckDirection.LEFT, lane));
@@ -164,6 +150,7 @@ public class GameStructure {
                 break;
 
             case LEG_TWO:
+            add_boats_to_leg(2);
             for (int y = 100; y < 20000; y+=1000) {
                 for (int lane = 0; lane < 5; lane++) {
                   obstacles.add(new Duck(game, race_screen, lane*384+184, y, 20, DuckDirection.LEFT, lane));
@@ -187,6 +174,7 @@ public class GameStructure {
                 break;
             
             case LEG_THREE:
+            add_boats_to_leg(3);
             for (int y = 100; y < 20000; y+=3000) {
                 for (int lane = 0; lane < 5; lane++) {
                   obstacles.add(new Duck(game, race_screen, lane*384+200, y, 25, DuckDirection.LEFT, lane));
@@ -209,11 +197,65 @@ public class GameStructure {
             }
                 break;
             case LEG_FINAL:
+                add_boats_to_leg(4);
                 //remove players who didnt qualify
                 //players.remove()
 
                 break;
         }
     }
+
+    private void add_boats_to_leg(int leg_no) {
+        Boat.Boat_Type type = BoatSelectScreen.getBoat();
+        PlayerBoat player_boat = new PlayerBoat(game, this.race_screen, type);
+        players.add(player_boat);
+        race_screen.player_boat = player_boat;
+
+        List<Boat.Boat_Type> available_types = new ArrayList<Boat.Boat_Type>();
+        available_types.add(Boat.Boat_Type.FAST);
+        available_types.add(Boat.Boat_Type.HARD);
+        available_types.add(Boat.Boat_Type.ACCEL);
+        available_types.add(Boat.Boat_Type.MANOEUVREABLE);
+        available_types.add(Boat.Boat_Type.DEFAULT);
+
+        available_types.remove(type);
+        
+        players.add(new AIBoat(game, race_screen, available_types.get(0), 0, leg_no));
+        //
+        // Commented out to have the game run
+        // These lines should be put back into the switch statement
+        players.add(new AIBoat(game, race_screen, available_types.get(1), 1, leg_no));
+        players.add(new AIBoat(game, race_screen, available_types.get(2), 3, leg_no));
+        players.add(new AIBoat(game, race_screen, available_types.get(3), 4, leg_no));
+
+        List<Boat> boats_to_remove = new ArrayList<Boat>();
+        for (Boat boat : players) {
+            if (game.score_board.disqualified_boats.contains(boat.getName())) {
+                boats_to_remove.add(boat);
+            }
+        }
+        players.removeAll(boats_to_remove);
+
+    }
+
+    private void incrementCurrentLeg() {
+
+        switch (current_leg) {
+            case LEG_ONE:
+                current_leg = Legs.LEG_TWO;
+                break;
+            case LEG_TWO:
+                current_leg = Legs.LEG_THREE;
+                break;
+            case LEG_THREE:
+                current_leg = Legs.LEG_FINAL;
+                break;
+            default:
+                current_leg = Legs.LEG_FINAL;
+                break;
+        }
+
+    }
+
 }
 

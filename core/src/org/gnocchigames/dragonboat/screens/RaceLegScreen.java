@@ -29,6 +29,7 @@ import org.gnocchigames.dragonboat.entities.Boat.Boat_Type;
 import org.gnocchigames.dragonboat.exceptions.IsNotDrawingException;
 import org.gnocchigames.dragonboat.util.GameCamera;
 import org.gnocchigames.dragonboat.util.GameStructure;
+import org.gnocchigames.dragonboat.util.GameStructure.Legs;
 
 /**
  * RaceLegScreen Base class for a leg of the dragon boat race Keeps track of
@@ -67,16 +68,6 @@ public class RaceLegScreen extends ScreenAdapter {
     public RaceLegScreen(DragonBoatGame game) {
         super();
         this.game = game;
-        // System.out.println("raceover = "+race_structure.raceover(player_boat));
-
-    }
-
-    /**
-     * Called when DragonBoatGame switches to this screen
-     * Instantiates required objects
-     */
-    @Override
-    public void show() {
 
         game_structure = new GameStructure(game, this);
 
@@ -106,8 +97,6 @@ public class RaceLegScreen extends ScreenAdapter {
         //  entities.add(new Duck(this, 1000,  500, 10));
 
         //not working yet
-        game_structure.set_leg(GameStructure.Legs.LEG_TWO);
-        game_structure.start_leg();
         background_texture = game.texture_store.map.get("water_tile.png");
         buoy_texture = game.texture_store.map.get("buoy.png");
         buoy_sprite = new Sprite(buoy_texture);
@@ -119,7 +108,20 @@ public class RaceLegScreen extends ScreenAdapter {
         param.size = 100;
         font = generator.generateFont(param);
         generator.dispose();
+
+        game_structure.set_leg(Legs.LEG_ONE);
+        // System.out.println("raceover = "+race_structure.raceover(player_boat));
+
+    }
+
+    /**
+     * Called when DragonBoatGame switches to this screen
+     * Starts a leg
+     */
+    @Override
+    public void show() {
         
+        game_structure.start_leg();
     }
 
     /**
@@ -189,7 +191,7 @@ public class RaceLegScreen extends ScreenAdapter {
     public void update(float delta_time) {
         
         for (Entity entity : getUpdateableEntities()) {
-            entity.update(delta_time, entities);
+            entity.update(delta_time, getUpdateableEntities());
         }
 
         // Detect collisions
@@ -240,7 +242,7 @@ public class RaceLegScreen extends ScreenAdapter {
     public void render (float delta_time) {
         draw();
         update(delta_time);
-        System.out.println(1/delta_time);
+        //System.out.println(1/delta_time);
     }
 
     /**
@@ -417,6 +419,13 @@ public class RaceLegScreen extends ScreenAdapter {
         }
 
         return output;
+    }
+
+    public void resetEntities() {
+        entities = new ArrayList<Entity>();
+        entities_to_remove = new ArrayList<Entity>();
+        entities_collided = new HashMap<Entity, Entity>();
+        boats = new ArrayList<Boat>();
     }
 
 }

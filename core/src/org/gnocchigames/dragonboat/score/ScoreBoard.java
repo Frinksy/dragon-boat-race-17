@@ -2,6 +2,7 @@ package org.gnocchigames.dragonboat.score;
 
 import java.time.Duration;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -14,6 +15,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.Table;
 
 import org.gnocchigames.dragonboat.DragonBoatGame;
 import org.gnocchigames.dragonboat.entities.Boat;
+import org.gnocchigames.dragonboat.util.GameStructure;
 
 public class ScoreBoard {
     
@@ -22,6 +24,7 @@ public class ScoreBoard {
     public Map<String, Long> times;
     public Map<String, Boat> boats;
     public List<String> eliminated_boats;
+    public List<String> disqualified_boats;
     public DragonBoatGame game;
 
     public ScoreBoard(DragonBoatGame game, List<Boat> players) {
@@ -29,6 +32,7 @@ public class ScoreBoard {
         this.times = new HashMap<String, Long>();
         this.boats = new HashMap<String, Boat>();
         this.eliminated_boats = new ArrayList<String>();
+        this.disqualified_boats = new ArrayList<String>();
 
         for (Boat boat : players) {
             this.times.put(boat.getName(), 0l);
@@ -45,6 +49,8 @@ public class ScoreBoard {
         }
     }
 
+    // TODO: REMOVE TIME FROM FIRST LEG
+    
     public void computeRoundEndScores() {
         for (String player : times.keySet()) {
             Boat boat = boats.get(player);
@@ -116,6 +122,51 @@ public class ScoreBoard {
 
         return table;
 
+    }
+
+    public void eliminateBoats(GameStructure.Legs next_leg) {
+        List<String> boats_to_remove = new ArrayList<String>();
+        switch (next_leg) {
+            case LEG_TWO:
+                // Do nothing, everyone gets to retry
+                break;
+            case LEG_THREE:
+                // Eliminate dead boats
+                for (String name : eliminated_boats) {
+                    times.remove(name);
+                    boats.remove(name);
+                    disqualified_boats.add(name);
+                }
+            case LEG_FINAL:
+                // Eliminate dead boats and get top three
+                for (String name : eliminated_boats) {
+                    boats.remove(name);
+                    times.remove(name);
+                    disqualified_boats.add(name);
+                }
+                List<Long> time_list = new ArrayList<Long>();
+                for (Long time : times.values()) {
+                    time_list.add(time);
+                }
+                time_list.sort(null);
+
+                List<Long> top_three_times = time_list.subList(0, Math.min(time_list.size(), 3));
+
+                for (String name : times.keySet()) {
+                    if (!top_three_times.contains(times.get(name))) {
+                        times.remove(name);
+                        boats.remove(name);
+                        disqualified_boats.add(name);
+                    }
+                }
+
+                break;
+            default:
+                // Do nothing
+                break;
+
+
+            }
     }
 
 
