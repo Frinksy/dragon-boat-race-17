@@ -116,29 +116,26 @@ public class GameStructure {
         players = new ArrayList<Boat>();
         obstacles = new ArrayList<Obstacle>();
 
-        
-
         switch (leg) {
             case LEG_ONE:
             add_boats_to_leg(1);
-            for (int y = 100; y < 20000; y+=1000) {
+            for (int y = 1100; y < 20000; y+=1000) {
                 for (int lane = 0; lane < 5; lane++) {
                   obstacles.add(new Duck(game, race_screen, lane*384+184, y, 20, DuckDirection.LEFT, lane));
                 }
               }
                 
-            
-            for(int y=0;y<=20000;y+=1000){
+            for(int y=0;y<20000;y+=1000){
                 for(int x=0;x<=1980;x+=384){
                     obstacles.add(new Rock(game, race_screen,x+200,y+500));
                 }
             }
-            for(int y=0;y<=20000;y+=1752){
+            for(int y=0;y<20000;y+=1752){
                 for(int x=0;x<=1980;x+=384){
                     obstacles.add(new TreeLog(game, race_screen,x+75,y+1752));
                 }
             }
-            for(int y=0;y<=20000;y+=1752){
+            for(int y=0;y<20000;y+=1752){
                 for(int x=0;x<=1980;x+=384){
                     obstacles.add(new TreeLog(game, race_screen,x+300,y+876));
                 }
@@ -147,22 +144,22 @@ public class GameStructure {
 
             case LEG_TWO:
             add_boats_to_leg(2);
-            for (int y = 100; y < 20000; y+=1000) {
+            for (int y = 1100; y < 20000; y+=1000) {
                 for (int lane = 0; lane < 5; lane++) {
                   obstacles.add(new Duck(game, race_screen, lane*384+184, y, 20, DuckDirection.LEFT, lane));
                 }
               }
-            for(int y=0;y<=20000;y+=1000){
+            for(int y=0;y<20000;y+=1000){
                 for(int x=0;x<=1980;x+=384){
                     obstacles.add(new Rock(game, race_screen,x+200,y+500));
                 }
             }
-            for(int y=0;y<=20000;y+=1500){
+            for(int y=0;y<20000;y+=1500){
                 for(int x=0;x<=1980;x+=384){
                     obstacles.add(new TreeLog(game, race_screen,x+300,y+1000));
                 }
             }
-            for(int y=0;y<=20000;y+=750){
+            for(int y=0;y<20000;y+=750){
                 for(int x=0;x<=1980;x+=384){
                     obstacles.add(new TreeLog(game, race_screen,x+25,y+1000));
                 }
@@ -171,22 +168,22 @@ public class GameStructure {
             
             case LEG_THREE:
             add_boats_to_leg(3);
-            for (int y = 100; y < 20000; y+=3000) {
+            for (int y = 3100; y < 20000; y+=3000) {
                 for (int lane = 0; lane < 5; lane++) {
                   obstacles.add(new Duck(game, race_screen, lane*384+200, y, 25, DuckDirection.LEFT, lane));
                 }
               }
-            for(int y=0;y<=20000;y+=1000){
+            for(int y=0;y<20000;y+=1000){
                 for(int x=0;x<=1980;x+=384){
                     obstacles.add(new Rock(game, race_screen,x+200,y+500));
                 }
             }
-            for(int y=0;y<=20000;y+=876){
+            for(int y=0;y<20000;y+=876){
                 for(int x=0;x<=1980;x+=384){
                     obstacles.add(new TreeLog(game, race_screen,x+75,y+1000));
                 }
             }
-            for(int y=0;y<=20000;y+=876){
+            for(int y=0;y<20000;y+=876){
                 for(int x=0;x<=1980;x+=384){
                     obstacles.add(new TreeLog(game, race_screen,x+300,y+600));
                 }
@@ -194,9 +191,39 @@ public class GameStructure {
                 break;
             case LEG_FINAL:
                 add_boats_to_leg(4);
-                for(int y=0;y<=20000;y+=876){
+                for(int y=0;y<20000;y+=876){
                     for(int x=384;x<=1152;x+=384){
-                        obstacles.add(new TreeLog(game, race_screen,x+300,y+600));
+                        obstacles.add(new TreeLog(game, race_screen,x+50,y+1000));
+                    }
+                }
+                for(int y=876;y<20000;y+=876){
+                    for(int x=384;x<=1152;x+=384){
+                        obstacles.add(new TreeLog(game, race_screen,x+270,y+500));
+                    }
+                }
+                for (int y = 100; y < 20000; y+=1000) {
+                    for (int lane = 0; lane < 5; lane++) {
+                      obstacles.add(new Duck(game, race_screen, lane*384+200, y+200, 35, DuckDirection.LEFT, lane));
+                    }
+                }
+                for (int y = 100; y < 20000; y+=3000) {
+                    for (int lane = 0; lane < 5; lane++) {
+                      obstacles.add(new Duck(game, race_screen, lane*384+200, y+1200, 30, DuckDirection.LEFT, lane));
+                    }
+                }
+                for(int y=0;y<=20000;y+=1000){
+                    for(int x=384;x<=1152;x+=384){
+                        obstacles.add(new Rock(game, race_screen,x+100,y+200));
+                    }
+                }
+                for(int y=0;y<=20000;y+=1000){
+                    for(int x=384;x<=1152;x+=384){
+                        obstacles.add(new Rock(game, race_screen,x+300,y+200));
+                    }
+                }
+                for(int y=0;y<=20000;y+=1000){
+                    for(int x=384;x<=1152;x+=384){
+                        obstacles.add(new Rock(game, race_screen,x+198,y+400));
                     }
                 }
                 //remove players who didnt qualify
