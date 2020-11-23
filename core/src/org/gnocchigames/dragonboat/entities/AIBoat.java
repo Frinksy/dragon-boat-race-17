@@ -116,8 +116,11 @@ public class AIBoat extends Boat{
                     150f+a, 275f+a, 150f+a, 250f+a, 150f+a, 150f+a};
                 return x_coords;
             }
+        } else {
+            float[] x_coords = {0f+a, 50f+a, 330f+a, 50f+a, 75f+a, 320f+a, 50f+a, 340f+a, 50f+a, 330f+a, 50f+a, 50f+a, 50f+a, 
+                330f+a, 50f+a, 330f+a, 75f+a, 75f+a, 192f+a, 75f+a, 75f+a, 330f+a, 75f+a, 330f+a, 100f+a, 50f+a, 330f+a, 192f+a, 50f+a, 50f+a};
+            return x_coords;
         }
-        return x_coords;
     }
 
     public float[] getYCoords(int lane_num, int race_leg, Boat_Type type){
@@ -154,7 +157,10 @@ public class AIBoat extends Boat{
                     18000f, 18500f, 19000f, 19500f, 20000f, 21000f};
                 return y_coords;
             }
+        } else {
+            float[] y_coords = {0f, 500f, 1500f, 2500f, 3000f, 3500f, 4500f, 5500f, 6300f, 7250f, 8250f, 9000f, 9750f, 
+                10500f, 11500f, 12250f, 13000f, 13500f, 14000f, 14500f, 15000f, 15500f, 16500f, 17500f, 18000f, 18500f, 19500f, 20000f, 20500f, 21000f};
+            return y_coords;
         }
-        return y_coords;
     }
 }
