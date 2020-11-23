@@ -200,7 +200,7 @@ public class GameStructure {
                 add_boats_to_leg(4);
                 for(int y=0;y<=20000;y+=876){
                     for(int x=384;x<=1152;x+=384){
-                        obstacles.add(new TreeLog(race_screen,x+300,y+600));
+                        obstacles.add(new TreeLog(game, race_screen,x+300,y+600));
                     }
                 }
                 //remove players who didnt qualify
