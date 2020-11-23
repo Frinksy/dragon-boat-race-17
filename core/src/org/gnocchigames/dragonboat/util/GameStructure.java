@@ -19,7 +19,7 @@ import org.gnocchigames.dragonboat.entities.Duck.DuckDirection;
 public class GameStructure {
 
     public static enum Legs {
-        LEG_ONE, LEG_TWO, LEG_THREE, LEG_FINAL
+        LEG_ONE, LEG_TWO, LEG_THREE, LEG_FINAL, LEG_PODIUM
     }
     
     
@@ -49,7 +49,11 @@ public class GameStructure {
         return false;
     }
     public boolean raceover(PlayerBoat player_boat){
-        if (isBoatAcross(player_boat) || allBoatsAcross()){
+        if (!player_boat.isAlive()) {
+            game.changeScreen(DragonBoatGame.GAME_OVER);
+            return true;
+        }
+        else if (isBoatAcross(player_boat) || allBoatsAcross()){
             System.out.println("test");
             for (Obstacle obstacle : obstacles){
                 race_screen.removeEntity(obstacle);
@@ -63,9 +67,13 @@ public class GameStructure {
             for (Boat boat : players){
                 race_screen.removeEntity(boat);
             }
-            game.changeScreen(DragonBoatGame.NEXT);
-            incrementCurrentLeg();
-            game.score_board.eliminateBoats(current_leg);
+            if (current_leg != Legs.LEG_FINAL) {
+                game.changeScreen(DragonBoatGame.NEXT);
+                incrementCurrentLeg();
+                game.score_board.eliminateBoats(current_leg);
+            }else {
+                game.changeScreen(DragonBoatGame.GAME_OVER);
+            }
             
             set_leg(current_leg);
 
