@@ -45,7 +45,7 @@ public class ControlsScreen extends ScreenAdapter{
         table.setFillParent(true);
         stage.addActor(table);
 
-        Skin skin = new Skin(Gdx.files.internal("clean-crispy/clean-crispy-ui.json"));
+        Skin skin = parent.skin_store.get("clean-crispy/clean-crispy-ui.json");
 
         final TextButton return_button = new TextButton("Back", skin);
         return_button.addListener(new ChangeListener() {

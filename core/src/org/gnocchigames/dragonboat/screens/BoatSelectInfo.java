@@ -39,7 +39,7 @@ public class BoatSelectInfo{
         Table table = new Table();
         table.setFillParent(false);        
 
-        Skin skin = new Skin(Gdx.files.internal("clean-crispy/clean-crispy-ui.json"));
+        Skin skin = game.skin_store.get("clean-crispy/clean-crispy-ui.json");
 
         speed_label = new Label ("Speed", skin);
         acceleration_label = new Label ("Acceleration", skin);

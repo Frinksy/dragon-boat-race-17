@@ -4,8 +4,9 @@ import java.util.HashMap;
 import java.util.Map;
 
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.utils.Disposable;
 
-public class TextureStore {
+public class TextureStore implements Disposable {
     
     public Map<String, Texture> map;
 
@@ -39,5 +40,10 @@ public class TextureStore {
 
     }
 
+    public void dispose() {
+        for (Texture texture : map.values()) {
+            texture.dispose();
+        }
+    }
 
 }

@@ -15,6 +15,7 @@ import org.gnocchigames.dragonboat.screens.RaceLegScreen;
 import org.gnocchigames.dragonboat.screens.SettingsScreen;
 import org.gnocchigames.dragonboat.screens.NextLegScreen;
 import org.gnocchigames.dragonboat.util.GameSettings;
+import org.gnocchigames.dragonboat.util.SkinStore;
 import org.gnocchigames.dragonboat.util.TextureStore;
 
 /**
@@ -45,6 +46,7 @@ public class DragonBoatGame extends Game {
 	public static final int GAME_OVER = 7;
 
 	public TextureStore texture_store;
+	public SkinStore skin_store;
 	public ScoreBoard score_board;
 
 	/**
@@ -57,16 +59,17 @@ public class DragonBoatGame extends Game {
 		 * same as commented code beneath
 		 */
 		
+		game_settings = new GameSettings();
+		score_board = new ScoreBoard(this, new ArrayList<Boat>());
+		texture_store = new TextureStore();
+		skin_store = new SkinStore();
+		
 		main_menu_screen = new MainMenuScreen(this);
 		setScreen(main_menu_screen);
 
 		// Set the screen to the actual game
 		//this.setScreen(new RaceLegScreen(this));
 
-
-		game_settings = new GameSettings();
-		score_board = new ScoreBoard(this, new ArrayList<Boat>());
-		texture_store = new TextureStore();
 	}
 
 	/**
@@ -121,6 +124,6 @@ public class DragonBoatGame extends Game {
 	*/
 	@Override
 	public void dispose () {
-		
+		texture_store.dispose();
 	}
 }

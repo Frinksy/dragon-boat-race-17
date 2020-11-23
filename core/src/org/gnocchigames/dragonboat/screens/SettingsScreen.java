@@ -51,13 +51,13 @@ public class SettingsScreen extends ScreenAdapter{
         stage.addActor(table);
 
         /**
-         *  sets new skin(style) for text, buttons etc. 
+         *  sets parent.skin_store.get(style) for text, buttons etc. 
          * easily changable with a load of free skins
          * https://github.com/czyzby/gdx-skins
          * copy paste in skin file to assets and change link bellow too x.json 
          */
 
-        Skin skin = new Skin(Gdx.files.internal("clean-crispy/clean-crispy-ui.json")); 
+        Skin skin = parent.skin_store.get("clean-crispy/clean-crispy-ui.json"); 
         
         /**
          * creates a new slider for our sound volume

@@ -35,7 +35,7 @@ public class GameOverScreen extends ScreenAdapter {
         table.setFillParent(true);
         stage.addActor(table);
 
-        Skin skin = new Skin(Gdx.files.internal("clean-crispy/clean-crispy-ui.json"));
+        Skin skin = parent.skin_store.get("clean-crispy/clean-crispy-ui.json");
 
         Texture over_texture = parent.texture_store.map.get("game_over.png");
         Image over = new Image(over_texture);

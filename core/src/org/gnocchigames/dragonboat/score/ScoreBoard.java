@@ -107,7 +107,7 @@ public class ScoreBoard {
         Table table = new Table();
         table.setFillParent(false);
 
-        Skin skin = new Skin(Gdx.files.internal("clean-crispy/clean-crispy-ui.json"));
+        Skin skin = game.skin_store.get("clean-crispy/clean-crispy-ui.json");
         
         table.add(new Label("Boat", skin));
         table.add(new Label("Total Time", skin));

@@ -73,7 +73,7 @@ public class BoatSelectScreen extends ScreenAdapter{
         Table table_robust = new Table();
         table_robust = BoatSelectInfo.drawTable(parent, Boat.Boat_Type.HARD);
 
-        Skin skin = new Skin(Gdx.files.internal("clean-crispy/clean-crispy-ui.json"));
+        Skin skin = parent.skin_store.get("clean-crispy/clean-crispy-ui.json");
 
         // declares a drop down table and the listener that assigns the players boat type when fired
         final SelectBox<String> choose = new SelectBox<String>(skin);

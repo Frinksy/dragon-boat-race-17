@@ -47,7 +47,7 @@ public class PodiumScreen extends ScreenAdapter{
         table.setFillParent(true);
         stage.addActor(table);
 
-        Skin skin = new Skin(Gdx.files.internal("clean-crispy/clean-crispy-ui.json"));
+        Skin skin = parent.skin_store.get("clean-crispy/clean-crispy-ui.json");
 
         // creates labels, images and buttons actors to be used in the stage
 

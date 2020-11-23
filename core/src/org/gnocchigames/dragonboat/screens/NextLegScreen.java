@@ -35,7 +35,7 @@ public class NextLegScreen extends ScreenAdapter{
         Table table = new Table();
         table.setFillParent(true);
         stage.addActor(table);
-        Skin skin = new Skin(Gdx.files.internal("clean-crispy/clean-crispy-ui.json"));
+        Skin skin = parent.skin_store.get("clean-crispy/clean-crispy-ui.json");
 
         final TextButton next = new TextButton("Next Leg", skin);
         next.addListener(new ChangeListener(){
