@@ -30,10 +30,10 @@ public class GameStructure {
     private List<Boat> players; // The list of players in the game
     private List<Obstacle> obstacles; // The list of obstacles in the game
     //multiple is amount of screens
-    private static int FINISH_HEIGHT = 1000;
+    private static int FINISH_HEIGHT = 20000;
 
-    public boolean playerBoatAcross(PlayerBoat player_boat){
-        if (player_boat.pos_y > FINISH_HEIGHT){
+    public boolean isBoatAcross(Boat boat){
+        if (boat.pos_y > FINISH_HEIGHT){
             return true;
         }else{
             return false;
@@ -43,7 +43,7 @@ public class GameStructure {
         return false;
     }
     public boolean raceover(PlayerBoat player_boat){
-        if (playerBoatAcross(player_boat) || allBoatsAcross()){
+        if (isBoatAcross(player_boat) || allBoatsAcross()){
             System.out.println("test");
             for (Obstacle obstacle : obstacles){
                 race_screen.removeEntity(obstacle);

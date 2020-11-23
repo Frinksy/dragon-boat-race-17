@@ -219,6 +219,12 @@ public class RaceLegScreen extends ScreenAdapter {
             entities.remove(entity);
         }
 
+        for (Boat boat : boats) {
+            if (game_structure.isBoatAcross(boat)) {
+                boat.stopTimer();
+            }
+        }
+ 
         game_structure.raceover(player_boat);
 
         //float[] check_x = {0f, 500f, 500f, 750f};
@@ -357,7 +363,7 @@ public class RaceLegScreen extends ScreenAdapter {
         other_boat.accelerate();
     }*/
 
-    private List<Entity> getCollidableEntites() {
+    public List<Entity> getCollidableEntites() {
 
         List<Entity> output = new ArrayList<Entity>();
 
