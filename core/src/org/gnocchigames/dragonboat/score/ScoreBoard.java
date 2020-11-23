@@ -155,12 +155,18 @@ public class ScoreBoard {
 
                 List<Long> top_three_times = time_list.subList(0, Math.min(time_list.size(), 3));
 
+                List<String> boats_to_remove = new ArrayList<String>();
+
                 for (String name : times.keySet()) {
                     if (!top_three_times.contains(times.get(name))) {
-                        times.remove(name);
-                        boats.remove(name);
-                        disqualified_boats.add(name);
+                        boats_to_remove.add(name);
                     }
+                }
+
+                for (String name : boats_to_remove) {
+                    times.remove(name);
+                    boats.remove(name);
+                    disqualified_boats.add(name);
                 }
 
                 break;
