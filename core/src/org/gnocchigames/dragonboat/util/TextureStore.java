@@ -35,6 +35,7 @@ public class TextureStore {
         map.put("buoy.png", new Texture("buoy.png"));
         map.put("water_tile.png", new Texture("water_tile.png"));
         map.put("finish.png", new Texture("finish.png"));
+        map.put("game_over.png", new Texture("game_over.png"));
 
     }
 
