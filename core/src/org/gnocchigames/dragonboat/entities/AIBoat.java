@@ -103,6 +103,8 @@ public class AIBoat extends Boat{
                 return x_coords;
             }
             
+        } else if (race_leg == 3){
+            float[] x_coords = {0f+a, 150f+a};
         }
         //Acc
         /**} else if (lane_num == 2){
@@ -151,6 +153,8 @@ public class AIBoat extends Boat{
                 return y_coords;
             }
             
+        }   else if (race_leg == 3){
+            float[] y_coords = {0f, 500f};
         }
         //Acc
         /**} else if (((lane_num == 1) && (type == Boat_Type.ACCEL)) || ((lane_num == 3) && (type == Boat_Type.ACCEL))){
