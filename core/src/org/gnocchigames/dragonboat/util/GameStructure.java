@@ -257,9 +257,6 @@ public class GameStructure {
         available_types.remove(type);
         
         players.add(new AIBoat(game, race_screen, available_types.get(0), 0, leg_no));
-        //
-        // Commented out to have the game run
-        // These lines should be put back into the switch statement
         players.add(new AIBoat(game, race_screen, available_types.get(1), 1, leg_no));
         players.add(new AIBoat(game, race_screen, available_types.get(2), 3, leg_no));
         players.add(new AIBoat(game, race_screen, available_types.get(3), 4, leg_no));

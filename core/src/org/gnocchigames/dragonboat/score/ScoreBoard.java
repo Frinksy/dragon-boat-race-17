@@ -26,6 +26,8 @@ public class ScoreBoard {
     public List<String> eliminated_boats;
     public List<String> disqualified_boats;
     public DragonBoatGame game;
+    private List<String> podium_names;
+
 
     public ScoreBoard(DragonBoatGame game, List<Boat> players) {
         this.game = game;
@@ -34,10 +36,17 @@ public class ScoreBoard {
         this.eliminated_boats = new ArrayList<String>();
         this.disqualified_boats = new ArrayList<String>();
 
+        // Add default podium names
+        podium_names = new ArrayList<String>();
+        podium_names.add("Speedy");
+        podium_names.add("Defaulty");
+        podium_names.add("Robusty");
+
         for (Boat boat : players) {
             this.times.put(boat.getName(), 0l);
             this.boats.put(boat.getName(), boat);
         }
+
     }
 
     public void addPlayers(List<Boat> players) {
@@ -48,8 +57,7 @@ public class ScoreBoard {
             this.boats.put(boat.getName(), boat);
         }
     }
-
-    
+  
     public void computeRoundEndScores() {
         for (String player : times.keySet()) {
             Boat boat = boats.get(player);
@@ -170,14 +178,56 @@ public class ScoreBoard {
                     disqualified_boats.add(name);
                 }
 
+                for (String name : times.keySet()) {
+                    times.put(name, 0l);
+                }
+
                 break;
             default:
                 // Do nothing
                 break;
-
-
-            }
+        }
     }
 
+    public List<String> getPodiumNames() {
+
+        /*If the game hasn't been played yet,
+          we may as well just give 3 random names
+          to make the podium look like people have already
+          played
+         */
+
+        if (times.size() == 0) 
+        {
+            return podium_names;
+        }
+        
+
+        List<String> output = new ArrayList<String>();
+
+        List<Long> time_list = new ArrayList<Long>();
+        time_list.addAll(times.values());
+
+        time_list.sort(null);
+
+        for (Long time : time_list) {
+            for (String name : times.keySet()) {
+                if (times.get(name) == time) {
+                    output.add(name);
+                }
+            }
+        }
+
+        podium_names = output;
+
+        return podium_names;
+    }
+
+    public void resetAll() {
+        this.times = new HashMap<String, Long>();
+        this.boats = new HashMap<String, Boat>();
+        this.eliminated_boats = new ArrayList<String>();
+        this.disqualified_boats = new ArrayList<String>();
+    }
 
 }

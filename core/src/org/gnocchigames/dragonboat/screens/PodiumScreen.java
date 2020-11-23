@@ -1,5 +1,7 @@
 package org.gnocchigames.dragonboat.screens;
 
+import java.util.List;
+
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.ScreenAdapter;
 import com.badlogic.gdx.graphics.GL20;
@@ -59,6 +61,7 @@ public class PodiumScreen extends ScreenAdapter{
         go_again.addListener(new ChangeListener(){
             @Override
             public void changed(ChangeEvent event, Actor actor){
+                parent.score_board.resetAll();
                 parent.changeScreen(DragonBoatGame.MENU);
             }
         });
@@ -74,9 +77,12 @@ public class PodiumScreen extends ScreenAdapter{
         // text labels
         title = new Label("RESULTS", skin);
         title.setFontScale(1.25f);
-        first = new Label("Speedy", skin);
-        second = new Label("Robusty", skin);
-        third = new Label("Acceleraty", skin);
+
+        List<String> names = parent.score_board.getPodiumNames();
+
+        first = new Label(names.get(0), skin);
+        second = new Label(names.get(1), skin);
+        third = new Label(names.get(2), skin);
         spacer = new Label("", skin);
 
         // table layout

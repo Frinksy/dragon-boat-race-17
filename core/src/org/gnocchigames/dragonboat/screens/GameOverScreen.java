@@ -44,6 +44,7 @@ public class GameOverScreen extends ScreenAdapter {
         go_again.addListener(new ChangeListener(){
             @Override
             public void changed(ChangeEvent event, Actor actor){
+                parent.score_board.resetAll();
                 parent.changeScreen(DragonBoatGame.MENU);
             }
         });
