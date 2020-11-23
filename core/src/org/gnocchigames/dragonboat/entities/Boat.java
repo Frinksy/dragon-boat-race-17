@@ -383,7 +383,7 @@ public class Boat extends Entity{
         this.hitbox.setRotation(this.direction);
 
         // check if rotation resulted in a collision
-        if (isCollided(parent.getEntities())) {
+        if (isCollided(parent.getCollidableEntites())) {
             this.direction = old_angle;
         }
 
@@ -445,7 +445,15 @@ public class Boat extends Entity{
      * @return
      */
     public long stopTimer() {
-        end_time = System.currentTimeMillis();
+        if (end_time == 0) {
+            
+            end_time = System.currentTimeMillis();
+            if (!in_lane) {
+                end_time += System.currentTimeMillis() - last_out_of_lane_time;
+            }
+            end_time += current_penalty;
+
+        }
         return end_time - start_time;
     }
 
