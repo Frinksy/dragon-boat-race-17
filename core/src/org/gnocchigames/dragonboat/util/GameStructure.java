@@ -72,7 +72,7 @@ public class GameStructure {
                 incrementCurrentLeg();
                 game.score_board.eliminateBoats(current_leg);
             }else {
-                game.changeScreen(DragonBoatGame.GAME_OVER);
+                game.changeScreen(DragonBoatGame.PODIUM);
             }
             
             set_leg(current_leg);

@@ -140,6 +140,7 @@ public class ScoreBoard {
                     boats.remove(name);
                     disqualified_boats.add(name);
                 }
+                break;
             case LEG_FINAL:
                 // Eliminate dead boats and get top three
                 for (String name : eliminated_boats) {
