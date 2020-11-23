@@ -200,6 +200,11 @@ public class GameStructure {
             }
                 break;
             case LEG_FINAL:
+            for(int y=0;y<=20000;y+=876){
+                for(int x=384;x<=1152;x+=384){
+                    obstacles.add(new TreeLog(race_screen,x+300,y+600));
+                }
+            }
                 //remove players who didnt qualify
                 //players.remove()
 
