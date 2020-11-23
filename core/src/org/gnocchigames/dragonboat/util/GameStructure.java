@@ -41,7 +41,19 @@ public class GameStructure {
         current_leg = Legs.LEG_ONE;
     } 
 
-    
+    public void resetAll() {
+        players = new ArrayList<Boat>(5);
+        obstacles = new ArrayList<Obstacle>();
+        current_leg = Legs.LEG_ONE;
+        for (Obstacle obstacle : obstacles){
+            race_screen.removeEntity(obstacle);
+        }
+        for (Boat boat : players) {
+            boat.stopTimer();
+        }
+        set_leg(current_leg);
+    }
+
     public boolean isBoatAcross(Boat boat){
         return boat.pos_y > FINISH_HEIGHT;
     }
@@ -51,6 +63,7 @@ public class GameStructure {
     public boolean raceover(PlayerBoat player_boat){
         if (!player_boat.isAlive()) {
             game.changeScreen(DragonBoatGame.GAME_OVER);
+            resetAll();
             return true;
         }
         else if (isBoatAcross(player_boat) || allBoatsAcross()){

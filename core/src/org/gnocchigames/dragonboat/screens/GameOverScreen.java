@@ -62,6 +62,7 @@ public class GameOverScreen extends ScreenAdapter {
         table.add(go_again).fillX();
         table.pad(0, 20, 0, 20);
         table.add(exit).fillX();
+
     }
 
     @Override
