@@ -42,10 +42,16 @@ public class PlayerBoat extends Boat{
      * Update the state of the boat.
      * Should be called every frame.
      */
+    @Override
     public void update(float delta_time, List<Entity> entities) {
         
         super.update(delta_time, entities);
 
         handleKeys();
+    }
+
+    @Override
+    public String getName() {
+        return "Player 1";
     }
 }
