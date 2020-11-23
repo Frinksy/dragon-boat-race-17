@@ -120,11 +120,8 @@ public class GameStructure {
         players = new ArrayList<Boat>();
         obstacles = new ArrayList<Obstacle>();
 
-        
-
-        switch (leg) {
-            case LEG_ONE:
-            add_boats_to_leg(1);
+        /**
+         * add_boats_to_leg(1);
             for (int y = 1100; y < 20000; y+=1000) {
                 for (int lane = 0; lane < 5; lane++) {
                   obstacles.add(new Duck(game, race_screen, lane*384+184, y, 20, DuckDirection.LEFT, lane));
@@ -145,6 +142,32 @@ public class GameStructure {
             for(int y=0;y<20000;y+=1752){
                 for(int x=0;x<=1980;x+=384){
                     obstacles.add(new TreeLog(game, race_screen,x+300,y+876));
+                }
+            }
+                break;
+         */
+
+        switch (leg) {
+            case LEG_ONE:
+            add_boats_to_leg(1);
+            for (int y = 3100; y < 20000; y+=3000) {
+                for (int lane = 0; lane < 5; lane++) {
+                  obstacles.add(new Duck(game, race_screen, lane*384+200, y, 25, DuckDirection.LEFT, lane));
+                }
+              }
+            for(int y=0;y<20000;y+=1000){
+                for(int x=0;x<=1980;x+=384){
+                    obstacles.add(new Rock(game, race_screen,x+200,y+500));
+                }
+            }
+            for(int y=0;y<20000;y+=876){
+                for(int x=0;x<=1980;x+=384){
+                    obstacles.add(new TreeLog(game, race_screen,x+75,y+1000));
+                }
+            }
+            for(int y=0;y<20000;y+=876){
+                for(int x=0;x<=1980;x+=384){
+                    obstacles.add(new TreeLog(game, race_screen,x+300,y+600));
                 }
             }
                 break;
@@ -175,7 +198,7 @@ public class GameStructure {
             
             case LEG_THREE:
             add_boats_to_leg(3);
-            for (int y = 100; y < 20000; y+=3000) {
+            for (int y = 3100; y < 20000; y+=3000) {
                 for (int lane = 0; lane < 5; lane++) {
                   obstacles.add(new Duck(game, race_screen, lane*384+200, y, 25, DuckDirection.LEFT, lane));
                 }
