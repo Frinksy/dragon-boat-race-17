@@ -4,8 +4,10 @@ import java.time.Duration;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
@@ -112,7 +114,8 @@ public class ScoreBoard {
 
         Map<String, String> formatted_times = getFormattedTimes();
 
-        for (String player : formatted_times.keySet()) {
+
+        for (String player : getOrderedNames()) {
             
             table.row().pad(10, 5, 0, 5);
             
@@ -228,6 +231,33 @@ public class ScoreBoard {
         this.boats = new HashMap<String, Boat>();
         this.eliminated_boats = new ArrayList<String>();
         this.disqualified_boats = new ArrayList<String>();
+    }
+
+    private List<String> getOrderedNames() {
+
+        List<String> ordered_players = new ArrayList<String>();
+        List<Long> ordered_times = new ArrayList<Long>();
+
+        for (String name : times.keySet()) {
+            if (!eliminated_boats.contains(name)){
+                ordered_times.add(times.get(name));
+            }
+        }
+        ordered_times.sort(null);
+        Set<String> available_names = new HashSet<String>(times.keySet());
+        for (Long time : ordered_times) {
+            for (String name : available_names) {
+                if (times.get(name) == time) {
+                    ordered_players.add(name);
+                    available_names.remove(name);
+                    break;
+                }
+            }
+        }
+        ordered_players.addAll(available_names);
+
+
+        return ordered_players;
     }
 
 }
