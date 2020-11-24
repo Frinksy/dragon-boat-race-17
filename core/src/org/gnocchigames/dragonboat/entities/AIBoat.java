@@ -82,7 +82,7 @@ public class AIBoat extends Boat{
 
         System.out.println(lane_num + " " + type + " " + race_leg);
         //Speed
-        int a = lane_num*394;
+        int a = lane_num*394; // this is an OFFSET!
         if (race_leg == 1){
             float[] x_coords = {0f+a, 50f+a, 330f+a, 50f+a, 75f+a, 320f+a, 50f+a, 340f+a, 50f+a, 330f+a, 50f+a, 50f+a, 50f+a, 
                 330f+a, 50f+a, 330f+a, 75f+a, 75f+a, 192f+a, 75f+a, 75f+a, 330f+a, 75f+a, 330f+a, 100f+a, 50f+a, 330f+a, 192f+a, 50f+a, 50f+a};
@@ -122,18 +122,21 @@ public class AIBoat extends Boat{
             }
         } else {
             if (type == Boat.Boat_Type.HARD){
-                float[] x_coords ={0f, 100f+a, 20f+a, 20f+a, 20f+a, 20f+a, 20f+a, 20f+a, 340f+a, 340f+a,
-                    340f+a, 340f+a, 340f+a, 340f+a, 340f+a, 340f+a, 340f+a, 340f+a};
+                float[] x_coords ={0f, 100f+a, 20f+a, 20f+a, 20f+a, 20f+a, 20f+a, 20f+a, 20f+a, 20f+a,
+                    345f+a, 345f+a, 345f+a, 345f+a, 345f+a, 345f+a, 345f+a, 345f+a, 345f+a, 345f+a, 345f+a, 345f+a, 345f+a, 345f+a};
                 return x_coords;
             } else if (type == Boat.Boat_Type.ACCEL){
                 float[] x_coords ={0f, 200f+a, 300f+a, 170f+a, 100f+a, 170f+a, 100f+a, 180f+a, 300f+a, 180f+a,
                     300f+a, 330f+a, 170f+a, 170f+a, 100f+a, 170f+a, 100f+a, 170f+a, 100f+a, 170f+a,
-                    100f+a, 170f+a, 275f+a, 185f+a, 330f+a, 330f+a, 180f+a, 100f+a, 180f+a, 100f+a,
-                    335f+a, 340f+a, 340f+a, 340f+a, 160f+a, 170f+a};
+                    100f+a, 170f+a, 275f+a, 185f+a, 320f+a, 320f+a, 180f+a, 100f+a, 180f+a, 100f+a,
+                    325+a, 325f+a, 325f+a, 325f+a, 160f+a, 170f+a};
                 return x_coords;
             } else if (type == Boat.Boat_Type.MANOEUVREABLE){
                 float[] x_coords ={0f, 175f+a, 280f+a, 160f+a, 80f+a, 160f+a, 80f+a, 160f+a, 280f+a,
-                    150f+a, 80f+a, 140f+a, 80f+a, 150+a, 330f+a, 345f+a};
+                    150f+a, 80f+a, 140f+a, 80f+a, 150+a, 315f+a, 315f+a, 315f+a, 150f+a, 80f+a,
+                    150f+a, 150f+a, 80f+a, 150f+a, 150f+a, 280f+a, 170f+a, 190f+a, 280f+a, 315f+a,
+                    320f+a, 320f+a, 150f+a, 40f+a, 0f+a, 0f+a, 300f+a, 320f+a, 320f+a, 320f+a,
+                    320f+a, 320f+a, 320f+a, 320f+a, 320f+a};
                 return x_coords;
             } else {
                 float[] x_coords = {0f+a, 50f+a, 330f+a, 50f+a, 75f+a, 320f+a, 50f+a, 340f+a, 50f+a, 330f+a, 50f+a, 50f+a, 50f+a, 
@@ -183,8 +186,8 @@ public class AIBoat extends Boat{
             }
         } else {
             if (type == Boat.Boat_Type.HARD){
-                float[] y_coords ={0f, 500f, 800f, 2000f, 4000f, 5000f, 6000f, 7500f, 8000f, 10000f, 110000f,
-                    12500f, 14000f, 15000f, 16000f, 17500f, 19000f, 21000f};
+                float[] y_coords ={0f, 500f, 800f, 2000f, 3000f, 4000f, 5000f, 6000f, 7000f, 7500f,
+                    8000f, 9000f, 10000f, 110000f, 12000f, 13000f, 14000f, 15000f, 16000f, 17000f, 18000f, 19000f, 20000f, 21000f};
                 return y_coords;
             } else if ((type == Boat.Boat_Type.ACCEL)){
                 float[] y_coords ={0f, 200f, 400f, 1175f, 1400f, 2175f, 2400f, 3175f, 3400f, 4100f,
@@ -194,7 +197,10 @@ public class AIBoat extends Boat{
                 return y_coords;
             } else if ((type == Boat.Boat_Type.MANOEUVREABLE)){
                 float[] y_coords ={0f, 200f, 400f, 1150f, 1400f, 2150f, 2400, 3150f, 3400f,
-                    4150f, 4400f, 5150f, 5500f, 6150f, 6400f, 7800f};
+                    4150f, 4400f, 5150f, 5500f, 6150f, 6400f, 7000f, 8500f, 9150f, 9400f,
+                    9700f, 10150f, 10400f, 10700f, 11150f, 11350f, 11700f, 12200, 12400f, 12700f,
+                    13500f, 14750f, 15150f, 15400f, 15700f, 16300f, 16800f, 17500f, 18150f, 18400f,
+                    18700, 19400f, 19800f, 21000f};
                 return y_coords;
             }else {
                 float[] y_coords = {0f, 500f, 1500f, 2500f, 3000f, 3500f, 4500f, 5500f, 6300f, 7250f, 8250f, 9000f, 9750f, 

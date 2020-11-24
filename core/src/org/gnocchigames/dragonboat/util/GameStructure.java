@@ -38,7 +38,7 @@ public class GameStructure {
         players = new ArrayList<Boat>(5);
         obstacles = new ArrayList<Obstacle>();
         this.game = game;
-        current_leg = Legs.LEG_ONE;
+        current_leg = Legs.LEG_FINAL;
     } 
 
     public void resetAll() {

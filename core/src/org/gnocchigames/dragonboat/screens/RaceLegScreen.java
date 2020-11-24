@@ -109,7 +109,7 @@ public class RaceLegScreen extends ScreenAdapter {
         font = generator.generateFont(param);
         generator.dispose();
 
-        game_structure.set_leg(Legs.LEG_ONE);
+        game_structure.set_leg(Legs.LEG_FINAL);
         // System.out.println("raceover = "+race_structure.raceover(player_boat));
 
     }
