@@ -132,5 +132,6 @@ public class DragonBoatGame extends Game {
 	@Override
 	public void dispose () {
 		texture_store.dispose();
+		skin_store.dispose();
 	}
 }
