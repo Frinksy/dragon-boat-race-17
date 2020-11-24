@@ -138,6 +138,11 @@ public class AIBoat extends Boat{
                     320f+a, 320f+a, 150f+a, 40f+a, 0f+a, 0f+a, 300f+a, 320f+a, 320f+a, 320f+a,
                     320f+a, 320f+a, 320f+a, 320f+a, 320f+a};
                 return x_coords;
+            } else if (type == Boat.Boat_Type.FAST){
+                float[] x_coords ={0f, 220f+a, 280f+a, 160f+a, 30f+a, 120f+a, 50f+a, 120f+a, 190f+a, 280f+a,
+                350f+a, 360f+a, 360f+a, 360f+a, 360f+a, 360f+a, 360f+a, 360f+a, 360f+a, 360f+a,
+                360f+a, 360f+a, 360f+a, 360f+a, 360f+a, 360f+a, 360f+a, 360f+a, 360f+a, 360f+a};
+                return x_coords;
             } else {
                 float[] x_coords = {0f+a, 50f+a, 330f+a, 50f+a, 75f+a, 320f+a, 50f+a, 340f+a, 50f+a, 330f+a, 50f+a, 50f+a, 50f+a, 
                 330f+a, 50f+a, 330f+a, 75f+a, 75f+a, 192f+a, 75f+a, 75f+a, 330f+a, 75f+a, 330f+a, 100f+a, 50f+a, 330f+a, 192f+a, 50f+a, 50f+a};
@@ -202,7 +207,12 @@ public class AIBoat extends Boat{
                     13500f, 14750f, 15150f, 15400f, 15700f, 16300f, 16800f, 17500f, 18150f, 18400f,
                     18700, 19400f, 19800f, 21000f};
                 return y_coords;
-            }else {
+            } else if ((type == Boat.Boat_Type.FAST)){
+                float[] y_coords ={0f, 200f, 400f, 1220f, 2150f, 2500f, 3050f, 3500f, 4000f, 4350f,
+                    4900f, 5600f, 6000f, 7000f, 8000f, 9000f, 10000f, 11000f, 12000f, 13000f,
+                    13800f, 14225f, 14600f, 15000f, 15550f, 16100f, 16500f, 18000f, 19000f ,20000f};
+                return y_coords;
+            } else {
                 float[] y_coords = {0f, 500f, 1500f, 2500f, 3000f, 3500f, 4500f, 5500f, 6300f, 7250f, 8250f, 9000f, 9750f, 
                 10500f, 11500f, 12250f, 13000f, 13500f, 14000f, 14500f, 15000f, 15500f, 16500f, 17500f, 18000f, 18500f, 19500f, 20000f, 20500f, 21000f};
                 return y_coords;

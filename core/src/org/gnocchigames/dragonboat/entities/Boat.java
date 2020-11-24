@@ -182,7 +182,7 @@ public class Boat extends Entity{
                 this.acceleration_stat = 35;
                 this.speed_stat = 100;
                 this.manoeuverability_stat = 40;
-                this.robustness_stat = 65;
+                this.robustness_stat = 80;
                 this.colour = new Color(Color.PINK);
                 break;
             case HARD:
