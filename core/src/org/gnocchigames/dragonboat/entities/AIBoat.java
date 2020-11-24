@@ -106,7 +106,11 @@ public class AIBoat extends Boat{
         } else if (race_leg == 3){
             if (type == Boat.Boat_Type.FAST){
                 float[] x_coords = {0f+a, 100f+a, 160f+a, 120f+a, 160f+a, 120f+a, 150f+a, 175f+a, 300f+a, 300f+a,
-                    250f+a, 275f+a, 200f+a, 250f+a, 300f+a, 130f+a, 150f+a, 75f+a};
+                    250f+a, 275f+a, 200f+a, 250f+a, 300f+a, 130f+a, 160f+a, 100f+a, 160f+a, 100f+a, 150f+a, 100f+a,
+                    200f+a, 350f+a, 350f+a, 150f+a, 300f+a, 350f+a, 350f+a, 120f+a, 350f+a, 350f+a, 350f+a, 350f+a};
+                return x_coords;
+            } else if (type == Boat.Boat_Type.HARD){
+                float[] x_coords ={0f, 300f+a, 300f+a, 300f+a, 300f+a, 300f+a, 350f+a, 350f+a, 350f+a};
                 return x_coords;
             } else {
                 float[] x_coords = {0f+a, 75f+a, 150f+a, 75f+a, 150f+a, 75f+a, 180f+a, 200f+a, 250f+a, 175f+a,
@@ -117,9 +121,25 @@ public class AIBoat extends Boat{
                 return x_coords;
             }
         } else {
-            float[] x_coords = {0f+a, 50f+a, 330f+a, 50f+a, 75f+a, 320f+a, 50f+a, 340f+a, 50f+a, 330f+a, 50f+a, 50f+a, 50f+a, 
+            if (type == Boat.Boat_Type.HARD){
+                float[] x_coords ={0f, 100f+a, 20f+a, 20f+a, 20f+a, 20f+a, 20f+a, 20f+a, 340f+a, 340f+a,
+                    340f+a, 340f+a, 340f+a, 340f+a, 340f+a, 340f+a, 340f+a, 340f+a};
+                return x_coords;
+            } else if (type == Boat.Boat_Type.ACCEL){
+                float[] x_coords ={0f, 200f+a, 300f+a, 170f+a, 100f+a, 170f+a, 100f+a, 180f+a, 300f+a, 180f+a,
+                    300f+a, 330f+a, 170f+a, 170f+a, 100f+a, 170f+a, 100f+a, 170f+a, 100f+a, 170f+a,
+                    100f+a, 170f+a, 275f+a, 185f+a, 330f+a, 330f+a, 180f+a, 100f+a, 180f+a, 100f+a,
+                    335f+a, 340f+a, 340f+a, 340f+a, 160f+a, 170f+a};
+                return x_coords;
+            } else if (type == Boat.Boat_Type.MANOEUVREABLE){
+                float[] x_coords ={0f, 175f+a, 280f+a, 160f+a, 80f+a, 160f+a, 80f+a, 160f+a, 280f+a,
+                    150f+a, 80f+a, 140f+a, 80f+a, 150+a, 330f+a, 345f+a};
+                return x_coords;
+            } else {
+                float[] x_coords = {0f+a, 50f+a, 330f+a, 50f+a, 75f+a, 320f+a, 50f+a, 340f+a, 50f+a, 330f+a, 50f+a, 50f+a, 50f+a, 
                 330f+a, 50f+a, 330f+a, 75f+a, 75f+a, 192f+a, 75f+a, 75f+a, 330f+a, 75f+a, 330f+a, 100f+a, 50f+a, 330f+a, 192f+a, 50f+a, 50f+a};
-            return x_coords;
+                return x_coords;
+            }
         }
     }
 
@@ -134,7 +154,7 @@ public class AIBoat extends Boat{
                 float[] y_coords = {0f, 500f, 1000f, 1500f, 1750f, 2000f, 2500f, 3250f, 3500f,
                     3750f, 4250f, 4500f, 5250f, 5750f, 6300f, 6750f, 6900f, 7500f, 8500f, 9500f,
                     10500f, 11500f, 12000f, 12500f, 13000f, 13500f, 14000f, 14500f, 15000f, 15500f, 16000f, 16500f, 17000f, 17500f, 
-                    18000f, 18500f, 19000f, 19600f, 20000f, 24000f, 21000f};
+                    18000f, 18500f, 19000f, 19600f, 20000f, 20400f, 21000f};
                 return y_coords;
             } else {
                 float[] y_coords = {0f, 500f, 1000f, 1500f, 1800f, 2300f, 2650f, 3000f, 3500f, 3800f, 4500f,
@@ -147,10 +167,14 @@ public class AIBoat extends Boat{
         }   else if (race_leg == 3){
             if (type == Boat.Boat_Type.FAST){
                 float[] y_coords = {0f, 400f, 900f, 1300f, 1900f, 2400f, 2700f, 3150f, 3400f, 3600f,
-                    4000f, 4500f, 4900f, 5400f, 5900f, 6400f, 7000f, 7400f};
+                    4000f, 4500f, 4900f, 5400f, 5900f, 6400f, 7050f, 7450f, 7950f, 8450f, 8950f, 9400f,
+                    9700f, 10100f, 11500f, 12000f, 12450f, 12650f, 14800f, 15500f, 15800f, 16200f, 17000f, 21000f};
+                return y_coords;
+            } else if (type == Boat.Boat_Type.HARD){
+                float[] y_coords ={0f, 500f, 5000f, 7500f, 10000f, 12500f, 15000f, 17500f, 21000f};
                 return y_coords;
             } else {
-                float[] y_coords = {0f, 400f, 900f, 1400f, 1900f, 2400f, 2900f, 3300f, 3500f, 4100f,
+                float[] y_coords = {0f, 400f, 900f, 1400f, 1900f, 2400f, 2800f, 3300f, 3500f, 4000f,
                     4400f, 4900f, 5400f, 5800f, 6200f, 6450f, 6800f, 7100f, 7500f, 8000f, 8300f,
                     8800f, 9200f, 9400f, 9700f, 10200, 10500, 11000, 11500, 12000f, 12500f, 13000f,
                     13250f, 13500f, 14000f, 14500f, 15000f, 15500f, 16000f, 16400f, 16900f, 17300f, 17500f,
@@ -158,9 +182,25 @@ public class AIBoat extends Boat{
                 return y_coords;
             }
         } else {
-            float[] y_coords = {0f, 500f, 1500f, 2500f, 3000f, 3500f, 4500f, 5500f, 6300f, 7250f, 8250f, 9000f, 9750f, 
+            if (type == Boat.Boat_Type.HARD){
+                float[] y_coords ={0f, 500f, 800f, 2000f, 4000f, 5000f, 6000f, 7500f, 8000f, 10000f, 110000f,
+                    12500f, 14000f, 15000f, 16000f, 17500f, 19000f, 21000f};
+                return y_coords;
+            } else if ((type == Boat.Boat_Type.ACCEL)){
+                float[] y_coords ={0f, 200f, 400f, 1175f, 1400f, 2175f, 2400f, 3175f, 3400f, 4100f,
+                    4400f, 5400f, 5800f, 6100f, 6400f, 7100f, 7400f, 8100f, 8400f, 9100f,
+                    9400f, 10150f, 10500f, 11150, 11500, 13700f, 14150f, 14400f, 15150f, 15400f,
+                    15900f, 16500f, 18000f, 19300f, 19800f, 21000f};
+                return y_coords;
+            } else if ((type == Boat.Boat_Type.MANOEUVREABLE)){
+                float[] y_coords ={0f, 200f, 400f, 1150f, 1400f, 2150f, 2400, 3150f, 3400f,
+                    4150f, 4400f, 5150f, 5500f, 6150f, 6400f, 7800f};
+                return y_coords;
+            }else {
+                float[] y_coords = {0f, 500f, 1500f, 2500f, 3000f, 3500f, 4500f, 5500f, 6300f, 7250f, 8250f, 9000f, 9750f, 
                 10500f, 11500f, 12250f, 13000f, 13500f, 14000f, 14500f, 15000f, 15500f, 16500f, 17500f, 18000f, 18500f, 19500f, 20000f, 20500f, 21000f};
-            return y_coords;
+                return y_coords;
+            }
         }
     }
 }
