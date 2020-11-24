@@ -29,7 +29,7 @@ public class GameStructure {
     
     private List<Boat> players; // The list of players in the game
     private List<Obstacle> obstacles; // The list of obstacles in the game
-    private Legs current_leg;
+    public Legs current_leg;
     //multiple is amount of screens
     private static int FINISH_HEIGHT = 20000;
     
@@ -45,13 +45,16 @@ public class GameStructure {
         players = new ArrayList<Boat>(5);
         obstacles = new ArrayList<Obstacle>();
         current_leg = Legs.LEG_ONE;
-        for (Obstacle obstacle : obstacles){
-            race_screen.removeEntity(obstacle);
-        }
+        // for (Obstacle obstacle : obstacles){
+        //     race_screen.removeEntity(obstacle);
+        // }
         for (Boat boat : players) {
             boat.stopTimer();
         }
-        set_leg(current_leg);
+        // for (Boat boat : players) {
+        //     race_screen.removeEntity(boat);
+        // }
+        race_screen.resetEntities();
     }
 
     public boolean isBoatAcross(Boat boat){
@@ -68,18 +71,18 @@ public class GameStructure {
         }
         else if (isBoatAcross(player_boat) || allBoatsAcross() || !player_boat.isAlive()){
             System.out.println("test");
-            for (Obstacle obstacle : obstacles){
-                race_screen.removeEntity(obstacle);
-            }
+            // for (Obstacle obstacle : obstacles){
+            //     race_screen.removeEntity(obstacle);
+            // }
             for (Boat boat : players) {
                 boat.stopTimer();
             }
 
             game.score_board.computeRoundEndScores();
             
-            for (Boat boat : players){
-                race_screen.removeEntity(boat);
-            }
+            // for (Boat boat : players){
+            //     race_screen.removeEntity(boat);
+            // }
             if (current_leg != Legs.LEG_FINAL) {
                 game.changeScreen(DragonBoatGame.NEXT);
                 incrementCurrentLeg();
@@ -87,8 +90,9 @@ public class GameStructure {
             }else {
                 game.changeScreen(DragonBoatGame.PODIUM);
             }
-            
-            set_leg(current_leg);
+            race_screen.resetEntities();
+            // set_leg(current_leg);
+            //resetAll();
 
             return true; 
         }else{
@@ -287,6 +291,10 @@ public class GameStructure {
         }
         players.removeAll(boats_to_remove);
 
+        if (!players.contains(player_boat)) {
+            game.changeScreen(DragonBoatGame.GAME_OVER);
+            resetAll();
+        }
     }
 
     private void incrementCurrentLeg() {
