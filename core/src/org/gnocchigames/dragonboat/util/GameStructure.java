@@ -213,16 +213,18 @@ public class GameStructure {
             case LEG_FINAL:
                 add_boats_to_leg(4);
                 for(int y=0;y<20000;y+=876){
-                    for(int x=384;x<=1152;x+=384){
+                    //for(int x=384;x<=1152;x+=384){
+                    for(int x=0;x<=1980;x+=384){
                         obstacles.add(new TreeLog(game, race_screen,x+50,y+1000));
                     }
                 }
                 for(int y=876;y<20000;y+=876){
-                    for(int x=384;x<=1152;x+=384){
+                    //for(int x=384;x<=1152;x+=384){
+                    for(int x=0;x<=1980;x+=384){
                         obstacles.add(new TreeLog(game, race_screen,x+270,y+500));
                     }
                 }
-                for (int y = 100; y < 20000; y+=1000) {
+                for (int y = 1100; y < 20000; y+=1000) {
                     for (int lane = 0; lane < 5; lane++) {
                       obstacles.add(new Duck(game, race_screen, lane*384+200, y+200, 35, DuckDirection.LEFT, lane));
                     }
@@ -233,17 +235,20 @@ public class GameStructure {
                     }
                 }
                 for(int y=0;y<=20000;y+=1000){
-                    for(int x=384;x<=1152;x+=384){
+                    //for(int x=384;x<=1152;x+=384){
+                    for(int x=0;x<=1980;x+=384){
                         obstacles.add(new Rock(game, race_screen,x+100,y+200));
                     }
                 }
                 for(int y=0;y<=20000;y+=1000){
-                    for(int x=384;x<=1152;x+=384){
+                    //for(int x=384;x<=1152;x+=384){
+                    for(int x=0;x<=1980;x+=384){
                         obstacles.add(new Rock(game, race_screen,x+300,y+200));
                     }
                 }
                 for(int y=0;y<=20000;y+=1000){
-                    for(int x=384;x<=1152;x+=384){
+                    for(int x=0;x<=1980;x+=384){
+                    //for(int x=384;x<=1152;x+=384){
                         obstacles.add(new Rock(game, race_screen,x+198,y+400));
                     }
                 }
