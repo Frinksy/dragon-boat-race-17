@@ -1,0 +1,6 @@
+org.gnocchigames.dragonboat
+org.gnocchigames.dragonboat.entities
+org.gnocchigames.dragonboat.exceptions
+org.gnocchigames.dragonboat.score
+org.gnocchigames.dragonboat.screens
+org.gnocchigames.dragonboat.util
