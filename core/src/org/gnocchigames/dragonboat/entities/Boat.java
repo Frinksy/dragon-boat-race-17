@@ -454,7 +454,7 @@ public class Boat extends Entity{
             if (!in_lane) {
                 end_time += System.currentTimeMillis() - last_out_of_lane_time;
             }
-            end_time += current_penalty;
+            end_time += time_out_of_lane;
 
             done = true;
 
