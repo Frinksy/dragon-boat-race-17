@@ -15,8 +15,8 @@ import org.gnocchigames.dragonboat.DragonBoatGame;
 
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 
-/** Main menu screen
- * MainMenuScreen is instantiated by DragonBoatGame
+/**
+ * MainMenuScreen, instantiated by DragonBoatGame
  */
 public class MainMenuScreen extends ScreenAdapter{
 
@@ -24,7 +24,10 @@ public class MainMenuScreen extends ScreenAdapter{
     private Stage stage;
     private Label title;
     
-
+    /**
+     * Create a MainMenuScreen instance
+     * @param game the parent DragonBoatGame instance
+     */
     public MainMenuScreen(DragonBoatGame game) {
         
         parent = game;
@@ -130,16 +133,19 @@ public class MainMenuScreen extends ScreenAdapter{
 
     }
 
+    @Override
     public void resize(int width, int height) {
         // also called ever frame to keep menu centred
         stage.getViewport().update(width, height, true);
 
     }
 
+    @Override
     public void pause(){
 
     }
     
+    @Override
     public void resume(){
     }
     

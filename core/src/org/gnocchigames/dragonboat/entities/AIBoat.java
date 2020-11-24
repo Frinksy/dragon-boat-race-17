@@ -6,7 +6,9 @@ import org.gnocchigames.dragonboat.util.GameStructure;
 import org.gnocchigames.dragonboat.DragonBoatGame;
 import org.gnocchigames.dragonboat.screens.RaceLegScreen;
 
-
+/**
+ * A boat controlled by AI
+ */
 public class AIBoat extends Boat{
 
     public Boat boat;
@@ -26,14 +28,22 @@ public class AIBoat extends Boat{
     public  float dif_x;
     public  float dif_y;
 
+    /**
+     * Create an AI controlled boat
+     * @param game the parent game instance
+     * @param parent the parent race screen instance
+     * @param type the type of the boat
+     * @param lane the lane of the boat
+     * @param leg_num the leg number
+     */
     public AIBoat(DragonBoatGame game, RaceLegScreen parent, Boat_Type type, int lane, int leg_num){
 
-        
         super(game, parent, type, lane);
         check_x = getXCoords(lane, leg_num, type);
         check_y = getYCoords(lane, leg_num, type);
     }
 
+    @Override
     public void update(float delta_time, List<Entity> entities){
 
         super.update(delta_time, entities);
@@ -76,7 +86,13 @@ public class AIBoat extends Boat{
         }
     }
 
-
+    /**
+     * Get the x-axis coordinates of the AI's waypoints
+     * @param lane_num the boat's lane number
+     * @param race_leg the current race leg number
+     * @param type the type of the boat
+     * @return an array of floats representing the x-axis coordinates of the waypoints, in order
+     */
     public float[] getXCoords(int lane_num, int race_leg, Boat_Type type){
 
         System.out.println(lane_num + " " + type + " " + race_leg);
@@ -150,6 +166,13 @@ public class AIBoat extends Boat{
         }
     }
 
+    /**
+     * Get the y-axis coordinates of the AI's waypoints
+     * @param lane_num the boat's lane number
+     * @param race_leg the current race leg number
+     * @param type the type of the boat
+     * @return an array of floats representing the y-axis coordinates of the waypoints, in order
+     */
     public float[] getYCoords(int lane_num, int race_leg, Boat_Type type){
         if (race_leg == 1){
             float[] y_coords = {0f, 500f, 1500f, 2500f, 3000f, 3500f, 4500f, 5500f, 6300f, 7250f, 8250f, 9000f, 9750f, 

@@ -33,7 +33,7 @@ import org.gnocchigames.dragonboat.util.GameStructure;
 import org.gnocchigames.dragonboat.util.GameStructure.Legs;
 
 /**
- * RaceLegScreen Base class for a leg of the dragon boat race Keeps track of
+ * RaceLegScreen class for a leg of the dragon boat race. Keeps track of
  * entities, updates them Draws scene every frame
  */
 public class RaceLegScreen extends ScreenAdapter {
@@ -67,6 +67,11 @@ public class RaceLegScreen extends ScreenAdapter {
 
     ShapeRenderer debug_box_renderer;
     
+    /**
+     * Create a RaceLegScreen instance. 
+     * This screen is the main screen where the game happens.
+     * @param game the parent DragonBoatGame instance
+     */
     public RaceLegScreen(DragonBoatGame game) {
         super();
         this.game = game;
@@ -200,7 +205,7 @@ public class RaceLegScreen extends ScreenAdapter {
         }
 
         // Detect collisions
-        List<Entity> collideable_entities = getCollidableEntites();
+        List<Entity> collideable_entities = getCollidableEntities();
         for (Entity entity : collideable_entities) {
 
             if (true) {
@@ -240,9 +245,7 @@ public class RaceLegScreen extends ScreenAdapter {
         //AIBoat.AI(other_boat, check_x, check_y);
     }
 
-    /**
-     * render() is called every frame to render the screen
-     */
+
     @Override
     public void render (float delta_time) {
         draw();
@@ -360,28 +363,44 @@ public class RaceLegScreen extends ScreenAdapter {
 
     }
     
+    /**
+     * Get the list of entities tied to the screen
+     * @return the list of entities tied to the screen
+     */
     public List<Entity> getEntities () {
         return entities;
     }
 
+    /**
+     * Add an Entity to the screen's list of entities
+     * @param entity the Entity to add
+     */
     public void addEntity (Entity entity) {
         entities.add(entity);
     } 
 
+    /**
+     * Remove an Entity. Will be removed on next update()
+     * @param entity the Entity to remove
+     */
     public void removeEntity (Entity entity) {
         entities_to_remove.add(entity);
     }
 
+    /**
+     * Check if the Entity is on screen.
+     * @param entity the Entity to check against
+     * @return  true if it is on screen, false  otherwise
+     */
     private Boolean isOnScreen(Entity entity) {
         return entity.pos_y > camera.current_y - 400 && entity.pos_y < camera.current_y + camera.viewportHeight + 400;
     }
 
     /**
-    public void AI(Boat boat){
-        other_boat.accelerate();
-    }*/
-
-    public List<Entity> getCollidableEntites() {
+     * Get all entities that should be tested for collision
+     * @return the list of collidable entities
+     */
+    public List<Entity> getCollidableEntities() {
 
         List<Entity> output = new ArrayList<Entity>();
 
@@ -404,6 +423,10 @@ public class RaceLegScreen extends ScreenAdapter {
         return output;
     }
 
+    /**
+     * Get the list of entities to update
+     * @return the entities to update
+     */
     private List<Entity> getUpdateableEntities() {
         List<Entity> output = new ArrayList<Entity>();
 
@@ -419,6 +442,10 @@ public class RaceLegScreen extends ScreenAdapter {
         return output;
     }
 
+    /**
+     * Get the list of entities that should be drawn on screen
+     * @return the drawable entities
+     */
     private List<Entity> getDrawableEntities() {
         List<Entity> output = new ArrayList<Entity>();
 
@@ -437,6 +464,9 @@ public class RaceLegScreen extends ScreenAdapter {
         return output;
     }
 
+    /**
+     * Reset all Entity related lists/maps for the screen
+     */
     public void resetEntities() {
         entities = new ArrayList<Entity>();
         entities_to_remove = new ArrayList<Entity>();

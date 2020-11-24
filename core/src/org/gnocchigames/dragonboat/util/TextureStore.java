@@ -6,10 +6,17 @@ import java.util.Map;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.utils.Disposable;
 
+/**
+ * TextureStore stores and provides all textures for the game
+ */
 public class TextureStore implements Disposable {
     
     public Map<String, Texture> map;
 
+    /**
+     * Initialises a new TextureStore, 
+     * which loads all the needed textures for the game
+     */
     public TextureStore () {
 
         map = new HashMap<String, Texture>();

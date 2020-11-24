@@ -16,6 +16,9 @@ import org.gnocchigames.dragonboat.entities.TreeLog;
 import org.gnocchigames.dragonboat.entities.Duck.DuckDirection;
 
 
+/**
+ * GameStructure sets up legs, boats and obstacles
+ */
 public class GameStructure {
 
     public static enum Legs {
@@ -30,9 +33,14 @@ public class GameStructure {
     private List<Boat> players; // The list of players in the game
     private List<Obstacle> obstacles; // The list of obstacles in the game
     public Legs current_leg;
-    //multiple is amount of screens
+
     private static int FINISH_HEIGHT = 20000;
     
+    /**
+     * Create a GameStructure instance
+     * @param game the parent DragonBoatGame instance
+     * @param parent the parent RaceLegScreen instance
+     */
     public GameStructure(DragonBoatGame game, RaceLegScreen parent) {
         race_screen = parent;
         players = new ArrayList<Boat>(5);
@@ -41,6 +49,9 @@ public class GameStructure {
         current_leg = Legs.LEG_ONE;
     } 
 
+    /**
+     * Reset everything
+     */
     public void resetAll() {
         players = new ArrayList<Boat>(5);
         obstacles = new ArrayList<Obstacle>();
@@ -57,12 +68,34 @@ public class GameStructure {
         race_screen.resetEntities();
     }
 
+    /**
+     * Check if the boat is across the finish
+     * @param boat the boat to check
+     * @return true if the boat is over the finish, false otherwise
+     */
     public boolean isBoatAcross(Boat boat){
         return boat.pos_y > FINISH_HEIGHT;
     }
+
+    /**
+     * Check if all the boats are across the finish
+     * @return true if all boats are across the finish, false otherwise
+     */
     public boolean allBoatsAcross(){
-        return false;
+        for (Boat boat : players) {
+            if (!isBoatAcross(boat)) {
+                return false;
+            }
+        }
+
+        return true;
     }
+    
+    /**
+     * Check if the race is over and applies actions in that case
+     * @param player_boat the player's boat
+     * @return  true if the race is over, false otherwise
+     */
     public boolean raceover(PlayerBoat player_boat){
         if (!player_boat.isAlive() && current_leg!=Legs.LEG_ONE) {
             game.changeScreen(DragonBoatGame.GAME_OVER);
@@ -100,10 +133,6 @@ public class GameStructure {
         }
     }
    
-
-    public void callScreen(){
-
-    }
 
     /**
      * Start the current set leg
@@ -291,7 +320,9 @@ public class GameStructure {
             resetAll();
         }
     }
-
+    /**
+     * Increment the current leg to the next
+     */
     private void incrementCurrentLeg() {
 
         switch (current_leg) {

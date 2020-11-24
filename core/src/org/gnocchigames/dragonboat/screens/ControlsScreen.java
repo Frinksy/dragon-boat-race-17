@@ -15,6 +15,9 @@ import org.gnocchigames.dragonboat.DragonBoatGame;
 
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 
+/**
+ * ControlsScreen
+ */
 public class ControlsScreen extends ScreenAdapter{
 
     private DragonBoatGame parent;
@@ -30,6 +33,10 @@ public class ControlsScreen extends ScreenAdapter{
     private Label right_key;
     private Label right_label;
 
+    /**
+     * Create a ControlsSreen
+     * @param game the parent DragonBoatGame instance
+     */
     public ControlsScreen(DragonBoatGame game) {
 
         parent = game;       

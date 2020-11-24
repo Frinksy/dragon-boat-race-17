@@ -16,11 +16,18 @@ import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 
 import org.gnocchigames.dragonboat.DragonBoatGame;
 
+/**
+ * NextLegScreen
+ */
 public class NextLegScreen extends ScreenAdapter{
 
     private DragonBoatGame parent;
     private Stage stage;
 
+    /**
+     * Create a NextLegScreen instance
+     * @param game the parent DragonBoatGame instance
+     */
     public NextLegScreen(DragonBoatGame game) {
         parent = game;
     }

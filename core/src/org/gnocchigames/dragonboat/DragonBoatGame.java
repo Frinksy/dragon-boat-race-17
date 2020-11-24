@@ -88,7 +88,7 @@ public class DragonBoatGame extends Game {
 	}
 
 	/**
-	 * case statement for choosing a screen
+	 * Case statement for choosing a screen 
 	 * called by changeScreen(DragonBoatGame.SCREEN)
 	 */
 	public void changeScreen(int screen){
@@ -133,7 +133,10 @@ public class DragonBoatGame extends Game {
 		}
 	}
 	
-	//allows screens to access the GameSettings class
+	/**
+	 * Get the game settings
+	 * @return the game settings
+	 */
 	public GameSettings getSettings(){
 		return this.game_settings;
 	}

@@ -19,7 +19,7 @@ import org.gnocchigames.dragonboat.DragonBoatGame;
 
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 
-/** Settings screen
+/**
  * SettingsScreen is instantiated by DragonBoatGame
  */
 
@@ -32,6 +32,10 @@ public class SettingsScreen extends ScreenAdapter{
     private Label sound_enabled_label;
     private Label sound_volume_label;
 
+    /**
+     * Create a SettingsScreen instance
+     * @param game the parent DragonBoatGame instance
+     */
     public SettingsScreen(DragonBoatGame game) {
 
         //constructor creates a new stage 
@@ -50,7 +54,7 @@ public class SettingsScreen extends ScreenAdapter{
         //table.setDebug(true); shows padding and borders
         stage.addActor(table);
 
-        /**
+        /*
          *  sets parent.skin_store.get(style) for text, buttons etc. 
          * easily changable with a load of free skins
          * https://github.com/czyzby/gdx-skins
@@ -59,7 +63,7 @@ public class SettingsScreen extends ScreenAdapter{
 
         Skin skin = parent.skin_store.get("clean-crispy/clean-crispy-ui.json"); 
         
-        /**
+        /*
          * creates a new slider for our sound volume
          * and a listener to find out when changed
          */
@@ -74,7 +78,7 @@ public class SettingsScreen extends ScreenAdapter{
 	        }
         });
 
-        /**
+        /*
          * creates a new checkbox for our sound volume to check/ set enabled
          * and a listener to find out when changed
          */
@@ -94,7 +98,7 @@ public class SettingsScreen extends ScreenAdapter{
 	        }
         });
 
-        /**
+        /*
          * adds a new button that returns user to the main menu
          */
         final TextButton return_button = new TextButton("Back", skin);
@@ -112,7 +116,7 @@ public class SettingsScreen extends ScreenAdapter{
         sound_enabled_label = new Label("Sound Enabled", skin);
 
 
-        /**
+        /*
          * a table consisting of a 2 columns and multiple rows
          * left column holds labels and right sliders and checkboxes
          * title and return_button span both columns
@@ -130,7 +134,7 @@ public class SettingsScreen extends ScreenAdapter{
 
     @Override
     public void render(float delta_time){
-        /**gets called every frame
+        /*gets called every frame
          * resets screen then draws new frame to it
          */
         Gdx.gl.glClearColor(1f, 1f, 1f, 1);

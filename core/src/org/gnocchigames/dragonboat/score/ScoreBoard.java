@@ -19,6 +19,10 @@ import org.gnocchigames.dragonboat.DragonBoatGame;
 import org.gnocchigames.dragonboat.entities.Boat;
 import org.gnocchigames.dragonboat.util.GameStructure;
 
+/**
+ * ScoreBoard to store all the times of the players. 
+ * Also provides functions to draw scoreboard.
+ */
 public class ScoreBoard {
     
     public static int FINISH_HEIGHT = 20000;
@@ -30,7 +34,11 @@ public class ScoreBoard {
     public DragonBoatGame game;
     private List<String> podium_names;
 
-
+    /**
+     * Create a ScoreBoard instance
+     * @param game the DragonBoatGame instance to which the ScoreBoard is tied 
+     * @param players the intial list of players on the ScoreBoard
+     */
     public ScoreBoard(DragonBoatGame game, List<Boat> players) {
         this.game = game;
         this.times = new HashMap<String, Long>();
@@ -51,6 +59,10 @@ public class ScoreBoard {
 
     }
 
+    /**
+     * Add players to the ScoreBoard
+     * @param players the list of players to add
+     */
     public void addPlayers(List<Boat> players) {
         for (Boat boat : players) {
             if (!this.times.containsKey(boat.getName())) {
@@ -59,7 +71,11 @@ public class ScoreBoard {
             this.boats.put(boat.getName(), boat);
         }
     }
-  
+    
+    /**
+     * Compute the new scores for all the boats. 
+     * Should be called at the end of the leg to update the times.
+     */
     public void computeRoundEndScores() {
         for (String player : times.keySet()) {
             Boat boat = boats.get(player);
@@ -81,6 +97,10 @@ public class ScoreBoard {
         }
     }
 
+    /**
+     * Get the formatted strings of the boats' times
+     * @return a Map where keys are names and values are formatted strings
+     */
     public Map<String, String> getFormattedTimes() {
         Map<String, String> output = new HashMap<String, String>();
 
@@ -102,6 +122,10 @@ public class ScoreBoard {
         return output;
     }
 
+    /**
+     * Get the ScoreBoard as a Table
+     * @return the Table of the Scoreboard
+     */
     public Table drawScoreTable() {
         
         Table table = new Table();
@@ -134,6 +158,10 @@ public class ScoreBoard {
 
     }
 
+    /**
+     * Eliminate boats according to the rules of the game.  
+     * @param next_leg the next leg that is going to be played
+     */
     public void eliminateBoats(GameStructure.Legs next_leg) {
 
         switch (next_leg) {
@@ -192,6 +220,10 @@ public class ScoreBoard {
         }
     }
 
+    /**
+     * Get the top 3 names in order to be displayed on the podium
+     * @return the ordered list of the top 3 names
+     */
     public List<String> getPodiumNames() {
 
         /*If the game hasn't been played yet,
@@ -226,6 +258,9 @@ public class ScoreBoard {
         return podium_names;
     }
 
+    /**
+     * Reset the ScoreBoard
+     */
     public void resetAll() {
         this.times = new HashMap<String, Long>();
         this.boats = new HashMap<String, Boat>();
@@ -233,6 +268,11 @@ public class ScoreBoard {
         this.disqualified_boats = new ArrayList<String>();
     }
 
+    /**
+     * Get the list of names in order of their position 
+     * in the scoreboard.
+     * @return the ordered list of boats
+     */
     private List<String> getOrderedNames() {
 
         List<String> ordered_players = new ArrayList<String>();

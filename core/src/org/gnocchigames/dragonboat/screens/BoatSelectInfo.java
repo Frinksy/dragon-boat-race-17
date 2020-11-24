@@ -11,10 +11,9 @@ import org.gnocchigames.dragonboat.DragonBoatGame;
 import org.gnocchigames.dragonboat.entities.Boat;
 
 
-/** Main menu screen
- * MainMenuScreen is instantiated by DragonBoatGame
+/** 
+ * Provides static functions for BoatSelectScreen
  */
-
 public class BoatSelectInfo{
 
     private static Label title;
@@ -29,7 +28,10 @@ public class BoatSelectInfo{
     private static Color colour;
 
     /**
-     * Draw the boat select table to the screen
+     * Draw the boat select table
+     * @param game the game which will be used to draw
+     * @param type the boat type
+     * @return the table of boats for the BoatSelectScreen
      */
     public static Table drawTable(DragonBoatGame game, Boat.Boat_Type type){
 

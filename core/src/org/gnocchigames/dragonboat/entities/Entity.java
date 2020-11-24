@@ -17,7 +17,7 @@ import org.gnocchigames.dragonboat.exceptions.IsNotDrawingException;
 import org.gnocchigames.dragonboat.screens.RaceLegScreen;
 
 /**
- * Entity Base class for all entities in the game
+ * Base class for all entities in the game
  */
 public abstract class Entity {
 
@@ -48,6 +48,12 @@ public abstract class Entity {
         return false;
     };
 
+    /**
+     * Check if the entity has collided with other entities, 
+     * and with which one.
+     * @param entities the entities to check against
+     * @return (true, entity) if in collision with entity, (false, null) otherwise
+     */
     public SimpleEntry<Boolean, Entity> isCollidedWith(List<Entity> entities) {
         for (Entity entity : entities) {
             if (Intersector.intersectPolygons(entity.hitbox, hitbox, null) || Intersector.intersectPolygons(hitbox, entity.hitbox, null)) {
@@ -59,14 +65,26 @@ public abstract class Entity {
         return new SimpleEntry<Boolean, Entity>(false, null);
     }
 
+    /**
+     * Apply the collision effects
+     * @param other the entity which has been collided with
+     */
     public abstract void applyCollision(Entity other);
 
+    /**
+     * Remove the entity
+     */
     public abstract void remove();
     
+    /**
+     * Update the entity's state
+     * @param delta_time the time since the last update
+     * @param entities the entities to update against
+     */
     public abstract void update(float delta_time, List<Entity> entities);
 
     /**
-     * Add the sprite to the drawing queue (SpriteBatch)
+     * Add the sprite to the drawing queue (SpriteBatch) <br>
      * Should be called every frame
      * @param batch the SpriteBatch to draw to
      */
@@ -79,9 +97,9 @@ public abstract class Entity {
     };
 
     /**
-     * Get the bounding polygon, around the entity
-     * By default it is a rectangle encapsulating the sprite
-     * Is implemented more specifically for inheriting classes
+     * Get the bounding polygon, around the entity <br>
+     * By default it is a rectangle encapsulating the sprite <br>
+     * Is implemented more specifically for inheriting classes <br>
      * @return the bounding polygon of the
      */
     public Polygon getBoundingPolygon() {
