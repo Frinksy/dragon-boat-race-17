@@ -291,6 +291,10 @@ public class GameStructure {
         }
         players.removeAll(boats_to_remove);
 
+        if (!players.contains(player_boat)) {
+            game.changeScreen(DragonBoatGame.GAME_OVER);
+            resetAll();
+        }
     }
 
     private void incrementCurrentLeg() {
