@@ -44,7 +44,6 @@ public class Boat extends Entity{
     private Boolean in_lane;
     public long time_out_of_lane;
     private long last_out_of_lane_time;
-    public  long current_penalty;
     
     public long start_time;
     public long end_time;
@@ -98,7 +97,6 @@ public class Boat extends Entity{
 
         // Set stats
         this.current_health = 100;
-        this.current_penalty = 0;
         this.velocity = 1;
         this.time_out_of_lane = 0;
         this.last_out_of_lane_time = 0;
