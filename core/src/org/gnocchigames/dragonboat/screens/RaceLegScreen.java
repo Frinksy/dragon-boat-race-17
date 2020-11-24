@@ -120,7 +120,7 @@ public class RaceLegScreen extends ScreenAdapter {
      */
     @Override
     public void show() {
-        
+        Gdx.input.setInputProcessor(null);
         game_structure.start_leg();
     }
 
