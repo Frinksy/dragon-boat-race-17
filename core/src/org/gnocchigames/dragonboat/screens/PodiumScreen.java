@@ -88,8 +88,16 @@ public class PodiumScreen extends ScreenAdapter{
         List<String> names = parent.score_board.getPodiumNames();
 
         first = new Label(names.get(0), skin);
-        second = new Label(names.get(1), skin);
-        third = new Label(names.get(2), skin);
+        if (names.size()>1){
+            second = new Label(names.get(1), skin);
+        }else {
+            second = new Label("", skin);
+        }
+        if (names.size()>2) {
+            third = new Label(names.get(2), skin);
+        }else {
+            third = new Label("", skin);
+        }
         spacer = new Label("", skin);
 
         // table layout
