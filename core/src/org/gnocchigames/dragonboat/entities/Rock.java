@@ -25,7 +25,7 @@ public class Rock extends Obstacle {
         this.pos_y = y;
         
         // Set up sprite
-        String[] filenames = {"rock/rock2.png", "rock/rock2.png", "rock/rock2.png", "rock/rock3.png"};
+        String[] filenames = {"rock/rock0.png", "rock/rock1.png", "rock/rock2.png", "rock/rock3.png"};
         int index = (int)(Math.random() * filenames.length);
         Texture texture = parent.game.texture_store.map.get(filenames[index]);
 
