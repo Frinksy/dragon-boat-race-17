@@ -42,9 +42,8 @@ public class Boat extends Entity{
     private Boat_Type type;
     
     private Boolean in_lane;
-    private long time_out_of_lane;
+    public long time_out_of_lane;
     private long last_out_of_lane_time;
-    public  long current_penalty;
     
     public long start_time;
     public long end_time;
@@ -98,7 +97,6 @@ public class Boat extends Entity{
 
         // Set stats
         this.current_health = 100;
-        this.current_penalty = 0;
         this.velocity = 1;
         this.time_out_of_lane = 0;
         this.last_out_of_lane_time = 0;
@@ -399,7 +397,7 @@ public class Boat extends Entity{
         tiredness_factor = tiredness_factor - (0.005f * tiredness_factor * Gdx.graphics.getDeltaTime());
     }
 
-    private Boolean checkInLane() {
+    public Boolean checkInLane() {
         return (pos_x < (lane_number + 1) * LANE_WIDTH) && (pos_x > lane_number * LANE_WIDTH);
     }
     
@@ -454,7 +452,7 @@ public class Boat extends Entity{
             if (!in_lane) {
                 end_time += System.currentTimeMillis() - last_out_of_lane_time;
             }
-            end_time += current_penalty;
+            end_time += time_out_of_lane;
 
             done = true;
 
@@ -482,6 +480,22 @@ public class Boat extends Entity{
         duration.toMinutes(),
         duration.toMillis()%60000 / 1000,
         duration.toMillis()%1000);
+        return output;
+    }
+
+    public String getFormattedCurrentPenalty() {
+        long penalty_time = time_out_of_lane;
+        if (!checkInLane()) {
+            penalty_time += System.currentTimeMillis() - last_out_of_lane_time;
+        }
+        
+        Duration duration = Duration.ofMillis(penalty_time);
+        String output = String.format("+%02d:%02d.%03d",
+            duration.toMinutes(),
+            duration.toMillis()%60000 / 1000,
+            duration.toMillis()%1000
+        );
+
         return output;
     }
 

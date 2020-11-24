@@ -8,6 +8,7 @@ import java.util.AbstractMap.SimpleEntry;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.ScreenAdapter;
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
@@ -52,7 +53,8 @@ public class RaceLegScreen extends ScreenAdapter {
     private Texture background_texture;
     private Texture buoy_texture;
     private Sprite buoy_sprite;
-    private BitmapFont font;
+    private BitmapFont time_font;
+    private BitmapFont penalty_font;
 
     public PlayerBoat player_boat;
     public List<Boat> boats;
@@ -106,10 +108,12 @@ public class RaceLegScreen extends ScreenAdapter {
         FreeTypeFontGenerator generator = new FreeTypeFontGenerator(Gdx.files.internal("Retro Gaming.ttf"));
         FreeTypeFontGenerator.FreeTypeFontParameter param = new FreeTypeFontGenerator.FreeTypeFontParameter();
         param.size = 100;
-        font = generator.generateFont(param);
+        time_font = generator.generateFont(param);
+        param.size = 75;
+        penalty_font = generator.generateFont(param);
         generator.dispose();
 
-        game_structure.set_leg(Legs.LEG_FINAL);
+        game_structure.set_leg(Legs.LEG_ONE);
         // System.out.println("raceover = "+race_structure.raceover(player_boat));
 
     }
@@ -336,7 +340,18 @@ public class RaceLegScreen extends ScreenAdapter {
         }
         batch.setProjectionMatrix(ui_camera.combined);
         batch.begin();
-        font.draw(batch, player_boat.getFormattedCurrentTime(), 660, 1000);
+        time_font.draw(batch, player_boat.getFormattedCurrentTime(), 660, 1000);
+        if (!player_boat.checkInLane() || player_boat.time_out_of_lane > 0) {
+
+            if (!player_boat.checkInLane()) {
+                penalty_font.setColor(Color.RED);
+            }else {
+                penalty_font.setColor(Color.WHITE);
+            }
+
+            penalty_font.draw(batch, player_boat.getFormattedCurrentPenalty(), 700, 900);
+        
+        }
         batch.end();
 
 
