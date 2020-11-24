@@ -11,7 +11,6 @@ public class AIBoat extends Boat{
 
     public Boat boat;
 
-    public int a;
     public float[] check_x;
     public float[] check_y;
 
