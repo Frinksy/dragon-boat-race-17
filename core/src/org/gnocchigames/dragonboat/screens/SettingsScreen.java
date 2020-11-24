@@ -69,7 +69,8 @@ public class SettingsScreen extends ScreenAdapter{
   		@Override
 		public boolean handle(Event event) {
   			parent.getSettings().setSoundVolume(volume_slider.getValue());
-                return false;
+            parent.music.setVolume(volume_slider.getValue());
+              return false;
 	        }
         });
 
@@ -82,8 +83,13 @@ public class SettingsScreen extends ScreenAdapter{
         enabled_checkbox.addListener(new EventListener() {
    	    @Override
 	    public boolean handle(Event event) {
-       	    boolean enabled = enabled_checkbox.isChecked();
-       	    parent.getSettings().setSoundEnabled(enabled);
+       	        boolean enabled = enabled_checkbox.isChecked();
+                parent.getSettings().setSoundEnabled(enabled);
+                if (enabled) {
+                    parent.music.play();
+                }else {
+                    parent.music.stop();
+                }
        	    return false;
 	        }
         });

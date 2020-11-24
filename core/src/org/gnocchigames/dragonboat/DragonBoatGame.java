@@ -3,6 +3,8 @@ package org.gnocchigames.dragonboat;
 import java.util.ArrayList;
 
 import com.badlogic.gdx.Game;
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.audio.Music;
 
 import org.gnocchigames.dragonboat.entities.Boat;
 import org.gnocchigames.dragonboat.score.ScoreBoard;
@@ -36,6 +38,8 @@ public class DragonBoatGame extends Game {
 	private NextLegScreen next_leg_screen;
 	private GameOverScreen game_over_screen;
 	private InfoScreen info_screen;
+
+	public Music music;
 	
 	// declares variables holding integers to be used in case statement
 	public final static int MENU = 0;
@@ -72,6 +76,14 @@ public class DragonBoatGame extends Game {
 
 		// Set the screen to the actual game
 		//this.setScreen(new RaceLegScreen(this));
+
+		// Play music
+		music = Gdx.audio.newMusic(Gdx.files.internal("ost.wav"));
+		music.setLooping(true);
+		music.setVolume(getSettings().getSoundVolume());
+		if (getSettings().getSoundEnabled()) {
+			music.play();
+		}
 
 	}
 
@@ -131,6 +143,7 @@ public class DragonBoatGame extends Game {
 	*/
 	@Override
 	public void dispose () {
+		music.stop();
 		texture_store.dispose();
 		skin_store.dispose();
 	}
