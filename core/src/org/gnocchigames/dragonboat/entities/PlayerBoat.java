@@ -21,16 +21,16 @@ public class PlayerBoat extends Boat{
      */
     public void handleKeys() {
 
-        if (Gdx.input.isKeyPressed(Input.Keys.LEFT)) {
+        if (Gdx.input.isKeyPressed(Input.Keys.LEFT) || Gdx.input.isKeyPressed(Input.Keys.A)) {
             this.turnLeft();
         }
-        if (Gdx.input.isKeyPressed(Input.Keys.RIGHT)) {
+        if (Gdx.input.isKeyPressed(Input.Keys.RIGHT) || Gdx.input.isKeyPressed(Input.Keys.D)) {
             this.turnRight();
         }
-        if (Gdx.input.isKeyPressed(Input.Keys.UP)) {
+        if (Gdx.input.isKeyPressed(Input.Keys.UP) || Gdx.input.isKeyPressed(Input.Keys.W)) {
             this.accelerate();
         }
-        if (Gdx.input.isKeyPressed(Input.Keys.DOWN)) {
+        if (Gdx.input.isKeyPressed(Input.Keys.DOWN) || Gdx.input.isKeyPressed(Input.Keys.S)) {
             this.decelerate();
         }
 

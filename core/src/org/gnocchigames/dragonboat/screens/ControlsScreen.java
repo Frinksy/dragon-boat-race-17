@@ -62,10 +62,10 @@ public class ControlsScreen extends ScreenAdapter{
         left_label = new Label("Turn Left:", skin);
         right_label = new Label("Turn Right:", skin);
 
-        acc_key = new Label("Up Arrow", skin);
-        dec_key = new Label("Down Arrow", skin);
-        left_key = new Label("Left Arrow", skin);
-        right_key = new Label("Right Arrow", skin);    
+        acc_key = new Label("Up Arrow or W", skin);
+        dec_key = new Label("Down Arrow or S", skin);
+        left_key = new Label("Left Arrow or A", skin);
+        right_key = new Label("Right Arrow or D", skin);    
 
         table.add(title).colspan(2);
         table.row().pad(20, 10, 0, 10);
