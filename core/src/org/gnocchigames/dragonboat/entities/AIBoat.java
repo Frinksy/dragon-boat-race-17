@@ -96,8 +96,11 @@ public class AIBoat extends Boat{
     public float[] getXCoords(int lane_num, int race_leg, Boat_Type type){
 
         System.out.println(lane_num + " " + type + " " + race_leg);
-        //Speed
-        int a = lane_num*394; // this is an OFFSET!
+        
+        int a = (lane_num*394); // this is an OFFSET!
+
+
+
         if (race_leg == 1){
             float[] x_coords = {0f+a, 50f+a, 330f+a, 50f+a, 75f+a, 320f+a, 50f+a, 340f+a, 50f+a, 330f+a, 50f+a, 50f+a, 50f+a, 
                 330f+a, 50f+a, 330f+a, 75f+a, 75f+a, 192f+a, 75f+a, 75f+a, 330f+a, 75f+a, 330f+a, 100f+a, 50f+a, 330f+a, 192f+a, 50f+a, 50f+a};
@@ -128,6 +131,9 @@ public class AIBoat extends Boat{
                 float[] x_coords ={0f, 300f+a, 300f+a, 300f+a, 300f+a, 300f+a, 350f+a, 350f+a, 350f+a};
                 return x_coords;
             } else {
+                if ((type == Boat.Boat_Type.ACCEL) && (lane_num == 1)){
+                    a += 20;
+                }
                 float[] x_coords = {0f+a, 75f+a, 150f+a, 75f+a, 150f+a, 75f+a, 180f+a, 200f+a, 250f+a, 175f+a,
                     250f+a, 150f+a, 250f+a, 165f+a, 280f+a, 270f+a, 150f+a, 150f+a, 50f+a, 150f+a, 50f+a,
                     125f+a, 50f+a, 50f+a, 150f+a, 150f+a, 250f+a, 150f+a, 250f+a, 150f+a, 250f+a, 150f+a,
@@ -147,6 +153,7 @@ public class AIBoat extends Boat{
                     325+a, 325f+a, 325f+a, 325f+a, 160f+a, 170f+a};
                 return x_coords;
             } else if (type == Boat.Boat_Type.MANOEUVREABLE){
+                a += 10;
                 float[] x_coords ={0f, 175f+a, 280f+a, 160f+a, 80f+a, 160f+a, 80f+a, 160f+a, 280f+a,
                     150f+a, 80f+a, 140f+a, 80f+a, 150+a, 315f+a, 315f+a, 315f+a, 150f+a, 80f+a,
                     150f+a, 150f+a, 80f+a, 150f+a, 150f+a, 280f+a, 170f+a, 190f+a, 280f+a, 315f+a,
