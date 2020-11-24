@@ -11,7 +11,6 @@ import org.gnocchigames.dragonboat.screens.RaceLegScreen;
  */
 public class TreeLog extends Obstacle {
 
-    private Texture texture;
     
     /**
      * Create a TreeLog at the desired position
@@ -27,7 +26,7 @@ public class TreeLog extends Obstacle {
         this.pos_y = y;
 
         // Set up sprite
-        this.texture = parent.game.texture_store.map.get("tree_log.png");
+        Texture texture = parent.game.texture_store.map.get("tree_log.png");
         this.sprite = new Sprite(texture);
         this.sprite.setOrigin(sprite.getWidth()/2, sprite.getHeight()/2);
         this.sprite.scale(-0.75f);
