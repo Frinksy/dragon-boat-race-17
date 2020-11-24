@@ -56,7 +56,7 @@ public class Duck extends Obstacle {
     
     /**
      * Creates a Duck with the specified coordinates, speed and direction
-     * @param parent the parent screne
+     * @param parent the parent screen
      * @param x
      * @param y
      * @param speed

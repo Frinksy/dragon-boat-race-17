@@ -1,7 +1,7 @@
 package org.gnocchigames.dragonboat.exceptions;
 
 /**
- * IsNotDrawingException
+ * IsNotDrawingException  <br>
  * A simple Exception to be thrown when
  * a sprite is trying to draw itself when the 
  * SpriteBatch has not begun drawing

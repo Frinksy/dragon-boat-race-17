@@ -5,10 +5,17 @@ import com.badlogic.gdx.Screen;
 
 import org.gnocchigames.dragonboat.DragonBoatGame;
 
+/**
+ * LoadingScreen
+ */
 public class LoadingScreen implements Screen{
     
     private DragonBoatGame parent;
 
+	/**
+	 * Create a LoadingScreen instance
+	 * @param game the parent DragonBoatGame instance
+	 */
     public LoadingScreen(DragonBoatGame game){
         parent = game;
     }

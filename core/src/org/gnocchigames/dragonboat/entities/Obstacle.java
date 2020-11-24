@@ -3,7 +3,7 @@ package org.gnocchigames.dragonboat.entities;
 import java.util.List;
 
 /**
- * Obstacle
+ * Base class for all obstacles
  */
 public abstract class Obstacle extends Entity {
 
@@ -11,8 +11,10 @@ public abstract class Obstacle extends Entity {
 
     public int speed_damage;
 
+    @Override
     public abstract void applyCollision(Entity other);
 
+    @Override
     public void remove() {
         parent.removeEntity(this);
     }

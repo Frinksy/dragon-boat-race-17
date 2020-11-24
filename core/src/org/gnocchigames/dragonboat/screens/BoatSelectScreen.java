@@ -18,6 +18,9 @@ import org.gnocchigames.dragonboat.entities.Boat.Boat_Type;
 
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 
+/**
+ * BoatSelectScreen
+ */
 public class BoatSelectScreen extends ScreenAdapter{
 
     private static Boat.Boat_Type type;
@@ -43,6 +46,10 @@ public class BoatSelectScreen extends ScreenAdapter{
      * and start the game 
      */
 
+    /**
+     * Create a BoatSelectScreen
+     * @param game the parent DragonBoatGame
+     */
     public BoatSelectScreen(DragonBoatGame game) {
         
         parent = game;
@@ -162,12 +169,16 @@ public class BoatSelectScreen extends ScreenAdapter{
         table_big.add(return_button).fillX();
     }
 
-    // allows other classes to call get what boat a user has chosen
+
+    /**
+     * Get what type of boat the user has chosen
+     * @return the type of boat chosen by the user
+     */
     public static Boat.Boat_Type getBoat(){
         return type;
     }
 
-    // refreshes the screen each frame
+
     @Override
     public void render(float delta_time){
 

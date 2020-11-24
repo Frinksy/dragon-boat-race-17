@@ -17,7 +17,6 @@ import org.gnocchigames.dragonboat.screens.RaceLegScreen;
 
 
 /**
- * Boat
  * Class which implements a boat
  * It is not designed to be used directly,
  * instead please use PlayerBoat or AIBoat
@@ -66,8 +65,8 @@ public class Boat extends Entity{
     /**
      * Creates a boat of specified type and in the specified assigned lane
      * @param parent the parent screen
-     * @param type
-     * @param lane
+     * @param type the boat type
+     * @param lane the boat's lane
      */
     public Boat(DragonBoatGame game, RaceLegScreen parent, Boat_Type type, int lane) {
 
@@ -117,16 +116,13 @@ public class Boat extends Entity{
     /**
      * Creates a boat of defined type and in default lane, lane zero
      * @param parent the parent screen
-     * @param type
+     * @param type the boat's type
      */
     public Boat(DragonBoatGame game, RaceLegScreen parent,  Boat_Type type) {
         this(game, parent, type, 0);
 
     }
 
-    /**
-     * Gets the bounding polygon around the boat
-     */
     @Override
     public Polygon getBoundingPolygon() {
 
@@ -214,6 +210,11 @@ public class Boat extends Entity{
         }
     }
 
+    /**
+     * Get the texture list for the boat
+     * @param type the type of the boat
+     * @return a list of ordered textures for the boat's animation
+     */
     private List<Texture> getTextures(Boat_Type type) {
         String folder = new String();
         switch (type) {
@@ -249,8 +250,10 @@ public class Boat extends Entity{
     }
     
     /**
-     * Update the boat's properties and stats
+     * Update the boat's properties and stats <br>
      * Should be called every frame
+     * @param delta_time the time since the last update
+     * @param entities the list of entities to check against
      */
     @Override
     public void update(float delta_time, List<Entity> entities) {
@@ -308,7 +311,7 @@ public class Boat extends Entity{
 
 
     /**
-     * Make the boat go faster
+     * Make the boat go faster.
      * Changes speed based off of the boat's current stats
      */
     public void accelerate() {
@@ -364,7 +367,7 @@ public class Boat extends Entity{
     }
 
     /**
-     * Private convenience function to apply the turning of the boat
+     * Private convenience function to apply the turning of the boat. 
      * Called by turnLeft() and turnRight();
      * @param diff the angle difference in degrees
      */
@@ -383,20 +386,30 @@ public class Boat extends Entity{
         this.hitbox.setRotation(this.direction);
 
         // check if rotation resulted in a collision
-        if (isCollided(parent.getCollidableEntites())) {
+        if (isCollided(parent.getCollidableEntities())) {
             this.direction = old_angle;
         }
 
     }
-
+    /**
+     * Check if the boat is alive
+     * @return true if above zero health, false otherwise
+     */
     public Boolean isAlive() {
         return current_health > 0;
     }
 
+    /**
+     * Erodes the tiredness factor
+     */
     private void getTired() {
         tiredness_factor = tiredness_factor - (0.005f * tiredness_factor * Gdx.graphics.getDeltaTime());
     }
 
+    /**
+     * Check if the boat is in its lane
+     * @return true if the boat is in its lane, false otherwise
+     */
     public Boolean checkInLane() {
         return (pos_x < (lane_number + 1) * LANE_WIDTH) && (pos_x > lane_number * LANE_WIDTH);
     }
@@ -461,6 +474,11 @@ public class Boat extends Entity{
         return end_time;
     }
 
+    /**
+     * Get the boat's time in the current leg. 
+     * Should be called only when the leg is over
+     * @return the boat's time in the leg
+     */
     public long getLegTime() {
         return end_time - start_time;
     }
@@ -473,6 +491,10 @@ public class Boat extends Entity{
         return System.currentTimeMillis() - start_time;
     }
 
+    /**
+     * Get the formatted string of the boat's current time
+     * @return a formatted string of the boat's current time
+     */
     public String getFormattedCurrentTime() {
         Duration duration = Duration.ofMillis(getCurrentTime());
 
@@ -483,6 +505,10 @@ public class Boat extends Entity{
         return output;
     }
 
+    /**
+     * Get the formatted string of the boat's current penalty
+     * @return a formatted string of the boat's current penalty
+     */
     public String getFormattedCurrentPenalty() {
         long penalty_time = time_out_of_lane;
         if (!checkInLane()) {
@@ -499,18 +525,34 @@ public class Boat extends Entity{
         return output;
     }
 
+    /**
+     * Get the boat's angle
+     * @return the boat's angle (0-360)
+     */
     public double getDirection(){
         return direction;
     }
 
+    /**
+     * Get the boat's x position
+     * @return the boat's x position
+     */
     public float getX(){
         return pos_x;
     }
 
+    /**
+     * Get the boat's y position
+     * @return the boat's y position
+     */
     public float getY(){
         return pos_x;
     }
 
+    /**
+     * Get the name of the boat
+     * @return the name of the boat
+     */
     public String getName() {
         String name = new String();
         switch (type) {
@@ -534,6 +576,11 @@ public class Boat extends Entity{
         return name;
     }
 
+    /**
+     * Get a Label containing the boat's name
+     * @param skin the skin to apply to the label
+     * @return a label containing the boat's name
+     */
     public Label getNameLabel(Skin skin) {
 
         Label output = new Label(getName(), skin);

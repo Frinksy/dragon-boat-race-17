@@ -4,10 +4,16 @@ import com.badlogic.gdx.graphics.OrthographicCamera;
 
 import org.gnocchigames.dragonboat.entities.Boat;
 
+/**
+ * GameCamera
+ */
 public class GameCamera extends OrthographicCamera{
     
     public float current_y;
 
+    /**
+     * Create a GameCamera instance.
+     */
     public GameCamera () {
         super();
         current_y = 0;
@@ -19,7 +25,10 @@ public class GameCamera extends OrthographicCamera{
         this.current_y += y;
     }
 
-
+    /**
+     * Move the camera to follow the boat
+     * @param boat the boat to follow
+     */
     public void followBoat(Boat boat) {
         if (boat.pos_y < current_y + viewportHeight*0.1f) {
             translate(0, boat.pos_y - (current_y + viewportHeight*0.1f));

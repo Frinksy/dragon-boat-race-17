@@ -6,10 +6,20 @@ import com.badlogic.gdx.graphics.g2d.Sprite;
 import org.gnocchigames.dragonboat.DragonBoatGame;
 import org.gnocchigames.dragonboat.screens.RaceLegScreen;
 
+/**
+ * TreeLog obstacle
+ */
 public class TreeLog extends Obstacle {
 
     private Texture texture;
     
+    /**
+     * Create a TreeLog at the desired position
+     * @param game
+     * @param parent
+     * @param x
+     * @param y
+     */
     public TreeLog(DragonBoatGame game, RaceLegScreen parent, int x, int y) {
         this.game = game;
         this.parent = parent;
@@ -25,6 +35,7 @@ public class TreeLog extends Obstacle {
         this.hitbox = getBoundingPolygon();
     }
 
+    @Override
     public void applyCollision (Entity other) {
         if (other instanceof Boat) {
             remove();

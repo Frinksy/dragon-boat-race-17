@@ -14,12 +14,19 @@ import com.badlogic.gdx.utils.viewport.ScreenViewport;
 
 import org.gnocchigames.dragonboat.DragonBoatGame;
 
+/**
+ * InfoScreen
+ */
 public class InfoScreen extends ScreenAdapter {
     
     private DragonBoatGame parent;
     private Stage stage;
 
-    public  InfoScreen(DragonBoatGame parent) {
+    /**
+     * Create an InfoScreen instance
+     * @param parent the parent DragonBoatGame instance
+     */
+    public InfoScreen(DragonBoatGame parent) {
         this.parent = parent;
     }
 
@@ -85,6 +92,7 @@ public class InfoScreen extends ScreenAdapter {
 
     }
 
+    @Override
     public void resize(int width, int height) {
         // also called ever frame to keep menu centred
         stage.getViewport().update(width, height, true);

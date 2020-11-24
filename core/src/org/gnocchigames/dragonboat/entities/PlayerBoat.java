@@ -8,6 +8,9 @@ import com.badlogic.gdx.Input;
 import org.gnocchigames.dragonboat.DragonBoatGame;
 import org.gnocchigames.dragonboat.screens.RaceLegScreen;
 
+/**
+ * Boat controlled by the player
+ */
 public class PlayerBoat extends Boat{
     
     public PlayerBoat(DragonBoatGame game, RaceLegScreen parent, Boat.Boat_Type type) {

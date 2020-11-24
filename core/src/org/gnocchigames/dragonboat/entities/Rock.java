@@ -6,6 +6,9 @@ import com.badlogic.gdx.graphics.g2d.Sprite;
 import org.gnocchigames.dragonboat.DragonBoatGame;
 import org.gnocchigames.dragonboat.screens.RaceLegScreen;
 
+/**
+ * Rock
+ */
 public class Rock extends Obstacle {
 
     /**
@@ -35,6 +38,7 @@ public class Rock extends Obstacle {
 
     }
 
+    @Override
     public void applyCollision(Entity other) {
         // Do nothing
     }

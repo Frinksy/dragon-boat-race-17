@@ -19,6 +19,9 @@ import org.gnocchigames.dragonboat.DragonBoatGame;
 
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 
+/**
+ * PodiumScreen
+ */
 public class PodiumScreen extends ScreenAdapter{
 
     private DragonBoatGame parent;
@@ -30,6 +33,10 @@ public class PodiumScreen extends ScreenAdapter{
     private Label third;
     private Label spacer;
 
+    /**
+     * Create a PodiumScreen instance
+     * @param game the parent DragonBoatGame instance
+     */
     public PodiumScreen(DragonBoatGame game) {
 
         parent = game;        
