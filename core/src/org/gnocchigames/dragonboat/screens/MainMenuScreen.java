@@ -57,11 +57,11 @@ public class MainMenuScreen extends ScreenAdapter{
         title = new Label("DRAGON BOAT GAME", skin);
         title.setFontScale(1.25f);
         final TextButton controls = new TextButton("Controls", skin);
-        final TextButton boat_select = new TextButton("Boat Select", skin);
+        final TextButton play_button = new TextButton("Play", skin);
         final TextButton settings = new TextButton("Settings", skin);
         final TextButton exit = new TextButton("Exit", skin);
         // test button
-        final TextButton podium = new TextButton("Podium (Test)", skin);
+        final TextButton podium = new TextButton("Podium", skin);
 
         // adds listners to the buttons for when they are clicked and screens to change to
         controls.addListener(new ChangeListener(){
@@ -71,10 +71,10 @@ public class MainMenuScreen extends ScreenAdapter{
             }
         });
 
-        boat_select.addListener(new ChangeListener(){
+        play_button.addListener(new ChangeListener(){
             @Override
             public void changed(ChangeEvent event, Actor actor){
-                parent.changeScreen(DragonBoatGame.BOAT_SELECT);
+                parent.changeScreen(DragonBoatGame.INFO_SCREEN);
             }
         });
 
@@ -106,7 +106,7 @@ public class MainMenuScreen extends ScreenAdapter{
         table.row().pad(10, 0, 0, 0);
         table.add(controls).fillX().uniformX();
         table.row().pad(10, 0, 0, 0);
-        table.add(boat_select).fillX().uniformX();
+        table.add(play_button).fillX().uniformX();
         table.row().pad(10, 0, 0, 0);
         table.add(settings).fillX().uniformX();
         table.row().pad(10, 0, 0, 0);

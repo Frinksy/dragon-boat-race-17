@@ -9,6 +9,7 @@ import org.gnocchigames.dragonboat.score.ScoreBoard;
 import org.gnocchigames.dragonboat.screens.BoatSelectScreen;
 import org.gnocchigames.dragonboat.screens.ControlsScreen;
 import org.gnocchigames.dragonboat.screens.GameOverScreen;
+import org.gnocchigames.dragonboat.screens.InfoScreen;
 import org.gnocchigames.dragonboat.screens.MainMenuScreen;
 import org.gnocchigames.dragonboat.screens.PodiumScreen;
 import org.gnocchigames.dragonboat.screens.RaceLegScreen;
@@ -34,6 +35,7 @@ public class DragonBoatGame extends Game {
 	private GameSettings game_settings;
 	private NextLegScreen next_leg_screen;
 	private GameOverScreen game_over_screen;
+	private InfoScreen info_screen;
 	
 	// declares variables holding integers to be used in case statement
 	public final static int MENU = 0;
@@ -44,6 +46,7 @@ public class DragonBoatGame extends Game {
 	public final static int PODIUM = 5;
 	public final static int NEXT = 6;
 	public static final int GAME_OVER = 7;
+	public static final int INFO_SCREEN = 8;
 
 	public TextureStore texture_store;
 	public SkinStore skin_store;
@@ -110,6 +113,10 @@ public class DragonBoatGame extends Game {
 			case GAME_OVER:
 				if(game_over_screen == null) game_over_screen = new GameOverScreen(this);
 					this.setScreen(game_over_screen);
+					break;
+			case INFO_SCREEN:
+				if(info_screen == null) info_screen = new InfoScreen(this);
+					this.setScreen(info_screen);
 					break;
 		}
 	}
