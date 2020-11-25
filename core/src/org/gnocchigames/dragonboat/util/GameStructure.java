@@ -121,6 +121,7 @@ public class GameStructure {
                 game.score_board.eliminateBoats(current_leg);
             }else {
                 game.changeScreen(DragonBoatGame.PODIUM);
+                incrementCurrentLeg();
             }
             race_screen.resetEntities();
             // set_leg(current_leg);
@@ -335,7 +336,7 @@ public class GameStructure {
                 current_leg = Legs.LEG_FINAL;
                 break;
             default:
-                current_leg = Legs.LEG_FINAL;
+                current_leg = Legs.LEG_ONE;
                 break;
         }
 
