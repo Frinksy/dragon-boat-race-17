@@ -42,14 +42,15 @@ public class InfoScreen extends ScreenAdapter {
         Label text = new Label("Welcome to DragonBoatRace.\n"
         + "The aim of the game is to get to the finish line before your opponents\n"
         + "The game consists of 3 legs, followed by a final.\n"
+        + "The first leg is a practice; your result will not count towards qualifying for the final.\n"
+        + "Your score comes from a combined total time of legs 2 & 3\n"
+        + "To qualify for the final your score must be in the top 3 scores after leg 3\n"
         + "You paddle using the arrows or WASD.\n"
         + "Your health and tiredness are represented by green and cyan bars respectively\n"
-        + "The first leg is there to help you start: your result will not count towards qualifying for the final.\n"
         + "On legs 2 and 3, you may be eliminated if your health reduces to 0.\n"
-        + "Only the top 3 boats will move on to the final leg.\n"
-        + "Scores are the sum of the race times.\n"
         + "CAREFUL: the time spent outside of your lane is doubled!\n"
-        + "Finally: whichever boat you choose, will be place in the middle lane"
+        + "Finally: whichever boat you choose, will be place in the middle lane\n"
+        + "GOOD LUCK!"
         , skin);
         
         text.setFontScale(1.25f);

@@ -24,6 +24,8 @@ public class NextLegScreen extends ScreenAdapter{
     private DragonBoatGame parent;
     private Stage stage;
 
+    private Label title;
+
     /**
      * Create a NextLegScreen instance
      * @param game the parent DragonBoatGame instance
@@ -44,6 +46,9 @@ public class NextLegScreen extends ScreenAdapter{
         stage.addActor(table);
         Skin skin = parent.skin_store.get("clean-crispy/clean-crispy-ui.json");
 
+        title = new Label("RESULTS", skin);
+        title.setFontScale(1.25f);
+
         final TextButton next = new TextButton("Next Leg", skin);
         next.addListener(new ChangeListener(){
             @Override
@@ -51,7 +56,10 @@ public class NextLegScreen extends ScreenAdapter{
                 parent.changeScreen(DragonBoatGame.RACE_LEG);
             }
         });
+        table.add(title);
+        table.row().pad(50, 0, 0, 0);
         table.add(scores_table);
+        table.row().pad(50, 0, 0, 0);
         table.add(next);
 
     }
