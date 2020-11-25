@@ -1,10 +1,892 @@
-<html lang="en">
+<html>
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Risk Assessment</title>
+    <title>Risks</title>
+    <meta content="text/html; charset=UTF-8" http-equiv="content-type">
+    <style type="text/css">
+        ol {
+            margin: 0;
+            padding: 0
+        }
+
+        table td,
+        table th {
+            padding: 0
+        }
+
+        .c3 {
+            border-right-style: solid;
+            padding: 5pt 5pt 5pt 5pt;
+            border-bottom-color: #000000;
+            border-top-width: 1pt;
+            border-right-width: 1pt;
+            border-left-color: #000000;
+            vertical-align: top;
+            border-right-color: #000000;
+            border-left-width: 1pt;
+            border-top-style: solid;
+            background-color: #ea9999;
+            border-left-style: solid;
+            border-bottom-width: 1pt;
+            width: 73.5pt;
+            border-top-color: #000000;
+            border-bottom-style: solid
+        }
+
+        .c13 {
+            border-right-style: solid;
+            padding: 5pt 5pt 5pt 5pt;
+            border-bottom-color: #000000;
+            border-top-width: 1pt;
+            border-right-width: 1pt;
+            border-left-color: #000000;
+            vertical-align: top;
+            border-right-color: #000000;
+            border-left-width: 1pt;
+            border-top-style: solid;
+            background-color: #ffe599;
+            border-left-style: solid;
+            border-bottom-width: 1pt;
+            width: 56.2pt;
+            border-top-color: #000000;
+            border-bottom-style: solid
+        }
+
+        .c16 {
+            border-right-style: solid;
+            padding: 5pt 5pt 5pt 5pt;
+            border-bottom-color: #000000;
+            border-top-width: 1pt;
+            border-right-width: 1pt;
+            border-left-color: #000000;
+            vertical-align: top;
+            border-right-color: #000000;
+            border-left-width: 1pt;
+            border-top-style: solid;
+            background-color: #b6d7a8;
+            border-left-style: solid;
+            border-bottom-width: 1pt;
+            width: 56.2pt;
+            border-top-color: #000000;
+            border-bottom-style: solid
+        }
+
+        .c9 {
+            border-right-style: solid;
+            padding: 5pt 5pt 5pt 5pt;
+            border-bottom-color: #000000;
+            border-top-width: 1pt;
+            border-right-width: 1pt;
+            border-left-color: #000000;
+            vertical-align: top;
+            border-right-color: #000000;
+            border-left-width: 1pt;
+            border-top-style: solid;
+            background-color: #ffe599;
+            border-left-style: solid;
+            border-bottom-width: 1pt;
+            width: 73.5pt;
+            border-top-color: #000000;
+            border-bottom-style: solid
+        }
+
+        .c17 {
+            border-right-style: solid;
+            padding: 5pt 5pt 5pt 5pt;
+            border-bottom-color: #000000;
+            border-top-width: 1pt;
+            border-right-width: 1pt;
+            border-left-color: #000000;
+            vertical-align: top;
+            border-right-color: #000000;
+            border-left-width: 1pt;
+            border-top-style: solid;
+            border-left-style: solid;
+            border-bottom-width: 1pt;
+            width: 60pt;
+            border-top-color: #000000;
+            border-bottom-style: solid
+        }
+
+        .c10 {
+            border-right-style: solid;
+            padding: 5pt 5pt 5pt 5pt;
+            border-bottom-color: #000000;
+            border-top-width: 1pt;
+            border-right-width: 1pt;
+            border-left-color: #000000;
+            vertical-align: top;
+            border-right-color: #000000;
+            border-left-width: 1pt;
+            border-top-style: solid;
+            border-left-style: solid;
+            border-bottom-width: 1pt;
+            width: 84.8pt;
+            border-top-color: #000000;
+            border-bottom-style: solid
+        }
+
+        .c2 {
+            border-right-style: solid;
+            padding: 5pt 5pt 5pt 5pt;
+            border-bottom-color: #000000;
+            border-top-width: 1pt;
+            border-right-width: 1pt;
+            border-left-color: #000000;
+            vertical-align: top;
+            border-right-color: #000000;
+            border-left-width: 1pt;
+            border-top-style: solid;
+            border-left-style: solid;
+            border-bottom-width: 1pt;
+            width: 136.5pt;
+            border-top-color: #000000;
+            border-bottom-style: solid
+        }
+
+        .c7 {
+            border-right-style: solid;
+            padding: 5pt 5pt 5pt 5pt;
+            border-bottom-color: #000000;
+            border-top-width: 1pt;
+            border-right-width: 1pt;
+            border-left-color: #000000;
+            vertical-align: top;
+            border-right-color: #000000;
+            border-left-width: 1pt;
+            border-top-style: solid;
+            border-left-style: solid;
+            border-bottom-width: 1pt;
+            width: 48pt;
+            border-top-color: #000000;
+            border-bottom-style: solid
+        }
+
+        .c20 {
+            border-right-style: solid;
+            padding: 5pt 5pt 5pt 5pt;
+            border-bottom-color: #000000;
+            border-top-width: 1pt;
+            border-right-width: 1pt;
+            border-left-color: #000000;
+            vertical-align: top;
+            border-right-color: #000000;
+            border-left-width: 1pt;
+            border-top-style: solid;
+            border-left-style: solid;
+            border-bottom-width: 1pt;
+            width: 56.2pt;
+            border-top-color: #000000;
+            border-bottom-style: solid
+        }
+
+        .c27 {
+            border-right-style: solid;
+            padding: 5pt 5pt 5pt 5pt;
+            border-bottom-color: #000000;
+            border-top-width: 1pt;
+            border-right-width: 1pt;
+            border-left-color: #000000;
+            vertical-align: top;
+            border-right-color: #000000;
+            border-left-width: 1pt;
+            border-top-style: solid;
+            border-left-style: solid;
+            border-bottom-width: 1pt;
+            width: 73.5pt;
+            border-top-color: #000000;
+            border-bottom-style: solid
+        }
+
+        .c15 {
+            color: #000000;
+            font-weight: 700;
+            text-decoration: none;
+            vertical-align: baseline;
+            font-size: 11pt;
+            font-family: "Arial";
+            font-style: normal
+        }
+
+        .c1 {
+            color: #000000;
+            font-weight: 400;
+            text-decoration: none;
+            vertical-align: baseline;
+            font-size: 11pt;
+            font-family: "Arial";
+            font-style: normal
+        }
+
+        .c5 {
+            padding-top: 0pt;
+            padding-bottom: 0pt;
+            line-height: 1.1500000000000001;
+            orphans: 2;
+            widows: 2;
+            text-align: left;
+            height: 11pt
+        }
+
+        .c23 {
+            color: #000000;
+            font-weight: 700;
+            text-decoration: none;
+            vertical-align: baseline;
+            font-size: 14pt;
+            font-family: "Arial";
+            font-style: normal
+        }
+
+        .c32 {
+            color: #000000;
+            font-weight: 700;
+            text-decoration: none;
+            vertical-align: baseline;
+            font-size: 18pt;
+            font-family: "Arial";
+            font-style: normal
+        }
+
+        .c29 {
+            color: #000000;
+            font-weight: 400;
+            text-decoration: none;
+            vertical-align: baseline;
+            font-size: 14pt;
+            font-family: "Arial";
+            font-style: normal
+        }
+
+        .c19 {
+            color: #000000;
+            font-weight: 700;
+            text-decoration: none;
+            vertical-align: baseline;
+            font-size: 16pt;
+            font-family: "Arial";
+            font-style: normal
+        }
+
+        .c21 {
+            padding-top: 0pt;
+            padding-bottom: 0pt;
+            line-height: 1.15;
+            orphans: 2;
+            widows: 2;
+            text-align: left
+        }
+
+        .c26 {
+            padding-top: 0pt;
+            padding-bottom: 0pt;
+            line-height: 1.15;
+            orphans: 2;
+            widows: 2;
+            text-align: center
+        }
+
+        .c11 {
+            padding-top: 0pt;
+            padding-bottom: 0pt;
+            line-height: 1.1500000000000001;
+            orphans: 2;
+            widows: 2;
+            text-align: center
+        }
+
+        .c6 {
+            padding-top: 9.9pt;
+            padding-bottom: 0pt;
+            line-height: 1.0;
+            text-align: justify;
+            margin-right: 0.2pt
+        }
+
+        .c0 {
+            padding-top: 0pt;
+            padding-bottom: 0pt;
+            line-height: 1.0;
+            text-align: center
+        }
+
+        .c4 {
+            padding-top: 0pt;
+            padding-bottom: 0pt;
+            line-height: 1.0;
+            text-align: left
+        }
+
+        .c31 {
+            border-spacing: 0;
+            border-collapse: collapse;
+            margin-right: auto
+        }
+
+        .c37 {
+            background-color: #ffffff;
+            max-width: 451.5pt;
+            padding: 72pt 72pt 72pt 72pt
+        }
+
+        .c36 {
+            font-size: 14pt;
+            font-weight: 700
+        }
+
+        .c28 {
+            font-size: 16pt;
+            font-weight: 700
+        }
+
+        .c18 {
+            height: 98.1pt
+        }
+
+        .c22 {
+            height: 129.8pt
+        }
+
+        .c8 {
+            height: 0pt
+        }
+
+        .c30 {
+            background-color: #b6d7a8
+        }
+
+        .c12 {
+            background-color: #cccccc
+        }
+
+        .c33 {
+            height: 163.5pt
+        }
+
+        .c34 {
+            height: 49.2pt
+        }
+
+        .c14 {
+            margin-right: 0.2pt
+        }
+
+        .c24 {
+            background-color: #ea9999
+        }
+
+        .c35 {
+            height: 21.8pt
+        }
+
+        .c25 {
+            height: 11pt
+        }
+
+        .title {
+            padding-top: 0pt;
+            color: #000000;
+            font-size: 26pt;
+            padding-bottom: 3pt;
+            font-family: "Arial";
+            line-height: 1.1500000000000001;
+            page-break-after: avoid;
+            orphans: 2;
+            widows: 2;
+            text-align: left
+        }
+
+        .subtitle {
+            padding-top: 0pt;
+            color: #666666;
+            font-size: 15pt;
+            padding-bottom: 16pt;
+            font-family: "Arial";
+            line-height: 1.1500000000000001;
+            page-break-after: avoid;
+            orphans: 2;
+            widows: 2;
+            text-align: left
+        }
+
+        li {
+            color: #000000;
+            font-size: 11pt;
+            font-family: "Arial"
+        }
+
+        p {
+            margin: 0;
+            color: #000000;
+            font-size: 11pt;
+            font-family: "Arial"
+        }
+
+        h1 {
+            padding-top: 20pt;
+            color: #000000;
+            font-size: 20pt;
+            padding-bottom: 6pt;
+            font-family: "Arial";
+            line-height: 1.1500000000000001;
+            page-break-after: avoid;
+            orphans: 2;
+            widows: 2;
+            text-align: left
+        }
+
+        h2 {
+            padding-top: 18pt;
+            color: #000000;
+            font-size: 16pt;
+            padding-bottom: 6pt;
+            font-family: "Arial";
+            line-height: 1.1500000000000001;
+            page-break-after: avoid;
+            orphans: 2;
+            widows: 2;
+            text-align: left
+        }
+
+        h3 {
+            padding-top: 16pt;
+            color: #434343;
+            font-size: 14pt;
+            padding-bottom: 4pt;
+            font-family: "Arial";
+            line-height: 1.1500000000000001;
+            page-break-after: avoid;
+            orphans: 2;
+            widows: 2;
+            text-align: left
+        }
+
+        h4 {
+            padding-top: 14pt;
+            color: #666666;
+            font-size: 12pt;
+            padding-bottom: 4pt;
+            font-family: "Arial";
+            line-height: 1.1500000000000001;
+            page-break-after: avoid;
+            orphans: 2;
+            widows: 2;
+            text-align: left
+        }
+
+        h5 {
+            padding-top: 12pt;
+            color: #666666;
+            font-size: 11pt;
+            padding-bottom: 4pt;
+            font-family: "Arial";
+            line-height: 1.1500000000000001;
+            page-break-after: avoid;
+            orphans: 2;
+            widows: 2;
+            text-align: left
+        }
+
+        h6 {
+            padding-top: 12pt;
+            color: #666666;
+            font-size: 11pt;
+            padding-bottom: 4pt;
+            font-family: "Arial";
+            line-height: 1.1500000000000001;
+            page-break-after: avoid;
+            font-style: italic;
+            orphans: 2;
+            widows: 2;
+            text-align: left
+        }
+    </style>
 </head>
-<body>
+
+<body class="c37">
     <a href="index.html">&lt-Back to home</a>
+
+    <div>
+        <p class="c5"><span class="c1"></span></p>
+    </div>
+    <p class="c26 c14"><span class="c19">Risk Assessment and Mitigation</span></p>
+    <p class="c14 c25 c26"><span class="c15"></span></p>
+    <p class="c21 c14"><span class="c23">Risk Format</span></p>
+    <p class="c21 c14 c25"><span class="c23"></span></p>
+    <p class="c6"><span class="c1">We used a risk register to display risks to the project. We started by identifying
+            potential risks to the project and inserting them into the register. Each risk has an ID, type, description,
+            likelihood, severity and mitigation. Each risk was assigned one of three likelihoods: low, moderate and
+            high. These were based on how likely the team thought they would occur. &nbsp;Similarly, each risk was
+            assigned a severity. These were again low, moderate and high. This was based on the impact the risk would
+            cause to the project were it to occur. Finally, we decided how to mitigate each risk. Any actions that we
+            could take to reduce the impact a risk would have on the project were recorded.</span></p>
+    <p class="c6 c25"><span class="c1"></span></p>
+    <p class="c6"><span class="c1">We chose a risk register because we decided it was the most effective way that we
+            could identify risks and ensure we had sufficient mitigation in place. The use of a colour code system
+            allowed us to easily identify the risks that would cause the most harm and ensure we monitored them
+            regularly.</span></p>
+    <p class="c6 c25"><span class="c1"></span></p>
+    <p class="c6"><span>We decided against having a more detailed rating system for likelihood and severity because our
+            current system adequately displays the information in an efficient way and more detail was unnecessary. We
+            opted against including an owner column in our register as once we began recording our risks we realised
+            that it was easier to regularly re-assess risks as a group during team meetings where we discussed any
+            changes needed to the likelihood and severity of all known risks. This ensured all team members were aware
+            of all potential risks to the project at any given time allowing for spontaneous and robust risk
+        </span><span>mitigation.To allow for clear communication concerning risk mitigation a separate channel in our
+            Discord server was created where group members discussed either new potential risks or the change of
+            likelihood/severity factor that needed addressing at the next team meeting. </span></p>
+    <p class="c5 c14"><span class="c1"></span></p>
+    <p class="c5 c14"><span class="c1"></span></p>
+    <p class="c5 c14"><span class="c1"></span></p>
+    <p class="c5 c14"><span class="c1"></span></p>
+    <p class="c5 c14"><span class="c1"></span></p>
+    <p class="c5 c14"><span class="c1"></span></p>
+    <p class="c5 c14"><span class="c1"></span></p>
+    <p class="c5 c14"><span class="c1"></span></p>
+    <p class="c5 c14"><span class="c1"></span></p>
+    <p class="c5 c14"><span class="c1"></span></p>
+    <p class="c5 c14"><span class="c1"></span></p>
+    <p class="c5 c14"><span class="c1"></span></p>
+    <p class="c5 c14"><span class="c1"></span></p>
+    <p class="c5 c14"><span class="c1"></span></p>
+    <p class="c5 c14"><span class="c1"></span></p>
+    <p class="c5 c14"><span class="c1"></span></p>
+    <p class="c5"><span class="c1"></span></p>
+    <p class="c21 c25"><span class="c23"></span></p>
+    <p class="c21"><span class="c36">Risk Register</span></p>
+    <p class="c21 c25"><span class="c29"></span></p><a id="t.8eece7fb999f3b0118f94702e86d50bcc8d33129"></a><a
+        id="t.0"></a>
+    <table class="c31">
+        <tbody>
+            <tr class="c35">
+                <td class="c7 c12" colspan="1" rowspan="1">
+                    <p class="c0"><span class="c15">ID</span></p>
+                </td>
+                <td class="c17 c12" colspan="1" rowspan="1">
+                    <p class="c0"><span class="c15">Type</span></p>
+                </td>
+                <td class="c10 c12" colspan="1" rowspan="1">
+                    <p class="c0"><span class="c15">Description</span></p>
+                </td>
+                <td class="c12 c27" colspan="1" rowspan="1">
+                    <p class="c0"><span class="c15">Likelihood</span></p>
+                </td>
+                <td class="c12 c20" colspan="1" rowspan="1">
+                    <p class="c0"><span class="c15">Severity</span></p>
+                </td>
+                <td class="c2 c12" colspan="1" rowspan="1">
+                    <p class="c0"><span class="c15">Mitigation</span></p>
+                </td>
+            </tr>
+            <tr class="c8">
+                <td class="c7" colspan="1" rowspan="1">
+                    <p class="c0"><span class="c1">R1</span></p>
+                </td>
+                <td class="c17" colspan="1" rowspan="1">
+                    <p class="c4"><span class="c1">Project</span></p>
+                </td>
+                <td class="c10" colspan="1" rowspan="1">
+                    <p class="c4"><span class="c1">One of our assigned developers becomes unable to work on the
+                            implementation</span></p>
+                </td>
+                <td class="c27 c30" colspan="1" rowspan="1">
+                    <p class="c0"><span class="c1">L</span></p>
+                </td>
+                <td class="c13" colspan="1" rowspan="1">
+                    <p class="c0"><span class="c1">M</span></p>
+                </td>
+                <td class="c2" colspan="1" rowspan="1">
+                    <p class="c4"><span class="c1">Ensure there are backup developers who are able to assume their role,
+                            also contributes towards increasing the &lsquo;bus factor&rsquo;</span></p>
+                </td>
+            </tr>
+            <tr class="c8">
+                <td class="c7" colspan="1" rowspan="1">
+                    <p class="c0"><span class="c1">R2</span></p>
+                </td>
+                <td class="c17" colspan="1" rowspan="1">
+                    <p class="c4"><span class="c1">Project </span></p>
+                </td>
+                <td class="c10" colspan="1" rowspan="1">
+                    <p class="c4"><span class="c1">A team member is not contributing</span></p>
+                </td>
+                <td class="c27 c30" colspan="1" rowspan="1">
+                    <p class="c0"><span class="c1">L</span></p>
+                </td>
+                <td class="c13" colspan="1" rowspan="1">
+                    <p class="c0"><span class="c1">M</span></p>
+                </td>
+                <td class="c2" colspan="1" rowspan="1">
+                    <p class="c4"><span class="c1">Engage proactively with said team member. Discuss how they can
+                            contribute to the team better. If the problem continues, discuss with module leaders</span>
+                    </p>
+                </td>
+            </tr>
+            <tr class="c8">
+                <td class="c7" colspan="1" rowspan="1">
+                    <p class="c0"><span class="c1">R3</span></p>
+                </td>
+                <td class="c17" colspan="1" rowspan="1">
+                    <p class="c4"><span class="c1">Project</span></p>
+                </td>
+                <td class="c10" colspan="1" rowspan="1">
+                    <p class="c4"><span class="c1">Unsure of the user requirements </span></p>
+                </td>
+                <td class="c9" colspan="1" rowspan="1">
+                    <p class="c0"><span class="c1">M</span></p>
+                </td>
+                <td class="c13" colspan="1" rowspan="1">
+                    <p class="c0"><span class="c1">M</span></p>
+                </td>
+                <td class="c2" colspan="1" rowspan="1">
+                    <p class="c4"><span class="c1">The team must have a thorough discussion before the team customer
+                            meeting to discuss any questions about the requirements of the project. If an issue arises
+                            during the development of the project, organise another team customer meeting for
+                            clarification of the requirements</span></p>
+                </td>
+            </tr>
+            <tr class="c8">
+                <td class="c7" colspan="1" rowspan="1">
+                    <p class="c0"><span class="c1">R4</span></p>
+                </td>
+                <td class="c17" colspan="1" rowspan="1">
+                    <p class="c4"><span class="c1">Product &amp; Project</span></p>
+                </td>
+                <td class="c10" colspan="1" rowspan="1">
+                    <p class="c4"><span class="c1">New requirements are added or existing requirements are
+                            changed</span></p>
+                </td>
+                <td class="c9" colspan="1" rowspan="1">
+                    <p class="c0"><span class="c1">M</span></p>
+                </td>
+                <td class="c16" colspan="1" rowspan="1">
+                    <p class="c0"><span class="c1">L</span></p>
+                </td>
+                <td class="c2" colspan="1" rowspan="1">
+                    <p class="c4"><span class="c1">Adopt an Agile software engineering method so as to keep the
+                            structure of development flexible and open to such changes</span></p>
+                </td>
+            </tr>
+            <tr class="c33">
+                <td class="c7" colspan="1" rowspan="1">
+                    <p class="c0"><span class="c1">R5</span></p>
+                </td>
+                <td class="c17" colspan="1" rowspan="1">
+                    <p class="c4"><span class="c1">Product &amp; Project</span></p>
+                </td>
+                <td class="c10" colspan="1" rowspan="1">
+                    <p class="c4"><span class="c1">Developers working on the implementation work on completely separate
+                            versions that are difficult to combine </span></p>
+                </td>
+                <td class="c3" colspan="1" rowspan="1">
+                    <p class="c0"><span class="c1">H</span></p>
+                </td>
+                <td class="c16" colspan="1" rowspan="1">
+                    <p class="c0"><span class="c1">L</span></p>
+                </td>
+                <td class="c2" colspan="1" rowspan="1">
+                    <p class="c4"><span class="c1">Have developers frequently upload each new version to GitHub, as well
+                            as download the newest version before working on a feature </span></p>
+                </td>
+            </tr>
+            <tr class="c8">
+                <td class="c7" colspan="1" rowspan="1">
+                    <p class="c0"><span class="c1">R6</span></p>
+                </td>
+                <td class="c17" colspan="1" rowspan="1">
+                    <p class="c4"><span class="c1">Product &amp; Project</span></p>
+                </td>
+                <td class="c10" colspan="1" rowspan="1">
+                    <p class="c4"><span class="c1">There are issues when attempting to deliver the final product</span>
+                    </p>
+                </td>
+                <td class="c27 c30" colspan="1" rowspan="1">
+                    <p class="c0"><span class="c1">L</span></p>
+                </td>
+                <td class="c20 c24" colspan="1" rowspan="1">
+                    <p class="c0"><span class="c1">H</span></p>
+                </td>
+                <td class="c2" colspan="1" rowspan="1">
+                    <p class="c4"><span class="c1">Ensure all team members have access to all parts of the project so
+                            that any team member can submit the product</span></p>
+                </td>
+            </tr>
+            <tr class="c8">
+                <td class="c7" colspan="1" rowspan="1">
+                    <p class="c0"><span class="c1">R7</span></p>
+                </td>
+                <td class="c17" colspan="1" rowspan="1">
+                    <p class="c4"><span class="c1">Product</span></p>
+                </td>
+                <td class="c10" colspan="1" rowspan="1">
+                    <p class="c4"><span class="c1">Poor communication and a low &lsquo;bus factor&rsquo; leads to
+                            incomplete and missing parts of documentation and implementation</span></p>
+                </td>
+                <td class="c9" colspan="1" rowspan="1">
+                    <p class="c0"><span class="c1">M</span></p>
+                </td>
+                <td class="c16" colspan="1" rowspan="1">
+                    <p class="c0"><span class="c1">L</span></p>
+                </td>
+                <td class="c2" colspan="1" rowspan="1">
+                    <p class="c4"><span class="c1">Conduct weekly/bi-weekly group meetings with a work plan for the
+                            following week with job allocations for each team member</span></p>
+                </td>
+            </tr>
+            <tr class="c8">
+                <td class="c7" colspan="1" rowspan="1">
+                    <p class="c0"><span class="c1">R8</span></p>
+                </td>
+                <td class="c17" colspan="1" rowspan="1">
+                    <p class="c4"><span class="c1">Product</span></p>
+                </td>
+                <td class="c10" colspan="1" rowspan="1">
+                    <p class="c4"><span class="c1">Poor quality documentation/documentation that doesn&rsquo;t meet the
+                            specification </span></p>
+                </td>
+                <td class="c9" colspan="1" rowspan="1">
+                    <p class="c0"><span class="c1">M</span></p>
+                </td>
+                <td class="c16" colspan="1" rowspan="1">
+                    <p class="c0"><span class="c1">L</span></p>
+                </td>
+                <td class="c2" colspan="1" rowspan="1">
+                    <p class="c4"><span class="c1">All work is peer reviewed in weekly meetings and each team member is
+                            given feedback</span></p>
+                </td>
+            </tr>
+            <tr class="c8">
+                <td class="c7" colspan="1" rowspan="1">
+                    <p class="c0"><span class="c1">R9</span></p>
+                </td>
+                <td class="c17" colspan="1" rowspan="1">
+                    <p class="c4"><span class="c1">Product</span></p>
+                </td>
+                <td class="c10" colspan="1" rowspan="1">
+                    <p class="c4"><span class="c1">Update to software we use causes the current system version to become
+                            inaccessible or corrupt</span></p>
+                </td>
+                <td class="c27 c30" colspan="1" rowspan="1">
+                    <p class="c0"><span class="c1">L</span></p>
+                </td>
+                <td class="c13" colspan="1" rowspan="1">
+                    <p class="c0"><span class="c1">M</span></p>
+                </td>
+                <td class="c2" colspan="1" rowspan="1">
+                    <p class="c4"><span class="c1">Frequently upload versions to GitHub for version control and minimise
+                            loss should the current version become inaccessible or corrupt</span></p>
+                </td>
+            </tr>
+            <tr class="c18">
+                <td class="c7" colspan="1" rowspan="1">
+                    <p class="c0"><span class="c1">R10</span></p>
+                </td>
+                <td class="c17" colspan="1" rowspan="1">
+                    <p class="c4"><span class="c1">Product</span></p>
+                </td>
+                <td class="c10" colspan="1" rowspan="1">
+                    <p class="c4"><span class="c1">Project not completed before deadline</span></p>
+                </td>
+                <td class="c9" colspan="1" rowspan="1">
+                    <p class="c0"><span class="c1">M</span></p>
+                </td>
+                <td class="c20 c24" colspan="1" rowspan="1">
+                    <p class="c0"><span class="c1">H</span></p>
+                </td>
+                <td class="c2" colspan="1" rowspan="1">
+                    <p class="c4"><span class="c1">Ensure the critical path is well defined and closely managed. If the
+                            completion of a task on the critical path is delayed, take corrective action promptly in
+                            order to get the project back on schedule.</span></p>
+                </td>
+            </tr>
+            <tr class="c22">
+                <td class="c7" colspan="1" rowspan="1">
+                    <p class="c0"><span class="c1">R11</span></p>
+                </td>
+                <td class="c17" colspan="1" rowspan="1">
+                    <p class="c4"><span class="c1">Project</span></p>
+                </td>
+                <td class="c10" colspan="1" rowspan="1">
+                    <p class="c4"><span class="c1">A team member has a hardware malfunction preventing the completion of
+                            a task.</span></p>
+                </td>
+                <td class="c9" colspan="1" rowspan="1">
+                    <p class="c0"><span class="c1">M</span></p>
+                </td>
+                <td class="c16" colspan="1" rowspan="1">
+                    <p class="c0"><span class="c1">L</span></p>
+                </td>
+                <td class="c2" colspan="1" rowspan="1">
+                    <p class="c4"><span class="c1">Ensure any hardware problems are communicated to the whole team so
+                            another team member can complete the task.</span></p>
+                </td>
+            </tr>
+            <tr class="c8">
+                <td class="c7" colspan="1" rowspan="1">
+                    <p class="c0"><span class="c1">R12</span></p>
+                </td>
+                <td class="c17" colspan="1" rowspan="1">
+                    <p class="c4"><span class="c1">Project</span></p>
+                </td>
+                <td class="c10" colspan="1" rowspan="1">
+                    <p class="c4"><span class="c1">Time is wasted implementing unnecessary features.</span></p>
+                </td>
+                <td class="c27 c30" colspan="1" rowspan="1">
+                    <p class="c0"><span class="c1">L</span></p>
+                </td>
+                <td class="c16" colspan="1" rowspan="1">
+                    <p class="c0"><span class="c1">L</span></p>
+                </td>
+                <td class="c2" colspan="1" rowspan="1">
+                    <p class="c4"><span class="c1">Ensure all features added relate to a requirement as discussed with
+                            the customer.</span></p>
+                </td>
+            </tr>
+            <tr class="c8">
+                <td class="c7" colspan="1" rowspan="1">
+                    <p class="c0"><span class="c1">R13</span></p>
+                </td>
+                <td class="c17" colspan="1" rowspan="1">
+                    <p class="c4"><span class="c1">Product</span></p>
+                </td>
+                <td class="c10" colspan="1" rowspan="1">
+                    <p class="c4"><span class="c1">Having different Java developer kits may cause issues compatibility
+                            issues</span></p>
+                </td>
+                <td class="c27 c30" colspan="1" rowspan="1">
+                    <p class="c0"><span class="c1">L</span></p>
+                </td>
+                <td class="c16" colspan="1" rowspan="1">
+                    <p class="c0"><span class="c1">L</span></p>
+                </td>
+                <td class="c2" colspan="1" rowspan="1">
+                    <p class="c4"><span class="c1">Ensure all team members are using the same Java developer kits at the
+                            start of the project</span></p>
+                </td>
+            </tr>
+            <tr class="c34">
+                <td class="c7" colspan="1" rowspan="1">
+                    <p class="c0"><span class="c1">R14</span></p>
+                </td>
+                <td class="c17" colspan="1" rowspan="1">
+                    <p class="c4"><span class="c1">Product &amp; Project</span></p>
+                </td>
+                <td class="c10" colspan="1" rowspan="1">
+                    <p class="c4"><span class="c1">Loss of data</span></p>
+                </td>
+                <td class="c27 c30" colspan="1" rowspan="1">
+                    <p class="c0"><span class="c1">L</span></p>
+                </td>
+                <td class="c13" colspan="1" rowspan="1">
+                    <p class="c0"><span class="c1">M</span></p>
+                </td>
+                <td class="c2" colspan="1" rowspan="1">
+                    <p class="c4"><span class="c1">Ensure that important files are not only on one machine.</span></p>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <p class="c5"><span class="c1"></span></p>
 </body>
+
 </html>
