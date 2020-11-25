@@ -49,7 +49,7 @@ public class InfoScreen extends ScreenAdapter {
         + "Your health and tiredness are represented by green and cyan bars respectively\n"
         + "On legs 2 and 3, you may be eliminated if your health reduces to 0.\n"
         + "CAREFUL: the time spent outside of your lane is doubled!\n"
-        + "Finally: whichever boat you choose, will be place in the middle lane\n"
+        + "Finally: whichever boat you choose, will be placed in the middle lane\n"
         + "GOOD LUCK!"
         , skin);
         
