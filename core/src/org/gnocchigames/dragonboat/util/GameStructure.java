@@ -15,7 +15,6 @@ import org.gnocchigames.dragonboat.entities.Rock;
 import org.gnocchigames.dragonboat.entities.TreeLog;
 import org.gnocchigames.dragonboat.entities.Duck.DuckDirection;
 
-
 /**
  * GameStructure sets up legs, boats and obstacles
  */
@@ -103,7 +102,7 @@ public class GameStructure {
             return true;
         }
         else if (isBoatAcross(player_boat) || allBoatsAcross() || !player_boat.isAlive()){
-            System.out.println("test");
+            //System.out.println("test");
             // for (Obstacle obstacle : obstacles){
             //     race_screen.removeEntity(obstacle);
             // }
@@ -139,7 +138,7 @@ public class GameStructure {
      */
     public void start_leg() {
 
-        System.out.println(players.size());
+        //System.out.println(players.size());
         // Reset race_screen
         //race_screen.resetEntities();
         
