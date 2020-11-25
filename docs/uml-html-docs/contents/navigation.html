@@ -782,6 +782,180 @@
                                     
                                 </li>
                                 
+                                
+                                <li>
+                                    <div style="display: inline-block; white-space: nowrap">
+    <span class="node-icon staruml-icon icon-FCFlowchartDiagram"></span>
+    
+        <a href="6108e5f022df58c06a091fa1c1ceb875.html" target="content" style="white-space: nowrap;">Collision FlowChart</a>
+    
+</div>
+                                    
+                                </li>
+                                
+                                
+                                <li>
+                                    <div style="display: inline-block; white-space: nowrap">
+    <span class="node-icon staruml-icon icon-FCTerminator"></span>
+    
+        <a href="88a428ee46e038cf4ce06212444586bf.html" target="content" style="white-space: nowrap;">Boat collides with something</a>
+    
+</div>
+                                    
+                                    <ol>
+                                        
+                                        
+                                        <li>
+                                            <div style="display: inline-block; white-space: nowrap">
+    <span class="node-icon staruml-icon icon-FCFlow"></span>
+    
+        <a href="73b24dee54aa3087908da371ece4e96c.html" target="content" style="white-space: nowrap;">(Boat collides with something→Is it another Boat?)</a>
+    
+</div>
+                                            
+                                        </li>
+                                        
+                                    </ol>
+                                    
+                                </li>
+                                
+                                
+                                <li>
+                                    <div style="display: inline-block; white-space: nowrap">
+    <span class="node-icon staruml-icon icon-FCDecision"></span>
+    
+        <a href="0170317aaac7a986c489d03fb51e791c.html" target="content" style="white-space: nowrap;">Is it another Boat?</a>
+    
+</div>
+                                    
+                                    <ol>
+                                        
+                                        
+                                        <li>
+                                            <div style="display: inline-block; white-space: nowrap">
+    <span class="node-icon staruml-icon icon-FCFlow"></span>
+    
+        <a href="df219bd8f74075b25c5fb4d76827316f.html" target="content" style="white-space: nowrap;">No (Is it another Boat?→Is it a Rock?)</a>
+    
+</div>
+                                            
+                                        </li>
+                                        
+                                        
+                                        <li>
+                                            <div style="display: inline-block; white-space: nowrap">
+    <span class="node-icon staruml-icon icon-FCFlow"></span>
+    
+        <a href="655749de878f95311153e7904fdf3341.html" target="content" style="white-space: nowrap;">Yes (Is it another Boat?→Take damage and slow down)</a>
+    
+</div>
+                                            
+                                        </li>
+                                        
+                                    </ol>
+                                    
+                                </li>
+                                
+                                
+                                <li>
+                                    <div style="display: inline-block; white-space: nowrap">
+    <span class="node-icon staruml-icon icon-FCDecision"></span>
+    
+        <a href="911095ab3dd27826ad28cf37162c313b.html" target="content" style="white-space: nowrap;">Is it a Rock?</a>
+    
+</div>
+                                    
+                                    <ol>
+                                        
+                                        
+                                        <li>
+                                            <div style="display: inline-block; white-space: nowrap">
+    <span class="node-icon staruml-icon icon-FCFlow"></span>
+    
+        <a href="99e12303be8f56b10dc28a38332d7737.html" target="content" style="white-space: nowrap;">Yes (Is it a Rock?→Take damage and slow down)</a>
+    
+</div>
+                                            
+                                        </li>
+                                        
+                                        
+                                        <li>
+                                            <div style="display: inline-block; white-space: nowrap">
+    <span class="node-icon staruml-icon icon-FCFlow"></span>
+    
+        <a href="e437346b97942ec0b49962d2df68c0fc.html" target="content" style="white-space: nowrap;">No (Is it a Rock?→Remove collided entity)</a>
+    
+</div>
+                                            
+                                        </li>
+                                        
+                                    </ol>
+                                    
+                                </li>
+                                
+                                
+                                <li>
+                                    <div style="display: inline-block; white-space: nowrap">
+    <span class="node-icon staruml-icon icon-FCProcess"></span>
+    
+        <a href="98e6583bb25ffc52aa6abdbcaa5ee2ae.html" target="content" style="white-space: nowrap;">Take damage and slow down</a>
+    
+</div>
+                                    
+                                    <ol>
+                                        
+                                        
+                                        <li>
+                                            <div style="display: inline-block; white-space: nowrap">
+    <span class="node-icon staruml-icon icon-FCFlow"></span>
+    
+        <a href="05f6d27bed92aa67028b018321ecd26f.html" target="content" style="white-space: nowrap;">(Take damage and slow down→End)</a>
+    
+</div>
+                                            
+                                        </li>
+                                        
+                                    </ol>
+                                    
+                                </li>
+                                
+                                
+                                <li>
+                                    <div style="display: inline-block; white-space: nowrap">
+    <span class="node-icon staruml-icon icon-FCProcess"></span>
+    
+        <a href="f748ddb4d7eeb4748ed611115efe3fe1.html" target="content" style="white-space: nowrap;">Remove collided entity</a>
+    
+</div>
+                                    
+                                    <ol>
+                                        
+                                        
+                                        <li>
+                                            <div style="display: inline-block; white-space: nowrap">
+    <span class="node-icon staruml-icon icon-FCFlow"></span>
+    
+        <a href="89d78e21837e9a644eb6006f73e8e49d.html" target="content" style="white-space: nowrap;">(Remove collided entity→Take damage and slow down)</a>
+    
+</div>
+                                            
+                                        </li>
+                                        
+                                    </ol>
+                                    
+                                </li>
+                                
+                                
+                                <li>
+                                    <div style="display: inline-block; white-space: nowrap">
+    <span class="node-icon staruml-icon icon-FCTerminator"></span>
+    
+        <a href="1007c79678bd4360793017579ef03bfc.html" target="content" style="white-space: nowrap;">End</a>
+    
+</div>
+                                    
+                                </li>
+                                
                             </ol>
                             
                         </li>
