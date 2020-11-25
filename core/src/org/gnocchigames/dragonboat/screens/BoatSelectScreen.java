@@ -89,7 +89,7 @@ public class BoatSelectScreen extends ScreenAdapter{
             @Override
             public void changed(ChangeEvent event, Actor actor) {
                 choice = choose.getSelected();
-                System.out.println(choice);
+                //System.out.println(choice);
                 if (choice == "Speedy"){
                     type = (Boat.Boat_Type.FAST);
                 }else if (choice == "Accelerationy"){

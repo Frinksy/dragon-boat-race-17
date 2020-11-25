@@ -5,7 +5,6 @@ import java.util.List;
 import org.gnocchigames.dragonboat.util.GameStructure;
 import org.gnocchigames.dragonboat.DragonBoatGame;
 import org.gnocchigames.dragonboat.screens.RaceLegScreen;
-
 /**
  * A boat controlled by AI
  */
@@ -95,7 +94,7 @@ public class AIBoat extends Boat{
      */
     public float[] getXCoords(int lane_num, int race_leg, Boat_Type type){
 
-        System.out.println(lane_num + " " + type + " " + race_leg);
+        //System.out.println(lane_num + " " + type + " " + race_leg);
         
         int a = (lane_num*394); // this is an OFFSET!
 
