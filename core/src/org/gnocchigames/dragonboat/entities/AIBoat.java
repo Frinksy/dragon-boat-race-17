@@ -146,6 +146,7 @@ public class AIBoat extends Boat{
                     345f+a, 345f+a, 345f+a, 345f+a, 345f+a, 345f+a, 345f+a, 345f+a, 345f+a, 345f+a, 345f+a, 345f+a, 345f+a, 345f+a};
                 return x_coords;
             } else if (type == Boat.Boat_Type.ACCEL){
+                a += 20;
                 float[] x_coords ={0f, 200f+a, 300f+a, 170f+a, 100f+a, 170f+a, 100f+a, 180f+a, 300f+a, 180f+a,
                     300f+a, 330f+a, 170f+a, 170f+a, 100f+a, 170f+a, 100f+a, 170f+a, 100f+a, 170f+a,
                     100f+a, 170f+a, 275f+a, 185f+a, 320f+a, 320f+a, 180f+a, 100f+a, 180f+a, 100f+a,
